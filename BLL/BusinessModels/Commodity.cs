@@ -12,8 +12,11 @@ namespace BLL.BusinessModels
     {
         private string name { get; set; }
         private int type { get; set; }
+
         private decimal cost { get; set; }
-        
+        private string typename { get; set; }
+        private decimal quantity { get; set; }
+
         public string Name
         {
             get { return name; }
@@ -24,6 +27,15 @@ namespace BLL.BusinessModels
             }
         }
 
+        public string TypeName
+        {
+            get { return typename; }
+            set
+            {
+                typename = value;
+                OnPropertyChanged("TypeName");
+            }
+        }
         public int Type
         {
             get { return type; }
@@ -41,6 +53,16 @@ namespace BLL.BusinessModels
             {
                 cost = value;
                 OnPropertyChanged("Cost");
+            }
+        }
+
+        public decimal Quantity
+        {
+            get { return quantity; }
+            set
+            {
+                quantity = value;
+                OnPropertyChanged("TypeName");
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

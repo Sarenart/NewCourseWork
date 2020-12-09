@@ -35,5 +35,7 @@ namespace NewCourseWork
             DataContext = AppVM;//WinMan;
             //Commodities = new AppVM.Commodities;
         }
+
+
     }
 }

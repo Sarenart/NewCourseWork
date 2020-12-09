@@ -78,7 +78,7 @@
                         </RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Ближайшие поставки:</TextBlock>
-                    <DataGrid Name="CloseSupplies" Grid.Row="1" ItemsSource="{Binding  Supplies}">
+                    <DataGrid Name="CloseSupplies" Grid.Row="1" Visibility ="Collapsed" ItemsSource="{Binding  ScarceCommodities}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Supplies" Binding="{Binding Path=Id}">
                             </DataGridTextColumn>
@@ -88,7 +88,7 @@
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid Name="AllSupplies"  Grid.Row="1" Visibility='Visible'>
+                    <DataGrid Name="AllSupplies"  Grid.Row="1" Visibility='Visible' ItemsSource="{Binding  ScarceCommodities}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Supplies">
                             </DataGridTextColumn>
@@ -142,13 +142,27 @@
                         </RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Товары на складе</TextBlock>
-                        <DataGrid x:Name="Commodities"  Grid.Row="1" ItemsSource="{Binding Commodities}" AutoGenerateColumns="False">
+                      
+                    <DataGrid x:Name="Commodities"  Visibility="Visible" Grid.Row="1" ItemsSource="{Binding Commodities}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Тип товара" Binding="{Binding Path=Type}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Стоимость продажи" Binding="{Binding Path=Cost}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Тип продукта" Binding="{Binding Path=TypeName}">
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    
+                      </DataGrid>
+                    <DataGrid x:Name="ScarceCommodities"  Grid.Row="1" Visibility ="Collapsed" ItemsSource="{Binding ScarceCommodities}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Supplies" Binding="{Binding Path=Name}">
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Date" Binding="{Binding Path=Type}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Commodities" Binding="{Binding Path=Cost}">
+                            <DataGridTextColumn Header="Commodities" Binding="{Binding Path=TypeName}">
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>

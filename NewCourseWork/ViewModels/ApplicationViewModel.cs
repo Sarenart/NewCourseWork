@@ -23,7 +23,7 @@ namespace NewCourseWork.ViewModels
         public ApplicationViewModel() {
             DataOpers = new DbDataOperations();
             Commodities = DataOpers.GetCommodities();
-            Commodities = DataOpers.GetCommodities();
+            ScarceCommodities = DataOpers.GetScarceCommodities();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
