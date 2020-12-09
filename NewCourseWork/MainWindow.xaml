@@ -1,0 +1,175 @@
+﻿<Window x:Class="NewCourseWork.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewCourseWork"
+        mc:Ignorable="d"
+        Title="QwK" Height="450" Width="600" MinHeight="450" MinWidth="600"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <TabControl
+        Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+        materialDesign:ColorZoneAssist.Mode="PrimaryMid">
+            <TabItem
+    Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                    <materialDesign:PackIcon
+                     Kind="Home"
+                     Width="24"
+                     Height="24" />
+                </TabItem.Header>
+                <Grid ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*">
+                            
+                        </RowDefinition>
+                        <RowDefinition>
+
+                        </RowDefinition>
+                        <RowDefinition Height="0.1*">
+
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+                    <materialDesign:Card Grid.Row="0"
+                        Background="{DynamicResource PrimaryHueLightBrush}"
+                        Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                        Padding="8">
+                        <TextBlock Margin="7" HorizontalAlignment="Center" FontSize="20" FontWeight="ExtraBold">QwK</TextBlock>
+                    </materialDesign:Card>
+                    <ComboBox Name = "InformationList"  Grid.Row="1" MaxWidth="200" HorizontalAlignment="Right" VerticalAlignment="Top" MinWidth="100" Margin="6" materialDesign:HintAssist.Hint="Уведомления">
+                        <ComboBoxItem>DFsdfsdfdsfdsfsdfsdfsd</ComboBoxItem>
+                    </ComboBox>
+                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"> Версия 0.5</TextBlock>
+                </Grid>
+            </TabItem>
+            <TabItem
+                 Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                    <materialDesign:PackIcon
+                    Kind="TruckDelivery"
+                    Width="24"
+                    Height="24" />
+                </TabItem.Header>
+
+                <Grid ShowGridLines="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition>
+
+                        </ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*">
+
+                        </RowDefinition>
+                        <RowDefinition>
+
+                        </RowDefinition>
+                        <RowDefinition Height="0.2*" MinHeight="60">
+
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Ближайшие поставки:</TextBlock>
+                    <DataGrid Name="CloseSupplies" Grid.Row="1" ItemsSource="{Binding  Supplies}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Supplies" Binding="{Binding Path=Id}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Date" Binding="{Binding Path=Date}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Commodities">
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid Name="AllSupplies"  Grid.Row="1" Visibility='Visible'>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Supplies">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Date">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Commodities">
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition>
+                                
+                            </ColumnDefinition>
+                            <ColumnDefinition>
+                                
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button MaxWidth="500" MinWidth="180" Grid.Column="1" Margin="10" Command="{Binding FAFCom}" HorizontalAlignment="Center">Подать заявку на поставку</Button>
+                        <Button MaxWidth="500" MinWidth="180" Grid.Row="0" HorizontalAlignment="Center" Margin="10" Command="{Binding SupRevCom}">Показать все заявки</Button>
+                    </Grid>
+                    
+                </Grid>
+
+            </TabItem>
+            <TabItem
+    Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                <materialDesign:PackIcon
+                 Kind="Warehouse"
+                 Width="24"
+                 Height="24" />
+                </TabItem.Header>
+                <Grid ShowGridLines="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition>
+                            
+                        </ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*">
+
+                        </RowDefinition>
+                        <RowDefinition>
+
+                        </RowDefinition>
+                        <RowDefinition Height="0.2*">
+
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Товары на складе</TextBlock>
+                        <DataGrid x:Name="Commodities"  Grid.Row="1" ItemsSource="{Binding Commodities}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Supplies" Binding="{Binding Path=Name}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Date" Binding="{Binding Path=Type}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Commodities" Binding="{Binding Path=Cost}">
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="2" Command="{Binding ComRevCom}">Показать все товары</Button>
+                </Grid>
+            </TabItem>
+            <TabItem
+                 Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                <materialDesign:PackIcon
+                 Kind="FileDocument"
+                 Width="24"
+                 Height="24" />
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        
+                    </Grid.RowDefinitions>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
