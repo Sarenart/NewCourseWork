@@ -53,18 +53,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Commodity.cs" />
-    <Compile Include="Models\CommodityTypeRef.cs" />
-    <Compile Include="Context\CourseWorkContext.cs" />
     <Compile Include="Interfaces\IDbRepository.cs" />
     <Compile Include="Interfaces\INotificationRepository.cs" />
     <Compile Include="Interfaces\IReportRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Models\Notification.cs" />
-    <Compile Include="Models\Reports.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Commodity.cs" />
+    <Compile Include="Models\CommodityTypeRef.cs" />
     <Compile Include="Models\Provider.cs" />
     <Compile Include="Models\ProviderSupplyStock.cs" />
+    <Compile Include="Models\Supply.cs" />
+    <Compile Include="Models\SupplyDb.cs" />
+    <Compile Include="Models\SupplyLine.cs" />
+    <Compile Include="Models\SupplyStatusRef.cs" />
+    <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="Models\WarehouseLine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommodityRepositorySQL.cs" />
     <Compile Include="Repositories\CommodityTypeRefRepositorySQL.cs" />
     <Compile Include="Repositories\DbRepositorySQLServer.cs" />
@@ -76,15 +81,10 @@
     <Compile Include="Repositories\UsersRepositorySQL.cs" />
     <Compile Include="Repositories\WarehouseLinesRepositorySQL.cs" />
     <Compile Include="Repositories\WarehouseRepositorySQL.cs" />
-    <Compile Include="Models\Supply.cs" />
-    <Compile Include="Models\SupplyLine.cs" />
-    <Compile Include="Models\SupplyStatusRef.cs" />
-    <Compile Include="Models\sysdiagrams.cs" />
-    <Compile Include="Models\Users.cs" />
-    <Compile Include="Models\Warehouse.cs" />
-    <Compile Include="Models\WarehouseLine.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Context\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

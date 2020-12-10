@@ -6,10 +6,11 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Users
+    [Table("User")]
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public User()
         {
             Supply = new HashSet<Supply>();
             Supply1 = new HashSet<Supply>();
@@ -22,7 +23,7 @@ namespace DAL
         public string Login { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Password { get; set; }
 
         [Required]

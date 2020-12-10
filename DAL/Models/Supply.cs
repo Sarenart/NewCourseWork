@@ -35,9 +35,9 @@ namespace DAL
 
         public virtual SupplyStatusRef SupplyStatusRef { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
 
-        public virtual Users Users1 { get; set; }
+        public virtual User User1 { get; set; }
 
         public virtual Warehouse Warehouse { get; set; }
 

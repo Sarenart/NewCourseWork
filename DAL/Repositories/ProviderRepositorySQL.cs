@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Models;
 //using DAL.Context;
 using DAL.Interfaces;
 
@@ -11,8 +10,8 @@ namespace DAL.Repositories
 {
     public class ProviderRepositorySQL:IRepository<Provider>
     {
-        private CourseWorkContext db;
-        public ProviderRepositorySQL(CourseWorkContext db)
+        private SupplyDb db;
+        public ProviderRepositorySQL(SupplyDb db)
         {
             this.db = db;
         }

@@ -25,8 +25,6 @@ namespace DAL
 
         public int CommodityType { get; set; }
 
-        public decimal Price { get; set; }
-
         public virtual CommodityTypeRef CommodityTypeRef { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

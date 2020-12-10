@@ -91,6 +91,8 @@
       <DependentUpon>TestGround.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
+    <Compile Include="WindowManaging\BasicCommand.cs" />
+    <Compile Include="WindowManaging\ButtonManager.cs" />
     <Compile Include="WindowManaging\CommodityReviewCommand.cs" />
     <Compile Include="WindowManaging\FileAFormCommand.cs" />
     <Compile Include="WindowManaging\SupplyReviewCommand.cs" />

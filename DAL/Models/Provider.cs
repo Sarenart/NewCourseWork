@@ -19,8 +19,15 @@ namespace DAL
         public int Id { get; set; }
 
         [Required]
+        [StringLength(20)]
+        public string FamName { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string Initials { get; set; }
+
         [StringLength(50)]
-        public string Name { get; set; }
+        public string CompanyName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProviderSupplyStock> ProviderSupplyStock { get; set; }

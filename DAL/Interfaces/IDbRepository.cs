@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Models;
+
 
 namespace DAL.Interfaces
 {
@@ -16,7 +16,7 @@ namespace DAL.Interfaces
         IRepository<Supply> Supplies {get;}
         IRepository<SupplyLine> SupplyLines {get;}
         IRepository<SupplyStatusRef> SupplyStatusRefs { get; }
-        IRepository<Users> Users {get;}
+        IRepository<User> Users {get;}
         IRepository<Warehouse> Warehouses {get;}
         IRepository<WarehouseLine> WarehouseLines {get;}
 

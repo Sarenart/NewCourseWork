@@ -15,6 +15,8 @@ namespace DAL
 
         public int WarehouseId { get; set; }
 
+        public decimal PerUnitCost { get; set; }
+
         public int Quantity { get; set; }
 
         public virtual Commodity Commodity { get; set; }

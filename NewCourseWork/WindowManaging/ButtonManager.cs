@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace NewCourseWork
 {
-    public class SalesReport
+    public class ButtonManager
     {
-    }
-    public class SupplyQuantityReport { 
-    }
 
+    }
 }

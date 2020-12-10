@@ -27,7 +27,7 @@ namespace NewCourseWork
             //WinMan = WindMan;
             //WinMan.SetOwnerWindow(this);
             InitializeComponent();
-            AppVM = new ApplicationViewModel();
+            AppVM = new ApplicationViewModel(this);
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
 
         }

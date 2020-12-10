@@ -3,39 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Models;
 using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
-    public class UsersRepositorySQL:IRepository<Users>
+    public class UsersRepositorySQL:IRepository<User>
     {
-        private CourseWorkContext db;
-        public UsersRepositorySQL(CourseWorkContext db)
+        private SupplyDb db;
+        public UsersRepositorySQL(SupplyDb db)
         {
             this.db = db;
         }
-        public List<Users> GetList()
+        public List<User> GetList()
         {
-            return db.Users.ToList();
+            return db.User.ToList();
         }
-        public Users GetItem(int id)
+        public User GetItem(int id)
         {
-            return db.Users.Find(id);
+            return db.User.Find(id);
         }
-        public void Create(Users item)
+        public void Create(User item)
         {
-            db.Users.Add(item);
+            db.User.Add(item);
         }
-        public void Update(Users item)
+        public void Update(User item)
         {
             db.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
         public void Delete(int id)
         {
-            Users item = db.Users.Find(id);
+            User item = db.User.Find(id);
             if (item != null)
-                db.Users.Remove(item);
+                db.User.Remove(item);
         }
     }
 }

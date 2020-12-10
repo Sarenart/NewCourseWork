@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 //using DAL.Context;
-using DAL.Models;
 using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
     public class CommodityRepositorySQL: IRepository<Commodity>
     {
-        private CourseWorkContext db;
-        public CommodityRepositorySQL(CourseWorkContext db)
+        private SupplyDb db;
+        public CommodityRepositorySQL(SupplyDb db)
         {
             this.db = db;
         }

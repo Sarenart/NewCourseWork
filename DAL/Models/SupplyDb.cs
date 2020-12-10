@@ -1,14 +1,14 @@
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Linq;
-
 namespace DAL
 {
-    public partial class CourseWorkContext : DbContext
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
+    public partial class SupplyDb : DbContext
     {
-        public CourseWorkContext()
-            : base("name=CourseWorkContext")
+        public SupplyDb()
+            : base("name=SupplyDb")
         {
         }
 
@@ -20,7 +20,7 @@ namespace DAL
         public virtual DbSet<SupplyLine> SupplyLine { get; set; }
         public virtual DbSet<SupplyStatusRef> SupplyStatusRef { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<WarehouseLine> WarehouseLine { get; set; }
 
@@ -29,10 +29,6 @@ namespace DAL
             modelBuilder.Entity<Commodity>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Commodity>()
-                .Property(e => e.Price)
-                .HasPrecision(18, 0);
 
             modelBuilder.Entity<Commodity>()
                 .HasMany(e => e.ProviderSupplyStock)
@@ -60,7 +56,15 @@ namespace DAL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Provider>()
-                .Property(e => e.Name)
+                .Property(e => e.FamName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Provider>()
+                .Property(e => e.Initials)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Provider>()
+                .Property(e => e.CompanyName)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Provider>()
@@ -101,31 +105,31 @@ namespace DAL
                 .HasForeignKey(e => e.Status)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Users>()
+            modelBuilder.Entity<User>()
                 .Property(e => e.Login)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Users>()
+            modelBuilder.Entity<User>()
                 .Property(e => e.Password)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Users>()
+            modelBuilder.Entity<User>()
                 .Property(e => e.FirName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Users>()
+            modelBuilder.Entity<User>()
                 .Property(e => e.FamName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Users>()
+            modelBuilder.Entity<User>()
                 .HasMany(e => e.Supply)
-                .WithRequired(e => e.Users)
+                .WithRequired(e => e.User)
                 .HasForeignKey(e => e.ApplicantId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Users>()
+            modelBuilder.Entity<User>()
                 .HasMany(e => e.Supply1)
-                .WithOptional(e => e.Users1)
+                .WithOptional(e => e.User1)
                 .HasForeignKey(e => e.ArrangerId);
 
             modelBuilder.Entity<Warehouse>()
@@ -141,6 +145,10 @@ namespace DAL
                 .HasMany(e => e.WarehouseLine)
                 .WithRequired(e => e.Warehouse)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<WarehouseLine>()
+                .Property(e => e.PerUnitCost)
+                .HasPrecision(18, 0);
         }
     }
 }

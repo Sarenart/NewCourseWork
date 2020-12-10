@@ -25,7 +25,7 @@ namespace NewCourseWork
         [STAThread]
         static void Main()
         {
-            var kernel = new StandardKernel(new BLL.NinjectBLLBinding.NinjectBLLBinding("CourseWork"), new NinjectViewModelBinding.NinjectViewModelBinding());
+            var kernel = new StandardKernel(new BLL.NinjectBLLBinding.NinjectBLLBinding("SupplyDb"), new NinjectViewModelBinding.NinjectViewModelBinding());
             
             //Объявить интерфейсы
             App app = new App();

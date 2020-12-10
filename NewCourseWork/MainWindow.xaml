@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewCourseWork"
         mc:Ignorable="d"
-        Title="QwK" Height="450" Width="600" MinHeight="450" MinWidth="600"
+        Title="QwK" Height="548.824" Width="784.706" MinHeight="450" MinWidth="600"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -29,7 +29,7 @@
                 <Grid ShowGridLines="False">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.15*">
-                            
+
                         </RowDefinition>
                         <RowDefinition>
 
@@ -101,23 +101,23 @@
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition>
-                                
+
                             </ColumnDefinition>
                             <ColumnDefinition>
-                                
+
                             </ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button MaxWidth="500" MinWidth="180" Grid.Column="1" Margin="10" Command="{Binding FAFCom}" HorizontalAlignment="Center">Подать заявку на поставку</Button>
                         <Button MaxWidth="500" MinWidth="180" Grid.Row="0" HorizontalAlignment="Center" Margin="10" Command="{Binding SupRevCom}">Показать все заявки</Button>
                     </Grid>
-                    
+
                 </Grid>
 
             </TabItem>
             <TabItem
     Style="{StaticResource MaterialDesignNavigationRailTabItem}">
                 <TabItem.Header>
-                <materialDesign:PackIcon
+                    <materialDesign:PackIcon
                  Kind="Warehouse"
                  Width="24"
                  Height="24" />
@@ -125,7 +125,7 @@
                 <Grid ShowGridLines="False">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition>
-                            
+
                         </ColumnDefinition>
 
                     </Grid.ColumnDefinitions>
@@ -134,52 +134,61 @@
                         <RowDefinition Height="0.15*">
 
                         </RowDefinition>
+                        
+                        <RowDefinition Height="0.15*">
+
+                        </RowDefinition>
+                        
                         <RowDefinition>
 
                         </RowDefinition>
-                        <RowDefinition Height="0.2*">
+                        
+                        <RowDefinition Height="0.1*">
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Товары на складе</TextBlock>
-                      
-                    <DataGrid x:Name="Commodities"  Visibility="Visible" Grid.Row="1" ItemsSource="{Binding Commodities}" AutoGenerateColumns="False">
+                    <ComboBox IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="0,14,0,13" Width="148" Text="Выберите склад"></ComboBox>
+
+                    <DataGrid x:Name="Commodities"  Visibility="Visible" Grid.Row="2" ItemsSource="{Binding Commodities}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Тип товара" Binding="{Binding Path=Type}">
-                            </DataGridTextColumn>
-                            <DataGridTextColumn Header="Стоимость продажи" Binding="{Binding Path=Cost}">
+                            <DataGridTextColumn Header="Стоимость продажи,р" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Тип продукта" Binding="{Binding Path=TypeName}">
                             </DataGridTextColumn>
+                            <DataGridTextColumn Header="Количество на складе" Binding="{Binding Path=Quantity}">
+                            </DataGridTextColumn>
                         </DataGrid.Columns>
-                    
-                      </DataGrid>
-                    <DataGrid x:Name="ScarceCommodities"  Grid.Row="1" Visibility ="Collapsed" ItemsSource="{Binding ScarceCommodities}" AutoGenerateColumns="False">
+
+                    </DataGrid>
+                    <DataGrid x:Name="ScarceCommodities"  Grid.Row="2" Visibility ="Collapsed" ItemsSource="{Binding ScarceCommodities}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Supplies" Binding="{Binding Path=Name}">
+                            <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Date" Binding="{Binding Path=Type}">
+                            <DataGridTextColumn Header="Стоимость продажи,р" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Commodities" Binding="{Binding Path=TypeName}">
+                            <DataGridTextColumn Header="Тип продукта" Binding="{Binding Path=TypeName}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Количество на складе" Binding="{Binding Path=Quantity}">
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="2" Command="{Binding ComRevCom}">Показать все товары</Button>
+                    <Button Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ComRevCom}">Показать все товары</Button>
                 </Grid>
             </TabItem>
             <TabItem
                  Style="{StaticResource MaterialDesignNavigationRailTabItem}">
                 <TabItem.Header>
-                <materialDesign:PackIcon
+                    <materialDesign:PackIcon
                  Kind="FileDocument"
                  Width="24"
                  Height="24" />
                 </TabItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
-                        
+
                     </Grid.RowDefinitions>
                 </Grid>
             </TabItem>

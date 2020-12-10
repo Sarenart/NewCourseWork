@@ -5,13 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 //using DAL.Context;
 using DAL.Interfaces;
-using DAL.Models;
 
 namespace DAL.Repositories
 {
     public class DbRepositorySQLServer:IDbRepository
     {
-        private CourseWorkContext db;
+        private SupplyDb db;
         private CommodityRepositorySQL commodityRepos;
         private CommodityTypeRefRepositorySQL commodityTypeRefRepos;
         private ProviderRepositorySQL providerRepos;
@@ -25,7 +24,7 @@ namespace DAL.Repositories
         //Добавить репозиторий отчётов
         public DbRepositorySQLServer()
         {
-            this.db = new CourseWorkContext();
+            this.db = new SupplyDb();
         }
         public IRepository<Commodity> Commodities {
             get {
@@ -98,7 +97,7 @@ namespace DAL.Repositories
 
         }
 
-        public IRepository<Users> Users
+        public IRepository<User> Users
         {
             get
             {
