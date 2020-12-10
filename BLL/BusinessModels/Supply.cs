@@ -10,10 +10,24 @@ namespace BLL.BusinessModels
 {
     public class Supply: INotifyPropertyChanged
     {
+        private int id;
         private DateTime date;
+
         private decimal cost;
 
         private int status;
+
+        private string statusstring;
+
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Date");
+            }
+        }
 
         public DateTime Date
         {
@@ -44,6 +58,18 @@ namespace BLL.BusinessModels
                 OnPropertyChanged("Cost");
             }
         }
+
+
+        public string StatusString
+        {
+            get { return statusstring; }
+            set
+            {
+                statusstring = value;
+                OnPropertyChanged("Cost");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

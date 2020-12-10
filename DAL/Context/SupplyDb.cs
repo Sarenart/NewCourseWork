@@ -56,7 +56,7 @@ namespace DAL
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Provider>()
-                .Property(e => e.FamName)
+                .Property(e => e.FamilyName)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Provider>()

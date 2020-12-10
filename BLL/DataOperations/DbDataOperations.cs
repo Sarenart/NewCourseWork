@@ -74,6 +74,11 @@ namespace BLL.DataOperations
         public List<BLL.BusinessModels.Warehouse> GetWarehouses() {
             return repos.Warehouses.GetList().Select(i=> new BusinessModels.Warehouse { Address = i.Address, Id = i.Id}).ToList();
         }
+
+        public List<BLL.BusinessModels.Supply> GetSupplies()
+        {
+            return repos.Supplies.GetList().Join(repos.SupplyStatusRefs.GetList(), i=>i.Status, j=>j.Id, (i, j) => new { Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = j.Status}).Select(i=>new BLL.BusinessModels.Supply { Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = i.StatusString}).ToList();
+        }
         /*public List<BLL.BusinessModels.Commodity> GetCommodities()
         {
             return repos.Commodities.GetList().Join(repos.CommodityRefs.GetList(), i => i.CommodityType, j => j.Id, (i, j) => new { Name = i.Name, CommodityType = j.Id, CommodityTypeName = j.Type, Cost = i.Price }).Join(repos.)       .Select(i => new BLL.BusinessModels.Commodity

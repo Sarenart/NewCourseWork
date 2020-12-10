@@ -18,7 +18,7 @@ namespace BLL.Interfaces
         Supply GetSupply();
         List<Provider> GetProviders();
 
-        List<Users> GetUsers();
+        List<User> GetUsers();
 
         List<Warehouse> GetWarehouses();
     }

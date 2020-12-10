@@ -59,7 +59,7 @@
     <Compile Include="BusinessModels\Provider.cs" />
     <Compile Include="BusinessModels\Supply.cs" />
     <Compile Include="BusinessModels\SupplyLine.cs" />
-    <Compile Include="BusinessModels\Users.cs" />
+    <Compile Include="BusinessModels\User.cs" />
     <Compile Include="BusinessModels\Warehouse.cs" />
     <Compile Include="BusinessModels\WarehouseLine.cs" />
     <Compile Include="DataOperations\DbDataOperations.cs" />

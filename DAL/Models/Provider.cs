@@ -19,13 +19,14 @@ namespace DAL
         public int Id { get; set; }
 
         [Required]
-        [StringLength(20)]
-        public string FamName { get; set; }
+        [StringLength(40)]
+        public string FamilyName { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(20)]
         public string Initials { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string CompanyName { get; set; }
 

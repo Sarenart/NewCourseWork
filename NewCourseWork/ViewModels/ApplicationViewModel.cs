@@ -24,6 +24,8 @@ namespace NewCourseWork.ViewModels
         public List<BLL.BusinessModels.Warehouse> Warehouses{ get; set; }
         public Commodity Check;
 
+        public List<BLL.BusinessModels.Supply> AllSupplies { get; set; }
+
         public ApplicationViewModel(MainWindow win) {
             DataOpers = new DbDataOperations();
             this.win = win;
@@ -31,6 +33,7 @@ namespace NewCourseWork.ViewModels
             Commodities = DataOpers.GetWarehouseCommodities(1);
             ScarceCommodities = DataOpers.GetScarceWarehouseCommodities(1);
             Warehouses = DataOpers.GetWarehouses();
+            AllSupplies = DataOpers.GetSupplies();
            // ScarceCommodities = DataOpers.GetScarceCommodities();
         }
 

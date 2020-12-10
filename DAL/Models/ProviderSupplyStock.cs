@@ -9,7 +9,6 @@ namespace DAL
     [Table("ProviderSupplyStock")]
     public partial class ProviderSupplyStock
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         public int CommodityId { get; set; }
