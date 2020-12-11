@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.BusinessModels
 {
-    class NotificationModel
+    public class NotificationModel
     {
         public string Message { get; set; }
         public int NotificationType { get; set; }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLL.DataOperations;
 
 namespace NewCourseWork
 {
@@ -19,7 +20,8 @@ namespace NewCourseWork
     /// </summary>
     public partial class FileAFormWindow : Window
     {
-        public FileAFormWindow()
+
+        public FileAFormWindow(DbDataOperations db)
         {
             InitializeComponent();
         }

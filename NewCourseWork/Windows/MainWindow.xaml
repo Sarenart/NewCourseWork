@@ -15,7 +15,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <TabControl
+        <TabControl x:Name ="Navigation"
         Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
         materialDesign:ColorZoneAssist.Mode="PrimaryMid">
             <TabItem
@@ -28,13 +28,14 @@
                 </TabItem.Header>
                 <Grid ShowGridLines="False">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.15*">
+                        <RowDefinition Height="62*">
 
                         </RowDefinition>
-                        <RowDefinition>
+                        <RowDefinition Height="Auto">
 
                         </RowDefinition>
-                        <RowDefinition Height="0.1*">
+                        <RowDefinition Height="305*"/>
+                        <RowDefinition Height="42*">
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
@@ -44,14 +45,48 @@
                         Padding="8">
                         <TextBlock Margin="7" HorizontalAlignment="Center" FontSize="20" FontWeight="ExtraBold">QwK</TextBlock>
                     </materialDesign:Card>
-                    <ComboBox Name = "InformationList"  Grid.Row="1" MaxWidth="200" HorizontalAlignment="Right" VerticalAlignment="Top" MinWidth="100" Margin="6" materialDesign:HintAssist.Hint="Уведомления">
-                        <ComboBoxItem>DFsdfsdfdsfdsfsdfsdfsd</ComboBoxItem>
-                    </ComboBox>
-                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"> Версия 0.5</TextBlock>
+
+                    <TextBlock Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,13,9,13"> Версия 0.5</TextBlock>
                 </Grid>
             </TabItem>
-            <TabItem
-                 Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+            <TabItem x:Name="NotificationTab"
+                Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                    <materialDesign:PackIcon
+                    Kind="ClipboardList"
+                    Width="24"
+                    Height="24" />
+                </TabItem.Header>
+                <Grid ShowGridLines="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition>
+
+                        </ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.10*">
+
+                        </RowDefinition>
+
+                        <RowDefinition>
+
+                        </RowDefinition>
+
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="NotificationLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Уведомления:</TextBlock>
+                    <ListBox Grid.Row="1" x:Name="NotificationBord" ItemsSource="{Binding Notifications}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Message}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            
+            <TabItem                
+                Style="{StaticResource MaterialDesignNavigationRailTabItem}">
                 <TabItem.Header>
                     <materialDesign:PackIcon
                     Kind="TruckDelivery"
@@ -70,6 +105,9 @@
                         <RowDefinition Height="0.15*">
 
                         </RowDefinition>
+                        <RowDefinition  Height="0.15*">
+
+                        </RowDefinition>
                         <RowDefinition>
 
                         </RowDefinition>
@@ -77,8 +115,10 @@
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Ближайшие поставки:</TextBlock>
-                    <DataGrid  AutoGenerateColumns="False" Name="CloseSupplies" Grid.Row="1" Visibility ="Visible" ItemsSource="{Binding  AllSupplies}">
+                    <TextBlock x:Name="SupplyLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Ближайшие поставки:</TextBlock>
+                    <ComboBox IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="0,14,0,13" Width="148" Text="Выберите склад"></ComboBox>
+
+                    <DataGrid AutoGenerateColumns="False" Name="RecentSupplies" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding AllSupplies}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
@@ -88,17 +128,19 @@
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid AutoGenerateColumns="False" Name="AllSupplies"  Grid.Row="1" Visibility='Collapsed' ItemsSource="{Binding  AllSupplies}">
+
+
+                    <DataGrid AutoGenerateColumns="False" Name="AllSupplies"  Grid.Row="2" Visibility='Collapsed' ItemsSource="{Binding  AllSupplies}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Supplies" Binding="{Binding Path=Id}">
+                            <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Date" Binding="{Binding Path=Id}">
+                            <DataGridTextColumn Header="Дата" Binding="{Binding Path=Date}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Commodities" Binding="{Binding Path=Id}">
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Path=StatusString}">
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition>
 
@@ -106,9 +148,14 @@
                             <ColumnDefinition>
 
                             </ColumnDefinition>
+                            <ColumnDefinition>
+
+                            </ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button MaxWidth="500" MinWidth="180" Grid.Column="1" Margin="10" Command="{Binding FAFCom}" HorizontalAlignment="Center">Подать заявку на поставку</Button>
-                        <Button MaxWidth="500" MinWidth="180" Grid.Row="0" HorizontalAlignment="Center" Margin="10" Command="{Binding SupRevCom}">Показать все заявки</Button>
+                        <Button x:Name="ShowAllSuppliesButton" MaxWidth="500" MinWidth="180" Grid.Column="0" HorizontalAlignment="Center" Margin="10" Command="{Binding ShowAllSupplies}" Visibility="Visible">Все поставки</Button>
+                        <Button x:Name="ShowRecentSuppliesButton" MaxWidth="500" MinWidth="180" Grid.Column="0" HorizontalAlignment="Center" Margin="10" Command="{Binding ShowRecentSupplies}" Visibility="Collapsed">Ближайшие поставки</Button>
+                        <Button x:Name="FileAFormButton" MaxWidth="500" MinWidth="180" Grid.Column="1" Margin="10" Command="{Binding FileAForm}" HorizontalAlignment="Center">Подать заявку на поставку</Button>
+                        <Button x:Name="ArrangeSupplyButton" MaxWidth="500" MinWidth="180" Grid.Column="2" HorizontalAlignment="Center" Margin="10" Command="{Binding ArrangeSupply}">Оформить поставку</Button>
                     </Grid>
 
                 </Grid>
@@ -134,20 +181,20 @@
                         <RowDefinition Height="0.15*">
 
                         </RowDefinition>
-                        
+
                         <RowDefinition Height="0.15*">
 
                         </RowDefinition>
-                        
+
                         <RowDefinition>
 
                         </RowDefinition>
-                        
+
                         <RowDefinition Height="0.1*">
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Товары на складе</TextBlock>
+                    <TextBlock x:Name="CommoditiesLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Товары на исходе</TextBlock>
                     <ComboBox IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="0,14,0,13" Width="148" Text="Выберите склад"></ComboBox>
 
                     <DataGrid x:Name="Commodities"  Visibility="Visible" Grid.Row="2" ItemsSource="{Binding Commodities}" AutoGenerateColumns="False">
@@ -163,7 +210,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <DataGrid x:Name="ScarceCommodities"  Grid.Row="2" Visibility ="Collapsed" ItemsSource="{Binding ScarceCommodities}" AutoGenerateColumns="False">
+                    <DataGrid x:Name="ScarceCommodities"  Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding ScarceCommodities}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
                             </DataGridTextColumn>
@@ -175,7 +222,8 @@
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ComRevCom}">Показать все товары</Button>
+                    <Button x:Name ="ShowAllCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowAllCommodities}">Показать все товары</Button>
+                    <Button x:Name ="ShowScarceCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowScarceCommodities}" Visibility="Collapsed">Показать товары на исходе</Button>
                 </Grid>
             </TabItem>
             <TabItem

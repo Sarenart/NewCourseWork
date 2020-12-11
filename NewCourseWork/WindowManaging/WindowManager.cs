@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NewCourseWork
 {
-    public class WindowManager
+   /* public class WindowManager
     {
         private MainWindow mainWindow;
         private FileAFormWindow FAFWindow;
@@ -32,7 +32,7 @@ namespace NewCourseWork
         {
             mainWindow = Mw;
         }
-        public void CreateFileAFormWindow() 
+       /* public void CreateFileAFormWindow() 
         {
                 FAFWindow = new FileAFormWindow();
                 FAFWindow.Owner = mainWindow;
@@ -54,5 +54,5 @@ namespace NewCourseWork
         {
             MainWindow Mw = new MainWindow();
         }
-    }
+    }*/
 }

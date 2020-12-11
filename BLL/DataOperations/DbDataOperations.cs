@@ -18,7 +18,7 @@ namespace BLL.DataOperations
             repos = new DbRepositorySQLServer();
         }
 
-        public List<BLL.BusinessModels.Commodity> GetWarehouseCommodities(int WHId) {
+        public List<BLL.BusinessModels.Commodity> getWarehouseCommodities(int WHId) {
             return repos.Commodities.GetList().
                 Join(repos.CommodityRefs.GetList(), i => i.CommodityType, j => j.Id, (i, j) => new { Id = i.Id, Name = i.Name, TypeId = j.Id, TypeName = j.Type }).
                 Join(repos.WarehouseLines.GetList(), i => i.Id, j => j.CommodityId, (i, j) => new { Id = i.Id, Name = i.Name, TypeName = i.TypeName, TypeId = i.TypeId, WarehouseId = j.WarehouseId, Cost = j.PerUnitCost, Quantity = j.Quantity }).
@@ -43,7 +43,7 @@ namespace BLL.DataOperations
                 ToList();
         }
 
-        public List<BLL.BusinessModels.Commodity> GetScarceWarehouseCommodities(int WHId)
+        public List<BLL.BusinessModels.Commodity> getScarceWarehouseCommodities(int WHId)
         {
             return repos.Commodities.GetList().
                 Join(repos.CommodityRefs.GetList(), i => i.CommodityType, j => j.Id, (i, j) => new { Id = i.Id, Name = i.Name, TypeId = j.Id, TypeName = j.Type }).
@@ -71,32 +71,25 @@ namespace BLL.DataOperations
                 ToList();
         }
 
-        public List<BLL.BusinessModels.Warehouse> GetWarehouses() {
+        public List<BLL.BusinessModels.Warehouse> getWarehouses() {
             return repos.Warehouses.GetList().Select(i=> new BusinessModels.Warehouse { Address = i.Address, Id = i.Id}).ToList();
         }
 
-        public List<BLL.BusinessModels.Supply> GetSupplies()
+        public List<BLL.BusinessModels.Supply> getSupplies()
         {
             return repos.Supplies.GetList().Join(repos.SupplyStatusRefs.GetList(), i=>i.Status, j=>j.Id, (i, j) => new { Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = j.Status}).Select(i=>new BLL.BusinessModels.Supply { Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = i.StatusString}).ToList();
         }
-        /*public List<BLL.BusinessModels.Commodity> GetCommodities()
+        
+        public List<NotificationModel> getNotifications()
         {
-            return repos.Commodities.GetList().Join(repos.CommodityRefs.GetList(), i => i.CommodityType, j => j.Id, (i, j) => new { Name = i.Name, CommodityType = j.Id, CommodityTypeName = j.Type, Cost = i.Price }).Join(repos.)       .Select(i => new BLL.BusinessModels.Commodity
-            {
-                Name = i.Name,
-                Cost = i.Cost,
-                Type = i.CommodityType,
-                TypeName = i.CommodityTypeName,
-            }).ToList();
-        }*/
-        /*public List<BLL.BusinessModels.Commodity> GetScarceCommodities()
-        {
-            return repos.Commodities.GetList().Join(repos.WarehouseLines.GetList(),i => i.Id, j => j.CommodityId, (i, j)=> new { Cost = i.Price, Name = i.Name, Quantity = j.Quantity, Type = i.CommodityType }).Where(i => i.Quantity < 4).Select(i => new BLL.BusinessModels.Commodity
-            {
-                Name = i.Name,
-                Cost = i.Cost,
-                Type = i.Type
-            }).ToList();
-        }*/
+            List<NotificationModel> Notes = repos.WarehouseLines.GetList()
+                .Join(repos.Commodities.GetList(), i => i.CommodityId, j => j.Id, (i, j) => new { Quantity = i.Quantity, Name = j.Name })
+                .Where(i => i.Quantity < 10).Select(i => new NotificationModel
+                {
+                    NotificationType = 1,
+                    Message = "Товар " + i.Name + " заканчивается на складе: осталось "+ i.Quantity + " единиц продукции.",
+                }).ToList();
+            return Notes;
+        }
     }
 }

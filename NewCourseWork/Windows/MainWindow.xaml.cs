@@ -24,16 +24,13 @@ namespace NewCourseWork
         public ApplicationViewModel AppVM;
         public MainWindow(/*WindowManager WindMan*/)
         {
-            //WinMan = WindMan;
-            //WinMan.SetOwnerWindow(this);
             InitializeComponent();
             AppVM = new ApplicationViewModel(this);
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
 
         }
         void MainWindow_Loaded(object sender, RoutedEventArgs args) {
-            DataContext = AppVM;//WinMan;
-            //Commodities = new AppVM.Commodities;
+            DataContext = AppVM;
         }
 
 
