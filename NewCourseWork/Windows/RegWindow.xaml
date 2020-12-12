@@ -34,7 +34,7 @@
             </StackPanel>
         </Grid>
         <StackPanel Orientation="Vertical" Grid.Row="3">
-            <Button Width="auto" MinWidth="90" MaxWidth ="180"  Grid.Row="3" Margin="10">Enter</Button>
+            <Button Width="auto" MinWidth="90" MaxWidth ="180"  Grid.Row="3" Margin="10" Command ="{Binding Enter}">Enter</Button>
             <TextBlock HorizontalAlignment="Center" MinWidth="90" MaxWidth ="180" Width="auto">
                 Forgot your password?
             </TextBlock>
