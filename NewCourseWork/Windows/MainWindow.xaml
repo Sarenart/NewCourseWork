@@ -121,10 +121,10 @@
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock x:Name="SupplyLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Ближайшие поставки:</TextBlock>
+                    <TextBlock x:Name="SupplyLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10" Text="{Binding SupplyLabel}"></TextBlock>
                     <ComboBox  x:Name="SupplyWarehouseComboBox" SelectedItem="{Binding SelectedSupplyWarehouse}" IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад"></ComboBox>
 
-                    <DataGrid AutoGenerateColumns="False" Name="RecentSupplies" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding RecentSupplies}">
+                    <DataGrid AutoGenerateColumns="False" Name="RecentSupplies" Grid.Row="2" Visibility ="{Binding RecentSuppliesVisible}" ItemsSource="{Binding RecentSupplies}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
@@ -136,7 +136,7 @@
                     </DataGrid>
 
 
-                    <DataGrid AutoGenerateColumns="False" Name="AllSupplies"  Grid.Row="2" Visibility='Collapsed' ItemsSource="{Binding  AllSupplies}">
+                    <DataGrid AutoGenerateColumns="False" Name="AllSupplies"  Grid.Row="2" Visibility='{Binding AllSuppliesVisible}' ItemsSource="{Binding  AllSupplies}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
@@ -158,8 +158,8 @@
 
                             </ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="ShowAllSuppliesButton" MaxWidth="500" MinWidth="180" Grid.Column="0" HorizontalAlignment="Center" Margin="10" Command="{Binding ShowAllSupplies}" Visibility="Visible">Все поставки</Button>
-                        <Button x:Name="ShowRecentSuppliesButton" MaxWidth="500" MinWidth="180" Grid.Column="0" HorizontalAlignment="Center" Margin="10" Command="{Binding ShowRecentSupplies}" Visibility="Collapsed">Ближайшие поставки</Button>
+                        <Button x:Name="ShowAllSuppliesButton" MaxWidth="500" MinWidth="180" Grid.Column="0" HorizontalAlignment="Center" Margin="10" Command="{Binding ShowAllSupplies}" Visibility="{Binding AllSuppliesButtonVisible}">Все поставки</Button>
+                        <Button x:Name="ShowRecentSuppliesButton" MaxWidth="500" MinWidth="180" Grid.Column="0" HorizontalAlignment="Center" Margin="10" Command="{Binding ShowRecentSupplies}" Visibility="{Binding RecentSuppliesButtonVisible}">Ближайшие поставки</Button>
                         <Button x:Name="FileAFormButton" MaxWidth="500" MinWidth="180" Grid.Column="1" Margin="10" Command="{Binding FileAForm}" HorizontalAlignment="Center">Подать заявку на поставку</Button>
                         <Button x:Name="ArrangeSupplyButton" MaxWidth="500" MinWidth="180" Grid.Column="2" HorizontalAlignment="Center" Margin="10" Command="{Binding ArrangeSupply}">Редактировать поставку</Button>
                     </Grid>
@@ -200,10 +200,10 @@
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock x:Name="CommoditiesLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Товары на исходе</TextBlock>
+                    <TextBlock x:Name="CommoditiesLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10" Text="{Binding CommodityLabel}"></TextBlock>
                     <ComboBox SelectedItem="{Binding SelectedCommodityWarehouse}" x:Name="CommodityWarehouseComboBox"  IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад" VerticalAlignment="Bottom"></ComboBox>
 
-                    <DataGrid x:Name="AllCommodities"  Visibility="Visible" Grid.Row="2" ItemsSource="{Binding AllCommodities}" AutoGenerateColumns="False">
+                    <DataGrid x:Name="AllCommodities"  Visibility="{Binding AllCommoditiesVisible}" Grid.Row="2" ItemsSource="{Binding AllCommodities}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
                             </DataGridTextColumn>
@@ -216,7 +216,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <DataGrid x:Name="ScarceCommodities"  Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding ScarceCommodities}" AutoGenerateColumns="False">
+                    <DataGrid x:Name="ScarceCommodities"  Grid.Row="2" Visibility ="{Binding ScarceCommoditiesVisible}" ItemsSource="{Binding ScarceCommodities}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
                             </DataGridTextColumn>
@@ -228,8 +228,8 @@
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name ="ShowAllCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowAllCommodities}">Показать все товары</Button>
-                    <Button x:Name ="ShowScarceCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowScarceCommodities}" Visibility="Collapsed">Показать товары на исходе</Button>
+                    <Button x:Name ="ShowAllCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowAllCommodities}" Visibility="{Binding AllCommoditiesButtonVisible}">Показать все товары</Button>
+                    <Button x:Name ="ShowScarceCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowScarceCommodities}" Visibility="{Binding ScarceCommoditiesButtonVisible}">Показать товары на исходе</Button>
                 </Grid>
             </TabItem>
             <TabItem

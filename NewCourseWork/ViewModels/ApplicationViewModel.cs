@@ -13,12 +13,53 @@ using System.Windows.Controls;
 
 namespace NewCourseWork.ViewModels
 {
-    public class ApplicationViewModel:INotifyPropertyChanged
+    public class ApplicationViewModel : INotifyPropertyChanged
     {
         DbDataOperations DataOpers;
         MainWindow win;
 
+        private string supplylabel;
+        private string commoditylabel;
+
         private Warehouse selectedsupplywarehouse;
+        private Warehouse selectedcommoditywarehouse;
+
+        private Visibility allsuppliesvisible;
+        private Visibility recentsuppliesvisible;
+        private Visibility allsuppliesbuttonvisible;
+        private Visibility recentsuppliesbuttonvisible;
+
+
+        private Visibility allcommoditiesvisible;
+        private Visibility scarcecommoditiesvisible;
+        private Visibility allcommoditiesbuttonvisible;
+        private Visibility scarcecommoditiesbuttonvisible;
+
+        public string SupplyLabel
+        {
+            get
+            {
+                return supplylabel;
+            }
+            set
+            {
+                supplylabel = value;
+                OnPropertyChanged("SupplyLabel");
+            }
+        }
+        public string CommodityLabel
+        {
+            get
+            {
+                return commoditylabel;
+            }
+            set
+            {
+                commoditylabel = value;
+                OnPropertyChanged("CommodityLabel");
+            }
+        }
+
         public Warehouse SelectedSupplyWarehouse
         {
             get
@@ -31,8 +72,6 @@ namespace NewCourseWork.ViewModels
                 SupplyWarehouseComboBoxChanged(selectedsupplywarehouse);
             }
         }
-
-        private Warehouse selectedcommoditywarehouse;
         public Warehouse SelectedCommodityWarehouse
         {
             get
@@ -45,6 +84,105 @@ namespace NewCourseWork.ViewModels
                 CommodityWarehouseComboBoxChanged(selectedcommoditywarehouse);
             }
         }
+        public Visibility RecentSuppliesVisible
+        {
+            get
+            {
+                return recentsuppliesvisible;
+            }
+            set
+            {
+                recentsuppliesvisible = value;
+                OnPropertyChanged("RecentSuppliesVisible");
+            }
+        }
+        public Visibility AllSuppliesVisible
+        {
+            get
+            {
+                return allsuppliesvisible;
+            }
+            set
+            {
+                allsuppliesvisible = value;
+                OnPropertyChanged("AllSuppliesVisible");
+            }
+        }
+        public Visibility AllSuppliesButtonVisible
+        {
+            get
+            {
+                return allsuppliesbuttonvisible;
+            }
+            set
+            {
+                allsuppliesbuttonvisible = value;
+                OnPropertyChanged("AllSuppliesButtonVisible");
+            }
+        }
+        public Visibility RecentSuppliesButtonVisible
+        {
+            get
+            {
+                return recentsuppliesbuttonvisible;
+            }
+            set
+            {
+                recentsuppliesbuttonvisible = value;
+                OnPropertyChanged("RecentSuppliesButtonVisible");
+            }
+        }
+
+
+        public Visibility ScarceCommoditiesVisible
+        {
+            get
+            {
+                return scarcecommoditiesvisible;
+            }
+            set
+            {
+                scarcecommoditiesvisible = value;
+                OnPropertyChanged("ScarceCommoditiesVisible");
+            }
+        }
+        public Visibility AllCommoditiesVisible
+        {
+            get
+            {
+                return allcommoditiesvisible;
+            }
+            set
+            {
+                allcommoditiesvisible = value;
+                OnPropertyChanged("AllCommoditiesVisible");
+            }
+        }
+        public Visibility AllCommoditiesButtonVisible
+        {
+            get
+            {
+                return allcommoditiesbuttonvisible;
+            }
+            set
+            {
+                allcommoditiesbuttonvisible = value;
+                OnPropertyChanged("AllCommoditiesButtonVisible");
+            }
+        }
+        public Visibility ScarceCommoditiesButtonVisible
+        {
+            get
+            {
+                return scarcecommoditiesbuttonvisible;
+            }
+            set
+            {
+                scarcecommoditiesbuttonvisible = value;
+                OnPropertyChanged("ScarceCommoditiesButtonVisible");
+            }
+        }
+
 
         public List<BLL.BusinessModels.Supply> Supplies;
         public List<BLL.BusinessModels.Commodity> AllCommodities { get; set; }
@@ -61,18 +199,24 @@ namespace NewCourseWork.ViewModels
 
         public List<NotificationModel> Notifications { get; set; }
 
-        //public Li
+
 
         public ApplicationViewModel(MainWindow win) {
            this.DataOpers = new DbDataOperations();
             this.win = win;
             RegWindow regwin = new RegWindow();
-            regwin.ShowDialog();
-           // AllCommodities = DataOpers.getWarehouseCommodities(1);
-            //ScarceCommodities = DataOpers.getScarceWarehouseCommodities(1);
+            //regwin.ShowDialog();
+            RecentSuppliesVisible = Visibility.Visible;
+            AllSuppliesVisible = Visibility.Collapsed;
+            AllSuppliesButtonVisible = Visibility.Visible;
+            RecentSuppliesButtonVisible = Visibility.Collapsed;
+            SupplyLabel = "Ближайшие поставки";
+            CommodityLabel = "Товары на исходе";
+            AllCommoditiesVisible = Visibility.Collapsed;
+            ScarceCommoditiesVisible = Visibility.Visible;
+            AllCommoditiesButtonVisible = Visibility.Visible;
+            ScarceCommoditiesButtonVisible = Visibility.Collapsed;
             Warehouses = DataOpers.getWarehouses();
-           // AllSupplies = DataOpers.getAllSupplies(1);
-           // RecentSupplies = DataOpers.getRecentSupplies(1);
             Notifications = DataOpers.getNotifications();
         }
 
@@ -84,12 +228,12 @@ namespace NewCourseWork.ViewModels
             {
                 return showscarcecommodities ??
                 (showscarcecommodities = new BasicCommand(obj =>
-                {
-                    win.CommoditiesLabel.Text = "Товары на исходе";
-                    win.AllCommodities.Visibility = Visibility.Collapsed;
-                    win.ScarceCommodities.Visibility = Visibility.Visible;
-                    win.ShowAllCommoditiesButton.Visibility = Visibility.Visible;
-                    win.ShowScarceCommoditiesButton.Visibility = Visibility.Collapsed;
+                {  
+                    ScarceCommoditiesVisible = Visibility.Visible;
+                    AllCommoditiesVisible = Visibility.Collapsed;
+                    ScarceCommoditiesButtonVisible = Visibility.Collapsed;
+                    AllCommoditiesButtonVisible = Visibility.Visible;
+                    CommodityLabel = "Товары на исходе";
                 },
                 (obj => true)));
             }
@@ -103,12 +247,12 @@ namespace NewCourseWork.ViewModels
                 return showallcommodities ??
                 (showallcommodities = new BasicCommand(obj =>
                 {
-                    win.AllCommodities.Visibility = Visibility.Visible;
-                    win.ScarceCommodities.Visibility = Visibility.Collapsed;
-                    win.ShowAllCommoditiesButton.Visibility = Visibility.Collapsed;
-                    win.ShowScarceCommoditiesButton.Visibility = Visibility.Visible;
-                    win.CommoditiesLabel.Text = "Все товары на складе";
-  
+                    ScarceCommoditiesVisible = Visibility.Collapsed;
+                    AllCommoditiesVisible = Visibility.Visible;
+                    ScarceCommoditiesButtonVisible = Visibility.Visible;
+                    AllCommoditiesButtonVisible = Visibility.Collapsed;
+                    CommodityLabel = "Все товары";
+
                 },
                 (obj => true)));
             }
@@ -122,11 +266,11 @@ namespace NewCourseWork.ViewModels
                 return showrecentsupplies ??
                 (showrecentsupplies = new BasicCommand(obj =>
                 {
-                    win.RecentSupplies.Visibility = Visibility.Visible;
-                    win.AllSupplies.Visibility = Visibility.Collapsed;
-                    win.SupplyLabel.Text = "Ближайшие поставки на складе";
-                    win.ShowAllSuppliesButton.Visibility = Visibility.Visible;
-                    win.ShowRecentSuppliesButton.Visibility = Visibility.Collapsed;
+                    AllSuppliesVisible = Visibility.Collapsed;
+                    RecentSuppliesVisible = Visibility.Visible;
+                    AllSuppliesButtonVisible = Visibility.Visible;
+                    RecentSuppliesButtonVisible = Visibility.Collapsed;
+                    SupplyLabel = "Ближайшие поставки";
                 },
                 (obj => true)));
             }
@@ -140,11 +284,11 @@ namespace NewCourseWork.ViewModels
                 return showallsupplies ??
                 (showallsupplies = new BasicCommand(obj =>
                 {
-                    win.RecentSupplies.Visibility = Visibility.Collapsed;
-                    win.AllSupplies.Visibility = Visibility.Visible;
-                    win.SupplyLabel.Text = "Поставки";
-                    win.ShowAllSuppliesButton.Visibility = Visibility.Collapsed;
-                    win.ShowRecentSuppliesButton.Visibility = Visibility.Visible;
+                    AllSuppliesVisible = Visibility.Visible;
+                    AllSuppliesButtonVisible = Visibility.Collapsed;
+                    RecentSuppliesVisible = Visibility.Collapsed;
+                    RecentSuppliesButtonVisible = Visibility.Visible;
+                    SupplyLabel = "Все поставки";
                 },
                 (obj => true)));
             }
@@ -210,7 +354,7 @@ namespace NewCourseWork.ViewModels
         }
 
 
-        private BasicCommand warehousechanged;
+      /*  private BasicCommand warehousechanged;
         public BasicCommand WarehouseChanged
         {
             get
@@ -223,7 +367,7 @@ namespace NewCourseWork.ViewModels
                 },
                 (obj => true)));
             }
-        }
+        }*/
 
         public void SupplyWarehouseComboBoxChanged(Warehouse warehouse) {
             this.AllSupplies = DataOpers.getAllSupplies(warehouse.Id);
