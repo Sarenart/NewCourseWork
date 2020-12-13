@@ -74,6 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="SupplyUpdateWindow.xaml.cs">
+      <DependentUpon>SupplyUpdateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\FileAFormViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Windows\Tes.xaml.cs">
@@ -86,14 +89,15 @@
     <Compile Include="Windows\RegWindow.xaml.cs">
       <DependentUpon>RegWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SupplyReviewWindow.xaml.cs">
-      <DependentUpon>SupplyReviewWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\TestGround.xaml.cs">
       <DependentUpon>TestGround.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="WindowManaging\BasicCommand.cs" />
+    <Page Include="SupplyUpdateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Tes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,10 +119,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\RegWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\SupplyReviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

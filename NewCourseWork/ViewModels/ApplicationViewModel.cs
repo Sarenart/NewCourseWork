@@ -18,6 +18,34 @@ namespace NewCourseWork.ViewModels
         DbDataOperations DataOpers;
         MainWindow win;
 
+        private Warehouse selectedsupplywarehouse;
+        public Warehouse SelectedSupplyWarehouse
+        {
+            get
+            {
+                return selectedsupplywarehouse;
+            }
+            set
+            {
+                selectedsupplywarehouse = value;
+                SupplyWarehouseComboBoxChanged(selectedsupplywarehouse);
+            }
+        }
+
+        private Warehouse selectedcommoditywarehouse;
+        public Warehouse SelectedCommodityWarehouse
+        {
+            get
+            {
+                return selectedcommoditywarehouse;
+            }
+            set
+            {
+                selectedcommoditywarehouse = value;
+                CommodityWarehouseComboBoxChanged(selectedcommoditywarehouse);
+            }
+        }
+
         public List<BLL.BusinessModels.Supply> Supplies;
         public List<BLL.BusinessModels.Commodity> AllCommodities { get; set; }
 
@@ -130,7 +158,7 @@ namespace NewCourseWork.ViewModels
                 return arrangesupply ??
                 (arrangesupply = new BasicCommand(obj =>
                 {
-                    CommodityReviewWindow wind = new CommodityReviewWindow();
+                    SupplyUpdateWindow wind = new SupplyUpdateWindow();
                     wind.Show();
                 },
                 (obj => true)));
@@ -197,21 +225,19 @@ namespace NewCourseWork.ViewModels
             }
         }
 
-        public void SupplyWarehouseComboBoxChanged(object sender, RoutedEventArgs e) {
-            Warehouse i = (Warehouse)win.SupplyWarehouseComboBox.SelectedItem;
-            this.AllSupplies = DataOpers.getAllSupplies(i.Id);
+        public void SupplyWarehouseComboBoxChanged(Warehouse warehouse) {
+            this.AllSupplies = DataOpers.getAllSupplies(warehouse.Id);
             OnPropertyChanged("AllSupplies");
-            this.RecentSupplies = DataOpers.getRecentSupplies(i.Id);
+            this.RecentSupplies = DataOpers.getRecentSupplies(warehouse.Id);
             OnPropertyChanged("RecentSupplies");
         }
 
 
-        public void CommodityWarehouseComboBoxChanged(object sender, RoutedEventArgs e)
+        public void CommodityWarehouseComboBoxChanged(Warehouse warehouse)
         {
-            Warehouse i = (Warehouse)win.CommodityWarehouseComboBox.SelectedItem;
-            this.AllCommodities = DataOpers.getWarehouseCommodities(i.Id);
+            this.AllCommodities = DataOpers.getWarehouseCommodities(warehouse.Id);
             OnPropertyChanged("AllCommodities");
-            this.ScarceCommodities = DataOpers.getScarceWarehouseCommodities(i.Id);
+            this.ScarceCommodities = DataOpers.getScarceWarehouseCommodities(warehouse.Id);
             OnPropertyChanged("ScarceCommodities");
         }
 

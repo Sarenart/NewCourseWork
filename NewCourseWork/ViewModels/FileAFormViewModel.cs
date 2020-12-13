@@ -9,12 +9,45 @@ using System.ComponentModel;
 using BLL.DataOperations;
 using BLL.BusinessModels;
 using System.Windows;
+using BLL.BusinessModels;
+
 namespace NewCourseWork.ViewModels
 {
     public class FileAFormViewModel:INotifyPropertyChanged
     {
         FileAFormWindow win;
         DbDataOperations DataOpers;
+
+        private BLL.BusinessModels.Provider selectedprovider;
+        private BLL.BusinessModels.Warehouse selectedwarehouse;
+        private BLL.BusinessModels.Commodity selectedcommodity;
+
+        public BLL.BusinessModels.Provider SelectedProvider
+        {
+            get
+            {
+                return selectedprovider;
+            }
+            set
+            {
+                selectedprovider = value;
+                SelectedProviderChanged(selectedprovider);
+            }
+        }
+
+        public BLL.BusinessModels.Warehouse SelectedWarehouse
+        {
+            get
+            {
+                return selectedwarehouse;
+            }
+            set
+            {
+                selectedwarehouse = value;
+                SelectedWarehouseChanged(selectedwarehouse);
+            }
+        }
+
 
         public List<Provider> Providers { get; set; }
 
@@ -32,6 +65,17 @@ namespace NewCourseWork.ViewModels
             this.Providers = this.DataOpers.getProviders();
         }
 
+
+
+        public void SelectedProviderChanged(Provider provider)
+        {
+            
+        }
+
+        public void SelectedWarehouseChanged(Warehouse warehouse)
+        {
+
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

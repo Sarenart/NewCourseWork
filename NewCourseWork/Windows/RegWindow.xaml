@@ -15,28 +15,28 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
    
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="False">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.9*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Width="auto" Height="auto" MaxHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24">Sigh Up</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="1" Width="auto" Height="auto" MaxHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24">Вход</TextBlock>
 
         <Grid ShowGridLines="True" Grid.Row="1" Grid.Column="1">
             <StackPanel>
-            <TextBox Width = "auto" Height="auto" Grid.Row="1" MinHeight="25" MaxHeight="25" BorderThickness="1" Margin="25">Your Login</TextBox>
-            <TextBox Grid.Row="1" BorderThickness="1" Margin="25"  MinHeight="25" MaxHeight="25">Your Password</TextBox>
+            <TextBox Width = "auto" Height="auto" Grid.Row="1" MinHeight="25" MaxHeight="25" BorderThickness="1" Margin="25">Логин</TextBox>
+                <TextBox Grid.Row="1" BorderThickness="1" Margin="25"  MinHeight="25" MaxHeight="25">Пароль</TextBox>
             </StackPanel>
         </Grid>
         <StackPanel Orientation="Vertical" Grid.Row="3">
-            <Button Width="auto" MinWidth="90" MaxWidth ="180"  Grid.Row="3" Margin="10" Command ="{Binding Enter}">Enter</Button>
+            <Button Width="auto" MinWidth="90" MaxWidth ="180"  Grid.Row="3" Margin="10" Command ="{Binding Enter}">Войти</Button>
             <TextBlock HorizontalAlignment="Center" MinWidth="90" MaxWidth ="180" Width="auto">
-                Forgot your password?
+                Забыли пароль?
             </TextBlock>
         </StackPanel>
     </Grid>
