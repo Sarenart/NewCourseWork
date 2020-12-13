@@ -16,12 +16,20 @@ namespace NewCourseWork.ViewModels
         FileAFormWindow win;
         DbDataOperations DataOpers;
 
-        List<Provider> Providers;
+        public List<Provider> Providers { get; set; }
 
-        public FileAFormViewModel(FileAFormWindow wind, DbDataOperations DatOper)
+        public List<Warehouse> Warehouses { get; set; }
+
+        public List<Commodity> ProviderSupplies { get; set; }
+
+        public List<Commodity> ProviderRelatedCommodities { get; set; }
+
+        public FileAFormViewModel(FileAFormWindow wind, DbDataOperations DataOpers)
         {
             this.win = wind;
-            this.DataOpers = DatOper;
+            this.DataOpers = DataOpers;
+            this.Warehouses = DataOpers.getWarehouses();
+            this.Providers = this.DataOpers.getProviders();
         }
 
 

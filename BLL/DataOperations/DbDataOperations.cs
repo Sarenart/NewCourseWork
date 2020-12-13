@@ -75,11 +75,38 @@ namespace BLL.DataOperations
             return repos.Warehouses.GetList().Select(i=> new BusinessModels.Warehouse { Address = i.Address, Id = i.Id}).ToList();
         }
 
-        public List<BLL.BusinessModels.Supply> getSupplies()
+        public List<BLL.BusinessModels.Supply> getAllSupplies(int WHId)
         {
-            return repos.Supplies.GetList().Join(repos.SupplyStatusRefs.GetList(), i=>i.Status, j=>j.Id, (i, j) => new { Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = j.Status}).Select(i=>new BLL.BusinessModels.Supply { Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = i.StatusString}).ToList();
+            return repos.Supplies.GetList().Join(repos.SupplyStatusRefs.GetList(), i=>i.Status, j=>j.Id, (i, j) => new { WarehouseId = i.WarehouseId, Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = j.Status})
+            .Join(repos.Warehouses.GetList(), i=>i.WarehouseId, j=>j.Id, (i, j)=> new { WarehouseId = i.WarehouseId, Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = i.StatusString })
+            .Where(i => i.WarehouseId == WHId)
+            .Select(i=>new BLL.BusinessModels.Supply 
+            { 
+                Cost = i.Cost,
+                Date = i.Date, Id = i.Id, 
+                Status = i.Status, 
+                StatusString = i.StatusString,
+                WarehouseId = i.WarehouseId
+            }).ToList();
         }
-        
+
+        public List<BLL.BusinessModels.Supply> getRecentSupplies(int WHId)
+        {
+            return repos.Supplies.GetList()
+            .Join(repos.SupplyStatusRefs.GetList(), i => i.Status, j => j.Id, (i, j) => new { WarehouseId = i.WarehouseId, Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = j.Status })
+            .Join(repos.Warehouses.GetList(), i => i.WarehouseId, j => j.Id, (i, j) => new { WarehouseId = i.WarehouseId, Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = i.StatusString })
+            .Where(i=>i.Date > DateTime.Now.AddDays(-20))
+            .Where(i=>i.WarehouseId == WHId)
+            .Select(i => new BLL.BusinessModels.Supply 
+            { 
+                Cost = i.Cost, 
+                Date = i.Date, 
+                Id = i.Id, 
+                Status = i.Status, 
+                StatusString = i.StatusString 
+            }).ToList();
+        }
+
         public List<NotificationModel> getNotifications()
         {
             List<NotificationModel> Notes = repos.WarehouseLines.GetList()
@@ -90,6 +117,17 @@ namespace BLL.DataOperations
                     Message = "Товар " + i.Name + " заканчивается на складе: осталось "+ i.Quantity + " единиц продукции.",
                 }).ToList();
             return Notes;
+        }
+
+        public List<BusinessModels.Provider> getProviders() {
+            return repos.Providers.GetList().Select(i => new BusinessModels.Provider()
+            {
+                CompanyName = i.CompanyName,
+                FamilyName = i.FamilyName,
+                Id = i.Id,
+                Initials = i.Initials,
+                FullName = i.FamilyName + " " + i.Initials,
+            }).ToList();
         }
     }
 }

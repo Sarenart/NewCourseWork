@@ -9,6 +9,7 @@ using System.ComponentModel;
 using BLL.DataOperations;
 using BLL.BusinessModels;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace NewCourseWork.ViewModels
 {
@@ -18,7 +19,7 @@ namespace NewCourseWork.ViewModels
         MainWindow win;
 
         public List<BLL.BusinessModels.Supply> Supplies;
-        public List<BLL.BusinessModels.Commodity> Commodities { get; set; }
+        public List<BLL.BusinessModels.Commodity> AllCommodities { get; set; }
 
         public List<BLL.BusinessModels.Commodity> ScarceCommodities { get; set; }
         public List<BLL.BusinessModels.Warehouse> Warehouses{ get; set; }
@@ -26,20 +27,25 @@ namespace NewCourseWork.ViewModels
 
         public List<BLL.BusinessModels.Supply> AllSupplies { get; set; }
 
+        public List<BLL.BusinessModels.Supply> RecentSupplies { get; set; }
+
         public List<BLL.BusinessModels.Supply> CloseSupplies { get; set; }
 
         public List<NotificationModel> Notifications { get; set; }
 
+        //public Li
+
         public ApplicationViewModel(MainWindow win) {
-            DataOpers = new DbDataOperations();
+           this.DataOpers = new DbDataOperations();
             this.win = win;
-            //Commodities = DataOpers.GetCommodities();
-            Commodities = DataOpers.getWarehouseCommodities(1);
-            ScarceCommodities = DataOpers.getScarceWarehouseCommodities(1);
+            RegWindow regwin = new RegWindow();
+            regwin.ShowDialog();
+           // AllCommodities = DataOpers.getWarehouseCommodities(1);
+            //ScarceCommodities = DataOpers.getScarceWarehouseCommodities(1);
             Warehouses = DataOpers.getWarehouses();
-            AllSupplies = DataOpers.getSupplies();
+           // AllSupplies = DataOpers.getAllSupplies(1);
+           // RecentSupplies = DataOpers.getRecentSupplies(1);
             Notifications = DataOpers.getNotifications();
-            // ScarceCommodities = DataOpers.GetScarceCommodities();
         }
 
 
@@ -52,7 +58,7 @@ namespace NewCourseWork.ViewModels
                 (showscarcecommodities = new BasicCommand(obj =>
                 {
                     win.CommoditiesLabel.Text = "Товары на исходе";
-                    win.Commodities.Visibility = Visibility.Collapsed;
+                    win.AllCommodities.Visibility = Visibility.Collapsed;
                     win.ScarceCommodities.Visibility = Visibility.Visible;
                     win.ShowAllCommoditiesButton.Visibility = Visibility.Visible;
                     win.ShowScarceCommoditiesButton.Visibility = Visibility.Collapsed;
@@ -69,12 +75,12 @@ namespace NewCourseWork.ViewModels
                 return showallcommodities ??
                 (showallcommodities = new BasicCommand(obj =>
                 {
-                    win.Commodities.Visibility = Visibility.Visible;
+                    win.AllCommodities.Visibility = Visibility.Visible;
                     win.ScarceCommodities.Visibility = Visibility.Collapsed;
                     win.ShowAllCommoditiesButton.Visibility = Visibility.Collapsed;
                     win.ShowScarceCommoditiesButton.Visibility = Visibility.Visible;
                     win.CommoditiesLabel.Text = "Все товары на складе";
-                    win.Navigation.SelectedIndex = 0;
+  
                 },
                 (obj => true)));
             }
@@ -109,7 +115,7 @@ namespace NewCourseWork.ViewModels
                     win.RecentSupplies.Visibility = Visibility.Collapsed;
                     win.AllSupplies.Visibility = Visibility.Visible;
                     win.SupplyLabel.Text = "Поставки";
-                    win.ShowAllCommoditiesButton.Visibility = Visibility.Collapsed;
+                    win.ShowAllSuppliesButton.Visibility = Visibility.Collapsed;
                     win.ShowRecentSuppliesButton.Visibility = Visibility.Visible;
                 },
                 (obj => true)));
@@ -155,7 +161,7 @@ namespace NewCourseWork.ViewModels
                 return tosupplies ??
                 (tosupplies= new BasicCommand(obj =>
                 {
-                    win.Navigation.SelectedIndex = 3;
+                    win.Navigation.SelectedIndex = 2;
                 },
                 (obj => true)));
             }
@@ -169,18 +175,45 @@ namespace NewCourseWork.ViewModels
                 return tocommodities ??
                 (tocommodities= new BasicCommand(obj =>
                 {
-                    win.Navigation.SelectedIndex = 2;
+                    win.Navigation.SelectedIndex = 3;
                 },
                 (obj => true)));
             }
         }
 
 
+        private BasicCommand warehousechanged;
+        public BasicCommand WarehouseChanged
+        {
+            get
+            {
+                return warehousechanged ??
+                (warehousechanged = new BasicCommand(obj =>
+                {
+                    TestGround testwin = new TestGround();
+                    testwin.Show();
+                },
+                (obj => true)));
+            }
+        }
+
+        public void SupplyWarehouseComboBoxChanged(object sender, RoutedEventArgs e) {
+            Warehouse i = (Warehouse)win.SupplyWarehouseComboBox.SelectedItem;
+            this.AllSupplies = DataOpers.getAllSupplies(i.Id);
+            OnPropertyChanged("AllSupplies");
+            this.RecentSupplies = DataOpers.getRecentSupplies(i.Id);
+            OnPropertyChanged("RecentSupplies");
+        }
 
 
-
-
-
+        public void CommodityWarehouseComboBoxChanged(object sender, RoutedEventArgs e)
+        {
+            Warehouse i = (Warehouse)win.CommodityWarehouseComboBox.SelectedItem;
+            this.AllCommodities = DataOpers.getWarehouseCommodities(i.Id);
+            OnPropertyChanged("AllCommodities");
+            this.ScarceCommodities = DataOpers.getScarceWarehouseCommodities(i.Id);
+            OnPropertyChanged("ScarceCommodities");
+        }
 
 
 

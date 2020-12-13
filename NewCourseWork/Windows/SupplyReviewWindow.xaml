@@ -5,7 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewCourseWork"
         mc:Ignorable="d"
-        Title="SuppyReviewWindow" Height="450" Width="800">
+        Title="SuppyReviewWindow" Height="450" Width="602.54"
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"></RowDefinition>
@@ -14,7 +22,7 @@
             <RowDefinition Height="0.1*"></RowDefinition>
 
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center" Padding="5" FontWeight="Bold" FontSize="16" Margin="5">Supply Review</TextBlock>
+        <TextBlock HorizontalAlignment="Center" Padding="5" FontWeight="Bold" FontSize="16" Margin="5">Редактирование поставки</TextBlock>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*">

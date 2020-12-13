@@ -18,6 +18,7 @@ namespace BLL.BusinessModels
         private int status;
 
         private string statusstring;
+        private int warehouseid;
 
         public int Id
         {
@@ -67,6 +68,16 @@ namespace BLL.BusinessModels
             {
                 statusstring = value;
                 OnPropertyChanged("Cost");
+            }
+        }
+
+        public int WarehouseId
+        {
+            get { return warehouseid; }
+            set 
+            {
+                warehouseid = value;
+                OnPropertyChanged("WarehouseId");
             }
         }
 

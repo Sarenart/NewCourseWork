@@ -19,6 +19,7 @@ namespace NewCourseWork
     /// </summary>
     public partial class CommodityReviewWindow : Window
     {
+
         public CommodityReviewWindow()
         {
             InitializeComponent();

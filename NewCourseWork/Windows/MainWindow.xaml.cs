@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NewCourseWork.ViewModels;
+using BLL.DataOperations;
+using BLL.BusinessModels;
 
 namespace NewCourseWork
 {
@@ -22,17 +24,22 @@ namespace NewCourseWork
     public partial class MainWindow : Window
     {
         public ApplicationViewModel AppVM;
-        public MainWindow(/*WindowManager WindMan*/)
+        public MainWindow(/*DbDataOperations DataOpers*/)
         {
             InitializeComponent();
-            AppVM = new ApplicationViewModel(this);
+            AppVM = new ApplicationViewModel(this/*, DataOpers*/);
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
-
+            this.SupplyWarehouseComboBox.SelectionChanged += new SelectionChangedEventHandler(AppVM.SupplyWarehouseComboBoxChanged);
+            this.CommodityWarehouseComboBox.SelectionChanged += new SelectionChangedEventHandler(AppVM.CommodityWarehouseComboBoxChanged);
         }
         void MainWindow_Loaded(object sender, RoutedEventArgs args) {
             DataContext = AppVM;
         }
 
-
+        void TestComboBox(object sender, RoutedEventArgs e)
+        {
+            Warehouse i =(Warehouse)SupplyWarehouseComboBox.SelectedItem;
+            MessageBox.Show(i.Id.ToString());
+        }
     }
 }

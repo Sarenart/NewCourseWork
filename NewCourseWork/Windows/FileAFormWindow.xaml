@@ -5,22 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewCourseWork"
         mc:Ignorable="d"
-        Title="FileAFormWindow" Height="445.617" Width="614.448">
+        Title="FileAFormWindow" Height="445.617" Width="800.448"
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">    
     <Grid ShowGridLines="true">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"></RowDefinition>
             <RowDefinition Height="0.35*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="0.2*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Создание заявки</TextBlock>
-        <ComboBox Grid.Row="1" MaxWidth="90" HorizontalAlignment="Left" MinWidth="90" >
-            <ComboBoxItem>owner</ComboBoxItem>
+        <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Width="134">Создание заявки</TextBlock>
+        <ComboBox Grid.Row="1" MaxWidth="150" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Margin="20,20,0,20" Text="Выберите провайдера" ItemsSource="{Binding Providers}" DisplayMemberPath="CompanyName" SelectedValuePath="Id" Height="28" Width="143" >
         </ComboBox>
-        <ComboBox Grid.Row="1" MaxWidth="90" HorizontalAlignment="Right" MinWidth="90" >
-            <ComboBoxItem>type</ComboBoxItem>
+        <ComboBox Grid.Row="1" MaxWidth="150" HorizontalAlignment="Center" MinWidth="90" IsEditable="True" IsReadOnly="True" Text="Выберите товар" Margin="20,20,20,20" ItemsSource="{Binding ProviderRelatedCommodities}" DisplayMemberPath="CompanyName" SelectedValuePath="Id" Height="28" Width="108">
         </ComboBox>
-
-        <Button Grid.Row="3" MaxWidth="250">Создать заявку</Button>
+        <ComboBox Grid.Row="1" MaxWidth="150" HorizontalAlignment="Right" MinWidth="90" IsEditable="True" IsReadOnly="True" Text="Выберите склад" Margin="20,20, 20, 20" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Height="28" Width="107"/>
+        <DataGrid AutoGenerateColumns="False" Name="RecentSupplies" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding ProviderSupplies}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название продукта" Binding="{Binding Path=Cost}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Тип продукта" Binding="{Binding Path=Cost}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Path=Date}">
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="3" MaxWidth="250" Margin="0,9" Height="Auto">Создать заявку</Button>
     </Grid>
 </Window>

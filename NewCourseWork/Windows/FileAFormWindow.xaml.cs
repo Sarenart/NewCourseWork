@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLL.DataOperations;
+using NewCourseWork.ViewModels;
 
 namespace NewCourseWork
 {
@@ -20,10 +21,17 @@ namespace NewCourseWork
     /// </summary>
     public partial class FileAFormWindow : Window
     {
-
+        FileAFormViewModel VM;
         public FileAFormWindow(DbDataOperations db)
         {
             InitializeComponent();
+            VM = new FileAFormViewModel(this,db);
+            Loaded += new RoutedEventHandler(FileAFormWindow_Loaded);
+        }
+
+        void FileAFormWindow_Loaded(object sender, EventArgs e)
+        {
+            DataContext = VM;
         }
     }
 }

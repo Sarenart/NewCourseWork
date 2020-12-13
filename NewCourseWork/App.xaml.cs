@@ -30,7 +30,8 @@ namespace NewCourseWork
             //Объявить интерфейсы
             App app = new App();
             //MainWindow mainWindow = new MainWindow(Wm);
-            app.Run(new RegWindow());
+            app.Run(new MainWindow());
+           // app.Run(new RegWindow());
         }
     }
 }

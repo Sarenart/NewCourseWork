@@ -76,8 +76,8 @@
     </Page>
     <Compile Include="ViewModels\FileAFormViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="Windows\ArrangeWindow.xaml.cs">
-      <DependentUpon>ArrangeWindow.xaml</DependentUpon>
+    <Compile Include="Windows\Tes.xaml.cs">
+      <DependentUpon>Tes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\FileAFormWindow.xaml.cs">
       <DependentUpon>FileAFormWindow.xaml</DependentUpon>
@@ -94,11 +94,7 @@
     </Compile>
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="WindowManaging\BasicCommand.cs" />
-    <Compile Include="WindowManaging\CommodityReviewCommand.cs" />
-    <Compile Include="WindowManaging\FileAFormCommand.cs" />
-    <Compile Include="WindowManaging\SupplyReviewCommand.cs" />
-    <Compile Include="WindowManaging\WindowManager.cs" />
-    <Page Include="Windows\ArrangeWindow.xaml">
+    <Page Include="Windows\Tes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

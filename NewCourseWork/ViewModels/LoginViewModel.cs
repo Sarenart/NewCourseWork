@@ -25,8 +25,8 @@ namespace NewCourseWork.ViewModels
                 return enter ??
                 (enter = new BasicCommand(obj =>
                 {
-                    MainWindow wm = new MainWindow();
-                    wm.Show();
+                    //MainWindow wm = new MainWindow(DataOpers);
+                   // wm.Show();
                     win.Close();
                 },
                 (obj => true)));
