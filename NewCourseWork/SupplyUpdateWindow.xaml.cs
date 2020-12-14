@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace NewCourseWork
 {
     /// <summary>
-    /// Логика взаимодействия для SuppyReviewWindow.xaml
+    /// Логика взаимодействия для SupplyUpdateWindow.xaml
     /// </summary>
-    public partial class SupplyReviewWindow : Window
+    public partial class SupplyUpdateWindow : Window
     {
-        public SupplyReviewWindow()
+        public SupplyUpdateWindow()
         {
             InitializeComponent();
         }

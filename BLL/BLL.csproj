@@ -57,6 +57,7 @@
     <Compile Include="BusinessModels\Commodity.cs" />
     <Compile Include="BusinessModels\NotificationModel.cs" />
     <Compile Include="BusinessModels\Provider.cs" />
+    <Compile Include="BusinessModels\ProviderSupplyStock.cs" />
     <Compile Include="BusinessModels\Supply.cs" />
     <Compile Include="BusinessModels\SupplyLine.cs" />
     <Compile Include="BusinessModels\User.cs" />

@@ -9,6 +9,8 @@ using System.ComponentModel;
 using BLL.DataOperations;
 using BLL.BusinessModels;
 using System.Windows;
+using BLL.BusinessModels;
+
 namespace NewCourseWork.ViewModels
 {
     public class FileAFormViewModel:INotifyPropertyChanged
@@ -16,13 +18,85 @@ namespace NewCourseWork.ViewModels
         FileAFormWindow win;
         DbDataOperations DataOpers;
 
+        private BLL.BusinessModels.Provider selectedprovider;
+        private BLL.BusinessModels.Warehouse selectedwarehouse;
+        private BLL.BusinessModels.ProviderSupplyStock selectedprovidercommodity;
+        private BLL.BusinessModels.SupplyLine selectedaddedcommodity;
+
+        public BLL.BusinessModels.Provider SelectedProvider
+        {
+            get
+            {
+                return selectedprovider;
+            }
+            set
+            {
+                selectedprovider = value;
+                SelectedProviderChanged(selectedprovider);
+            }
+        }
+
+        public BLL.BusinessModels.Warehouse SelectedWarehouse
+        {
+            get
+            {
+                return selectedwarehouse;
+            }
+            set
+            {
+                selectedwarehouse = value;
+               // SelectedWarehouseChanged(selectedwarehouse);
+            }
+        }
+
+        public BLL.BusinessModels.ProviderSupplyStock SelectedProviderCommodity
+        {
+            get
+            {
+                return selectedprovidercommodity;
+            }
+            set
+            {
+                selectedprovidercommodity = value;
+                //SelectedWarehouseChanged(/*Warehouse warehouse*/);
+                OnPropertyChanged("SelectedProviderCommodity");
+            }
+
+        }
+
+        public BLL.BusinessModels.SupplyLine SelectedAddedCommodity
+        {
+            get
+            {
+                return selectedaddedcommodity;
+            }
+            set
+            {
+                selectedaddedcommodity = value;
+                OnPropertyChanged("SelectedAddedCommodity");
+            }
+
+        }
+
         public List<Provider> Providers { get; set; }
 
         public List<Warehouse> Warehouses { get; set; }
 
-        public List<Commodity> ProviderSupplies { get; set; }
+        public List<ProviderSupplyStock> ProviderSupplies { get; set; }
 
-        public List<Commodity> ProviderRelatedCommodities { get; set; }
+        private List<SupplyLine> providerrelatedcommodity;
+
+        public List<SupplyLine> ProviderRelatedCommodities { 
+            get 
+            {
+                return providerrelatedcommodity;
+            } 
+            set 
+            {
+                providerrelatedcommodity = value;
+                OnPropertyChanged("ProviderRelatedCommodity");
+            } 
+        }
 
         public FileAFormViewModel(FileAFormWindow wind, DbDataOperations DataOpers)
         {
@@ -30,7 +104,101 @@ namespace NewCourseWork.ViewModels
             this.DataOpers = DataOpers;
             this.Warehouses = DataOpers.getWarehouses();
             this.Providers = this.DataOpers.getProviders();
+            this.ProviderRelatedCommodities = new List<SupplyLine>();
+
         }
+
+
+
+        public void SelectedProviderChanged(Provider provider)
+        {
+            this.ProviderSupplies = DataOpers.getProviderSupplyStock(provider.Id);
+            OnPropertyChanged("ProviderSupplies");
+        }
+
+        public void SelectedWarehouseChanged(/*Warehouse warehouse*/)
+        {
+            SupplyLine line = new SupplyLine()
+            {
+                CommodityId = SelectedProviderCommodity.CommodityId,
+                CommodityName = SelectedProviderCommodity.CommodityName,
+                Quantity = 1,
+                Cost = SelectedProviderCommodity.Cost,
+                CommodityType = SelectedProviderCommodity.CommodityType
+            };
+            OnPropertyChanged("ProviderRelatedCommodities");
+        }
+
+        private BasicCommand addtosupplyform;
+        public BasicCommand AddToSupplyForm
+        {
+            get
+            {
+                return addtosupplyform ??
+                (addtosupplyform = new BasicCommand(obj =>
+                {
+                    SupplyLine line = new SupplyLine()
+                    {
+                        CommodityId = SelectedProviderCommodity.CommodityId,
+                        CommodityName = SelectedProviderCommodity.CommodityName,
+                        Quantity = 1,
+                        Cost = SelectedProviderCommodity.Cost,
+                        CommodityType = SelectedProviderCommodity.CommodityType,
+                        Id = 1,
+                        SupplyId = 1
+                    };
+                    if (this.ProviderRelatedCommodities.Find(i => i.CommodityId == line.CommodityId) != null)
+                        MessageBox.Show("Товар уже добавлен");
+                    else
+                    {
+                        this.ProviderRelatedCommodities = DataOpers.RecordSupplyLines(ProviderRelatedCommodities, line);
+                        OnPropertyChanged("ProviderRelatedCommodities");
+                    }
+                },
+                (obj => true)));
+            }
+        }
+
+
+        private BasicCommand removefromsupplyform;
+        public BasicCommand RemoveFromSupplyForm
+        {
+            get
+            {
+                return removefromsupplyform ??
+                (removefromsupplyform = new BasicCommand(obj =>
+                {
+                    this.ProviderRelatedCommodities = DataOpers.RemoveSupplyLines(ProviderRelatedCommodities, SelectedAddedCommodity);
+                    OnPropertyChanged("ProviderRelatedCommodities");
+                },
+                (obj => true)));
+            }
+        }
+
+        private BasicCommand createsupply;
+        public BasicCommand CreateSupply
+        {
+            get
+            {
+                return createsupply ??
+                (createsupply = new BasicCommand(obj =>
+                {
+                    if (ProviderRelatedCommodities.Count > 0)
+                    {
+                        DataOpers.CreateSupply(ProviderRelatedCommodities);
+                        MessageBox.Show("Поставка успешно добавлена");
+                        this.win.Close();
+                    }
+                    else MessageBox.Show("Нет добавленных продуктов");
+                },
+                (obj => true)));
+            }
+        }
+
+
+
+
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;

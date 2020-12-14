@@ -122,7 +122,7 @@
                         </RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="SupplyLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Ближайшие поставки:</TextBlock>
-                    <ComboBox  x:Name="SupplyWarehouseComboBox" IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="0,14,0,13" Width="148" Text="Выберите склад"></ComboBox>
+                    <ComboBox  x:Name="SupplyWarehouseComboBox" SelectedItem="{Binding SelectedSupplyWarehouse}" IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад"></ComboBox>
 
                     <DataGrid AutoGenerateColumns="False" Name="RecentSupplies" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding RecentSupplies}">
                         <DataGrid.Columns>
@@ -201,9 +201,9 @@
                         </RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="CommoditiesLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Товары на исходе</TextBlock>
-                    <ComboBox x:Name="CommodityWarehouseComboBox" IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="0,14,0,13" Width="148" Text="Выберите склад"></ComboBox>
+                    <ComboBox SelectedItem="{Binding SelectedCommodityWarehouse}" x:Name="CommodityWarehouseComboBox"  IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад" VerticalAlignment="Bottom"></ComboBox>
 
-                    <DataGrid x:Name="AllCommodities"  Visibility="Visible" Grid.Row="2" ItemsSource="{Binding AllCommodities}" AutoGenerateColumns="False">
+                    <DataGrid x:Name="AllCommodities" IsReadOnly="True" SelectedItem="{Binding Check}" Visibility="Visible" Grid.Row="2" ItemsSource="{Binding AllCommodities}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
                             </DataGridTextColumn>
@@ -213,6 +213,14 @@
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Количество на складе" Binding="{Binding Path=Quantity}">
                             </DataGridTextColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button>+</Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
 
                     </DataGrid>

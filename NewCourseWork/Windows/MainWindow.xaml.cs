@@ -29,8 +29,9 @@ namespace NewCourseWork
             InitializeComponent();
             AppVM = new ApplicationViewModel(this/*, DataOpers*/);
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
-            this.SupplyWarehouseComboBox.SelectionChanged += new SelectionChangedEventHandler(AppVM.SupplyWarehouseComboBoxChanged);
-            this.CommodityWarehouseComboBox.SelectionChanged += new SelectionChangedEventHandler(AppVM.CommodityWarehouseComboBoxChanged);
+            //this.SupplyWarehouseComboBox.SelectionChanged += 
+            //new SelectionChangedEventHandler(AppVM.SupplyWarehouseComboBoxChanged);
+            // this.CommodityWarehouseComboBox.SelectionChanged += new SelectionChangedEventHandler(AppVM.CommodityWarehouseComboBoxChanged);
         }
         void MainWindow_Loaded(object sender, RoutedEventArgs args) {
             DataContext = AppVM;

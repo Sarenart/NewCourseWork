@@ -3,48 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace BLL.BusinessModels
 {
-    public class SupplyLine: INotifyPropertyChanged
+    public class ProviderSupplyStock:INotifyPropertyChanged
     {
         private int id { get; set; }
-        private int supplyid { get; set; }
+
         private int commodityid { get; set; }
 
-        private string commodityname { get; set; }
-        private string commoditytype { get; set; }
-        private int quantity { get; set; }
+        private int providerid { get; set; }
+
         private decimal cost { get; set; }
 
-        public int Id 
-        { 
-            get 
-            {
-                return id;
-            } 
-            set 
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            } 
-        }
+        private string commodityname { get; set; }
 
-        public int SupplyId
+        private string commoditytype { get; set; }
+
+        public int Id
         {
             get
             {
-                return supplyid;
+                return id;
             }
             set
             {
-                supplyid = value;
-                OnPropertyChanged("SupplyId");
+                id = value;
+                OnPropertyChanged("Id");
             }
         }
-
         public int CommodityId
         {
             get
@@ -57,20 +46,18 @@ namespace BLL.BusinessModels
                 OnPropertyChanged("CommodityId");
             }
         }
-
-        public int Quantity
+        public int ProviderId
         {
             get
             {
-                return quantity;
+                return providerid;
             }
             set
             {
-                quantity = value;
-                OnPropertyChanged("Quantity");
+                providerid = value;
+                OnPropertyChanged("ProviderId");
             }
         }
-
         public decimal Cost
         {
             get
@@ -85,7 +72,7 @@ namespace BLL.BusinessModels
         }
 
         public string CommodityName
-        {         
+        {
             get
             {
                 return commodityname;
@@ -95,10 +82,10 @@ namespace BLL.BusinessModels
                 commodityname = value;
                 OnPropertyChanged("CommodityName");
             }
-            
         }
-        public string CommodityType
-        {
+
+        public string CommodityType 
+        { 
             get
             {
                 return commoditytype;

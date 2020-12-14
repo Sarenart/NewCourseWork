@@ -25,7 +25,7 @@ namespace NewCourseWork
         public FileAFormWindow(DbDataOperations db)
         {
             InitializeComponent();
-            VM = new FileAFormViewModel(this,db);
+            VM = new FileAFormViewModel(this, db);
             Loaded += new RoutedEventHandler(FileAFormWindow_Loaded);
         }
 
@@ -33,5 +33,6 @@ namespace NewCourseWork
         {
             DataContext = VM;
         }
+
     }
 }
