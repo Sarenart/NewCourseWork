@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewCourseWork"
         mc:Ignorable="d"
-        Title="FileAFormWindow" Height="800.0" Width="1200.448"
+        Title="Заявка на доставку" Height="800.0" Width="1200.448"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -19,11 +19,16 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="0.04*"></RowDefinition>
             <RowDefinition Height="0.35*"></RowDefinition>
             <RowDefinition Height="0.05*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="134">Создание заявки</TextBlock>
+        <materialDesign:Card Grid.Row="0"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="8">
+            <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="134">Создание заявки</TextBlock>
+        </materialDesign:Card>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
 
@@ -67,7 +72,7 @@
                 </DataGrid>
 
             </Grid>
-                <Grid Grid.Column="1" >
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.2*">
 
@@ -76,9 +81,11 @@
 
                     </RowDefinition>
                 </Grid.RowDefinitions>
-                <ComboBox Grid.Row="0" Grid.Column="1" MaxWidth="150" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Text="Выберите склад" Margin="20,20, 20, 20" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Height="28" Width="107" SelectedItem ="{Binding SelectedWarehouse}"/>
-                <TextBox x:Name="TotalSumTextBox" IsEnabled ="False" Grid.Row="0" HorizontalAlignment="Right" MinWidth="150" MaxWidth="250" Margin="10, 10, 10, 10">Итоговая сумма:</TextBox>
-                <DataGrid IsReadOnly="True" SelectedItem="{Binding SelectedAddedCommodity}"  AutoGenerateColumns="False" Grid.Column="0" x:Name="FormCommodities" Grid.Row="1" Visibility ="Visible" ItemsSource="{Binding ProviderRelatedCommodities}">
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <ComboBox  MaxWidth="150" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Text="Выберите склад" Margin="20,20, 20, 20" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Height="28" Width="107" SelectedItem ="{Binding SelectedWarehouse}"/>
+                <Label x:Name="TotalSumTextBox"  HorizontalAlignment="Center" MinWidth="160" MaxWidth="250" MaxHeight="20" Margin="20, 20, 20, 20">Итоговая сумма:</Label>
+                </StackPanel>
+                    <DataGrid IsReadOnly="True" SelectedItem="{Binding SelectedAddedCommodity}"  AutoGenerateColumns="False" Grid.Column="0" x:Name="FormCommodities" Grid.Row="1" Visibility ="Visible" ItemsSource="{Binding ProviderRelatedCommodities}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Название продукта" Binding="{Binding Path=CommodityName}">
                         </DataGridTextColumn>
@@ -100,7 +107,18 @@
                 </DataGrid>
 
             </Grid>
-            </Grid>
-        <Button Grid.Row="3" MaxWidth="250"  Height="Auto" Margin="20, 20, 20, 20" Command="{Binding CreateSupply}">Создать заявку</Button>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition>
+
+                </ColumnDefinition>
+                <ColumnDefinition>
+
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button MaxWidth="350"  Height="Auto" Margin="20, 20, 20, 20" Command="{Binding CreateSupply}">Создать заявку</Button>
+            <Button IsCancel="True" MaxWidth="350" Grid.Column="1" Height="Auto" Margin="20, 20, 20, 20">Выйти</Button>
+        </Grid>
     </Grid>
 </Window>

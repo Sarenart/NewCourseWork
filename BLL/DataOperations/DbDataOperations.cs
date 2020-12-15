@@ -185,5 +185,18 @@ namespace BLL.DataOperations
             return NewList;
             // return repos.SupplyLines.GetList().Select(i => new BusinessModels.SupplyLine {Cost = i.Cost, CommodityName = i.Commodity.Name, CommodityId = i.CommodityId, CommodityType = i.Commodity.CommodityTypeRef.Type, Quantity = i.Quantity }).ToList();
         }
+        public List<BusinessModels.SupplyLine> ReturnSupplyLines(int Id)
+        {
+            return repos.SupplyLines.GetList().Where(i => i.SupplyId == Id).Select(i => new BusinessModels.SupplyLine
+            {
+                Id = i.Id,
+                SupplyId = i.SupplyId,
+                CommodityId = i.CommodityId,
+                CommodityName = i.Commodity.Name,
+                CommodityType = i.Commodity.CommodityTypeRef.Type,
+                Quantity = i.Quantity,
+                Cost = i.Cost,
+            }).ToList();
+        }
     }
 }

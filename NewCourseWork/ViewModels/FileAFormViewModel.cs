@@ -18,10 +18,25 @@ namespace NewCourseWork.ViewModels
         FileAFormWindow win;
         DbDataOperations DataOpers;
 
+        private BLL.BusinessModels.User currentuser;
+
         private BLL.BusinessModels.Provider selectedprovider;
         private BLL.BusinessModels.Warehouse selectedwarehouse;
         private BLL.BusinessModels.ProviderSupplyStock selectedprovidercommodity;
         private BLL.BusinessModels.SupplyLine selectedaddedcommodity;
+
+        private BLL.BusinessModels.User CurrentUser
+        {
+            get
+            {
+                return currentuser;
+            }
+            set
+            {
+                currentuser = value;
+                OnPropertyChanged("CurrentUser");
+            }
+        }
 
         public BLL.BusinessModels.Provider SelectedProvider
         {
@@ -84,9 +99,9 @@ namespace NewCourseWork.ViewModels
 
         public List<ProviderSupplyStock> ProviderSupplies { get; set; }
 
-        private List<SupplyLine> providerrelatedcommodity;
+        private List<SupplyLine> providerrelatedcommodity { get; set; }
 
-        public List<SupplyLine> ProviderRelatedCommodities { 
+       public List<SupplyLine> ProviderRelatedCommodities { 
             get 
             {
                 return providerrelatedcommodity;
@@ -151,7 +166,8 @@ namespace NewCourseWork.ViewModels
                         MessageBox.Show("Товар уже добавлен");
                     else
                     {
-                        this.ProviderRelatedCommodities = DataOpers.RecordSupplyLines(ProviderRelatedCommodities, line);
+                       this.ProviderRelatedCommodities = DataOpers.RecordSupplyLines(ProviderRelatedCommodities, line);
+                        //this.ProviderRelatedCommodities.Add(line);
                         OnPropertyChanged("ProviderRelatedCommodities");
                     }
                 },

@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NewCourseWork.ViewModels;
+using BLL.BusinessModels;
+using BLL.DataOperations;
 
 namespace NewCourseWork
 {
@@ -19,9 +22,17 @@ namespace NewCourseWork
     /// </summary>
     public partial class SupplyUpdateWindow : Window
     {
-        public SupplyUpdateWindow()
+        UpdateWindowViewModel VM;
+        public SupplyUpdateWindow(DbDataOperations db, Supply sup)
         {
             InitializeComponent();
+            VM = new UpdateWindowViewModel(db, sup);
+            Loaded += new RoutedEventHandler(SupplyUpdateWindow_Loaded);
+        }
+
+        void SupplyUpdateWindow_Loaded(object sender, RoutedEventArgs args)
+        {
+            DataContext = VM;
         }
     }
 }

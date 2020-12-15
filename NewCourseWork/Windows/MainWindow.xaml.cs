@@ -37,10 +37,5 @@ namespace NewCourseWork
             DataContext = AppVM;
         }
 
-        void TestComboBox(object sender, RoutedEventArgs e)
-        {
-            Warehouse i =(Warehouse)SupplyWarehouseComboBox.SelectedItem;
-            MessageBox.Show(i.Id.ToString());
-        }
     }
 }

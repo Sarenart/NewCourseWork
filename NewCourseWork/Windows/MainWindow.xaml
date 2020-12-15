@@ -26,7 +26,7 @@
                      Width="24"
                      Height="24" />
                 </TabItem.Header>
-                <Grid ShowGridLines="False">
+                <Grid ShowGridLines="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="62*">
 
@@ -40,13 +40,15 @@
                         </RowDefinition>
                     </Grid.RowDefinitions>
                     <materialDesign:Card Grid.Row="0"
-                        Background="{DynamicResource PrimaryHueLightBrush}"
-                        Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                         Padding="8">
                         <TextBlock Margin="7" HorizontalAlignment="Center" FontSize="20" FontWeight="ExtraBold">QwK</TextBlock>
                     </materialDesign:Card>
+                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,13,9,13">Здравствуйте, </TextBlock>
 
-                    <TextBlock Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,13,9,13"> Версия 0.5</TextBlock>
+                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,13,9,13"> Версия 0.7</TextBlock>
+                    <Button IsCancel="True" Grid.Row="3" MaxWidth="250" MinWidth="150"  Height="Auto" Margin="10, 10, 10, 10" HorizontalAlignment="Right" >Закрыть окно</Button>
                 </Grid>
             </TabItem>
             <TabItem x:Name="NotificationTab"
@@ -78,7 +80,12 @@
                         </RowDefinition>
 
                     </Grid.RowDefinitions>
-                    <TextBlock x:Name="NotificationLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Уведомления:</TextBlock>
+                    <materialDesign:Card Grid.Row="0"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="8">
+                        <TextBlock x:Name="NotificationLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Уведомления:</TextBlock>
+                    </materialDesign:Card>
                     <ListBox Grid.Row="1" x:Name="NotificationBord" ItemsSource="{Binding Notifications}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -121,10 +128,15 @@
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock x:Name="SupplyLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Ближайшие поставки:</TextBlock>
+                    <materialDesign:Card Grid.Row="0"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="8">
+                        <TextBlock x:Name="SupplyLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Ближайшие поставки:</TextBlock>
+                    </materialDesign:Card>
                     <ComboBox  x:Name="SupplyWarehouseComboBox" SelectedItem="{Binding SelectedSupplyWarehouse}" IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад"></ComboBox>
 
-                    <DataGrid AutoGenerateColumns="False" Name="RecentSupplies" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding RecentSupplies}">
+                    <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="RecentSupplies" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding RecentSupplies}" SelectedItem="{Binding SelectedSupply}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
@@ -136,7 +148,7 @@
                     </DataGrid>
 
 
-                    <DataGrid AutoGenerateColumns="False" Name="AllSupplies"  Grid.Row="2" Visibility='Collapsed' ItemsSource="{Binding  AllSupplies}">
+                    <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="AllSupplies"  Grid.Row="2" Visibility='Collapsed' ItemsSource="{Binding  AllSupplies}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
@@ -184,7 +196,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.15*">
+                        <RowDefinition Height="0.2*">
 
                         </RowDefinition>
 
@@ -200,7 +212,12 @@
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock x:Name="CommoditiesLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Товары на исходе</TextBlock>
+                    <materialDesign:Card Grid.Row="0"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="8">
+                        <TextBlock x:Name="CommoditiesLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Товары на исходе</TextBlock>
+                    </materialDesign:Card>
                     <ComboBox SelectedItem="{Binding SelectedCommodityWarehouse}" x:Name="CommodityWarehouseComboBox"  IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад" VerticalAlignment="Bottom"></ComboBox>
 
                     <DataGrid x:Name="AllCommodities" IsReadOnly="True" SelectedItem="{Binding Check}" Visibility="Visible" Grid.Row="2" ItemsSource="{Binding AllCommodities}" AutoGenerateColumns="False">
@@ -213,14 +230,7 @@
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Количество на складе" Binding="{Binding Path=Quantity}">
                             </DataGridTextColumn>
-                            <DataGridTemplateColumn>
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button>+</Button>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
 
-                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
 
                     </DataGrid>
@@ -236,8 +246,17 @@
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name ="ShowAllCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowAllCommodities}">Показать все товары</Button>
-                    <Button x:Name ="ShowScarceCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowScarceCommodities}" Visibility="Collapsed">Показать товары на исходе</Button>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition>
+                                
+                            </ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name ="ShowAllCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowAllCommodities}">Показать все товары</Button>
+                        <Button x:Name ="ShowScarceCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowScarceCommodities}" Visibility="Collapsed">Показать товары на исходе</Button>
+                        <Button x:Name="FileAFormButtonCom" MaxWidth="500" MinWidth="180" Grid.Column="1" Margin="10" Command="{Binding FileAForm}" HorizontalAlignment="Center">Подать заявку на поставку</Button>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem
@@ -248,10 +267,68 @@
                  Width="24"
                  Height="24" />
                 </TabItem.Header>
-                <Grid>
+                <Grid ShowGridLines="True">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*">
+                            
+                        </RowDefinition>
+                        <RowDefinition Height="0.15*">
 
+                        </RowDefinition>
+                        <RowDefinition>
+                            
+                        </RowDefinition>
+                        <RowDefinition Height="0.15*">
+
+                        </RowDefinition>
+                        <RowDefinition Height="0.15*">
+                            
+                        </RowDefinition>
                     </Grid.RowDefinitions>
+                    <materialDesign:Card Grid.Row="0"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="8">
+                        <TextBlock x:Name="ReportsLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Отчёты</TextBlock>
+                    </materialDesign:Card>
+                    <DataGrid x:Name="Report1DataGrid"  Grid.Row="2" Visibility ="Visible" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Стоимость продажи,р" Binding="{Binding Path=Cost}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Тип продукта" Binding="{Binding Path=TypeName}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Количество на складе" Binding="{Binding Path=Quantity}">
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="Report2DataGrid"  Grid.Row="2" Visibility ="Visible" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Стоимость продажи,р" Binding="{Binding Path=Cost}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Тип продукта" Binding="{Binding Path=TypeName}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Количество на складе" Binding="{Binding Path=Quantity}">
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition>
+                                
+                            </ColumnDefinition>
+                            <ColumnDefinition>
+
+                            </ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name ="Report1" Width="auto" MaxWidth="220" MinWidth="180" Grid.Column="0" >Включить отчёт 1</Button>
+                        <Button x:Name ="Report2" Width="auto" MaxWidth="220" MinWidth="180" Grid.Column="1">Включить отчёт 2</Button>
+                    </Grid>
                 </Grid>
             </TabItem>
 

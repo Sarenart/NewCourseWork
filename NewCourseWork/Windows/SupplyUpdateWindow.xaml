@@ -5,8 +5,76 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewCourseWork"
         mc:Ignorable="d"
-        Title="SupplyUpdateWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Редактирование поставки" Height="450" Width="600"
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*">
+
+            </RowDefinition>
+            <RowDefinition Height="0.2*">
+                
+            </RowDefinition>
+            <RowDefinition>
+
+            </RowDefinition>
+            <RowDefinition Height="0.25*">
+
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <materialDesign:Card Grid.Row="0"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="8">
+            <TextBlock Grid.Row="1" MaxHeight="30" FontSize="20" HorizontalAlignment="Center"> Редактирование поставки</TextBlock>
+        </materialDesign:Card>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition>
+                    
+                </ColumnDefinition>
+                <ColumnDefinition>
+                    
+                </ColumnDefinition>
+                <ColumnDefinition>
+                    
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" MaxWidth="120" HorizontalAlignment="Left" MaxHeight="30" Content="{Binding Path = SelectedSupply.Status, UpdateSourceTrigger=PropertyChanged}"></Label>
+        <Label Grid.Column="1" MaxWidth="120" HorizontalAlignment="Center" MaxHeight="30" Content="{Binding Path = SelectedSupply.Cost, UpdateSourceTrigger=PropertyChanged}"></Label>
+        <Label Grid.Column="2" MaxWidth="120" HorizontalAlignment="Right" MaxHeight="30" Content="{Binding Path = SelectedSupply.StatusString, UpdateSourceTrigger=PropertyChanged}"></Label>
+        </Grid>
+        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="SupplyLines" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding Lines}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Товар" Binding="{Binding Path=CommodityName}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Path=CommodityType}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Стоимость закупки" Binding="{Binding Path=Cost}">
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition>
+                    
+                </ColumnDefinition>
+                <ColumnDefinition>
+                    
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" MaxWidth="250" MinWidth="150" Height="Auto" Margin="10, 10, 10, 10" Command="{Binding CreateSupply}" HorizontalAlignment="Center" >Изменить поставку</Button>
+            <Button IsCancel="True" Grid.Column="1" MaxWidth="250" MinWidth="150"  Height="Auto" Margin="10, 10, 10, 10" HorizontalAlignment="Center" >Закрыть окно</Button>
+        </Grid>
     </Grid>
 </Window>

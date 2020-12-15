@@ -18,6 +18,20 @@ namespace NewCourseWork.ViewModels
         DbDataOperations DataOpers;
         MainWindow win;
 
+        private Supply selectedsupply;
+        public Supply SelectedSupply
+        {
+            get 
+            {
+                return selectedsupply;
+            }
+            set 
+            {
+                selectedsupply = value;
+                OnPropertyChanged("SelectedSupply");
+            }
+        }
+
         private Warehouse selectedsupplywarehouse;
         public Warehouse SelectedSupplyWarehouse
         {
@@ -35,6 +49,7 @@ namespace NewCourseWork.ViewModels
         private Warehouse selectedcommoditywarehouse;
 
         private Commodity check;
+
 
         public Commodity Check
         {
@@ -167,8 +182,8 @@ namespace NewCourseWork.ViewModels
                 return arrangesupply ??
                 (arrangesupply = new BasicCommand(obj =>
                 {
-                    SupplyUpdateWindow wind = new SupplyUpdateWindow();
-                    wind.Show();
+                    SupplyUpdateWindow wind = new SupplyUpdateWindow(this.DataOpers, SelectedSupply);
+                    wind.ShowDialog();
                 },
                 (obj => true)));
             }
@@ -183,7 +198,6 @@ namespace NewCourseWork.ViewModels
                 (fileaform = new BasicCommand(obj =>
                 {
                     FileAFormWindow wind = new FileAFormWindow(this.DataOpers);
-                    wind.Owner = this.win;
                     wind.ShowDialog();
                 },
                 (obj => true)));

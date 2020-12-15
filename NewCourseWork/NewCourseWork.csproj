@@ -77,11 +77,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="SupplyUpdateWindow.xaml.cs">
+    <Compile Include="Windows\SupplyUpdateWindow.xaml.cs">
       <DependentUpon>SupplyUpdateWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\FileAFormViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\UpdateWindowViewModel.cs" />
+    <Compile Include="WindowManaging\DialogService.cs" />
     <Compile Include="Windows\Tes.xaml.cs">
       <DependentUpon>Tes.xaml</DependentUpon>
     </Compile>
@@ -97,7 +100,7 @@
     </Compile>
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="WindowManaging\BasicCommand.cs" />
-    <Page Include="SupplyUpdateWindow.xaml">
+    <Page Include="Windows\SupplyUpdateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
