@@ -24,15 +24,26 @@ namespace NewCourseWork
     public partial class MainWindow : Window
     {
         public ApplicationViewModel AppVM;
-        public MainWindow(/*DbDataOperations DataOpers*/)
+
+        public MainWindow(DbDataOperations db, User CurUser)
         {
             InitializeComponent();
-            AppVM = new ApplicationViewModel(this/*, DataOpers*/);
+            AppVM = new ApplicationViewModel(this, db, CurUser);
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
             //this.SupplyWarehouseComboBox.SelectionChanged += 
             //new SelectionChangedEventHandler(AppVM.SupplyWarehouseComboBoxChanged);
             // this.CommodityWarehouseComboBox.SelectionChanged += new SelectionChangedEventHandler(AppVM.CommodityWarehouseComboBoxChanged);
         }
+
+        /*public MainWindow()
+        {
+            InitializeComponent();
+            AppVM = new ApplicationViewModel(this);
+            Loaded += new RoutedEventHandler(MainWindow_Loaded);
+            //this.SupplyWarehouseComboBox.SelectionChanged += 
+            //new SelectionChangedEventHandler(AppVM.SupplyWarehouseComboBoxChanged);
+            // this.CommodityWarehouseComboBox.SelectionChanged += new SelectionChangedEventHandler(AppVM.CommodityWarehouseComboBoxChanged);
+        }*/
         void MainWindow_Loaded(object sender, RoutedEventArgs args) {
             DataContext = AppVM;
         }

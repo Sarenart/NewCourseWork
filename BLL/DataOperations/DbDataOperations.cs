@@ -90,6 +90,17 @@ namespace BLL.DataOperations
             }).ToList();
         }
 
+        public List<BLL.BusinessModels.User> getUsers()
+        {
+            return repos.Users.GetList().Select(i => new BusinessModels.User
+            {
+                Id = i.Id,
+                FamName = i.FamName,
+                FirName = i.FirName,
+                Login = i.Login,
+                Password = i.Password
+            }).ToList();
+        }
         public List<BLL.BusinessModels.Supply> getRecentSupplies(int WHId)
         {
             return repos.Supplies.GetList()
@@ -149,7 +160,7 @@ namespace BLL.DataOperations
             .Where
         }*/
 
-        public void CreateSupply(List<BusinessModels.SupplyLine> Lines) {
+        public void CreateSupply(List<BusinessModels.SupplyLine> Lines, int WarehouseId, int ProviderId, int UserId) {
             decimal Cost = 0;
             List<DAL.SupplyLine> NewLines = new List<DAL.SupplyLine>();
             foreach (BusinessModels.SupplyLine i in Lines)
@@ -157,7 +168,7 @@ namespace BLL.DataOperations
                 NewLines.Add(new DAL.SupplyLine() { CommodityId = i.CommodityId, Quantity = i.Quantity, Cost = i.Cost });
                 Cost += i.Cost;
             }
-            DAL.Supply sup = new DAL.Supply() { Cost = Cost, ApplicantId = 2, ArrangerId = 2, Date = DateTime.Now, SupplierId = 1, WarehouseId = 1, Status = 2, SupplyLine = NewLines };
+            DAL.Supply sup = new DAL.Supply() { Cost = Cost, ApplicantId = UserId,  Date = DateTime.Now, SupplierId = ProviderId, WarehouseId = WarehouseId, Status = 1, SupplyLine = NewLines };
             repos.Supplies.Create(sup);
             repos.Save();
         }
@@ -198,5 +209,6 @@ namespace BLL.DataOperations
                 Cost = i.Cost,
             }).ToList();
         }
+
     }
 }

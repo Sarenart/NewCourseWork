@@ -48,6 +48,7 @@ namespace NewCourseWork.ViewModels
             {
                 selectedprovider = value;
                 SelectedProviderChanged(selectedprovider);
+                RemoveOnProviderChange();
             }
         }
 
@@ -113,14 +114,14 @@ namespace NewCourseWork.ViewModels
             } 
         }
 
-        public FileAFormViewModel(FileAFormWindow wind, DbDataOperations DataOpers)
+        public FileAFormViewModel(FileAFormWindow wind, DbDataOperations DataOpers, User CurUser)
         {
             this.win = wind;
             this.DataOpers = DataOpers;
             this.Warehouses = DataOpers.getWarehouses();
             this.Providers = this.DataOpers.getProviders();
             this.ProviderRelatedCommodities = new List<SupplyLine>();
-
+            this.CurrentUser = CurUser;
         }
 
 
@@ -201,21 +202,24 @@ namespace NewCourseWork.ViewModels
                 {
                     if (ProviderRelatedCommodities.Count > 0)
                     {
-                        DataOpers.CreateSupply(ProviderRelatedCommodities);
+                        Warehouse Check =  this.SelectedWarehouse;
+                        DataOpers.CreateSupply(ProviderRelatedCommodities, SelectedWarehouse.Id, SelectedProvider.Id ,CurrentUser.Id);
                         MessageBox.Show("Поставка успешно добавлена");
                         this.win.Close();
                     }
                     else MessageBox.Show("Нет добавленных продуктов");
                 },
-                (obj => true)));
+                (obj => (SelectedProvider!=null && SelectedWarehouse!=null))));
             }
         }
 
 
 
-
-
-
+        private void RemoveOnProviderChange()
+        {
+            this.ProviderRelatedCommodities = new List<SupplyLine>();
+            OnPropertyChanged("ProviderRelatedCommodities");
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

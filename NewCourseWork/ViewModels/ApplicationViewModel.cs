@@ -10,13 +10,27 @@ using BLL.DataOperations;
 using BLL.BusinessModels;
 using System.Windows;
 using System.Windows.Controls;
+using NewCourseWork.WindowManaging;
 
 namespace NewCourseWork.ViewModels
 {
-    public class ApplicationViewModel:INotifyPropertyChanged
+    public class ApplicationViewModel: INotifyPropertyChanged,IRequireClose
     {
         DbDataOperations DataOpers;
         MainWindow win;
+
+        private User currentuser { get; set; }
+        public User CurrentUser { 
+            get 
+            {
+                return currentuser;
+            } 
+            set 
+            { 
+                currentuser = value; 
+                OnPropertyChanged("CurrentUser"); 
+            } 
+        }
 
         private Supply selectedsupply;
         public Supply SelectedSupply
@@ -91,9 +105,11 @@ namespace NewCourseWork.ViewModels
 
         //public Li
 
-        public ApplicationViewModel(MainWindow win) {
-           this.DataOpers = new DbDataOperations();
+        public ApplicationViewModel(MainWindow win, DbDataOperations db, User CurUser) {
+            this.DataOpers = db; //new DbDataOperations();
             this.win = win;
+            this.CurrentUser = CurUser;
+            _viewId = Guid.NewGuid();
             //RegWindow regwin = new RegWindow();
             //regwin.ShowDialog();
             Warehouses = DataOpers.getWarehouses();
@@ -197,7 +213,7 @@ namespace NewCourseWork.ViewModels
                 return fileaform ??
                 (fileaform = new BasicCommand(obj =>
                 {
-                    FileAFormWindow wind = new FileAFormWindow(this.DataOpers);
+                    FileAFormWindow wind = new FileAFormWindow(this.DataOpers, CurrentUser);
                     wind.ShowDialog();
                 },
                 (obj => true)));
@@ -248,6 +264,37 @@ namespace NewCourseWork.ViewModels
             }
         }
 
+
+        private BasicCommand closeapp;
+        public BasicCommand CloseApp
+        {
+            get
+            {
+                return closeapp ??
+                (closeapp= new BasicCommand(obj =>
+                {
+                    WindowManager.CloseWindow(ViewID);
+                },
+                (obj => true)));
+            }
+        }
+
+        private BasicCommand returntoregister;
+        public BasicCommand ReturnToRegister
+        {
+            get
+            {
+                return returntoregister ??
+                (returntoregister = new BasicCommand(obj =>
+                {
+                    RegWindow win = new RegWindow(DataOpers);
+                    win.Show();
+                    WindowManager.CloseWindow(ViewID);
+                },
+                (obj => true)));
+            }
+        }
+
         public void SupplyWarehouseComboBoxChanged(Warehouse warehouse) {
             this.AllSupplies = DataOpers.getAllSupplies(warehouse.Id);
             OnPropertyChanged("AllSupplies");
@@ -265,6 +312,11 @@ namespace NewCourseWork.ViewModels
         }
 
 
+        private Guid _viewId;
+        public Guid ViewID
+        {
+            get { return _viewId; }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

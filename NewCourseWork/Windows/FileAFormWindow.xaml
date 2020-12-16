@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewCourseWork"
+         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Заявка на доставку" Height="800.0" Width="1200.448"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -63,7 +64,7 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}, Mode=FindAncestor}, Path=DataContext.AddToSupplyForm}" MaxHeight="20" MaxWidth="20">+</Button>
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}, Mode=FindAncestor}, Path=DataContext.AddToSupplyForm}" MaxHeight="30" MaxWidth="30">+</Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
 
@@ -93,8 +94,14 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Количество" Binding="{Binding Path=Quantity}">
-                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Количество">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <xctk:IntegerUpDown Value="{Binding Path=Quantity, UpdateSourceTrigger=PropertyChanged}" DefaultValue="1" Minimum="1"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NewCourseWork.ViewModels;
+using BLL.DataOperations;
 
 namespace NewCourseWork
 {
@@ -24,7 +25,13 @@ namespace NewCourseWork
         public RegWindow()
         {
             InitializeComponent();
-            VM = new LoginViewModel(this);
+            VM = new LoginViewModel();
+            Loaded += new RoutedEventHandler(RegWindow_Loaded);
+        }
+        public RegWindow(DbDataOperations db)
+        {
+            InitializeComponent();
+            VM = new LoginViewModel(db);
             Loaded += new RoutedEventHandler(RegWindow_Loaded);
         }
         void RegWindow_Loaded(object sender, RoutedEventArgs args)

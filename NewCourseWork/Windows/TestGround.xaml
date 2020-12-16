@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewCourseWork"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="TestGround" Height="450" Width="800"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -25,5 +26,6 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <xctk:IntegerUpDown/>
     </Grid>
 </Window>

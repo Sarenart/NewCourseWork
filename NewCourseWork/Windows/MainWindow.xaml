@@ -28,16 +28,14 @@
                 </TabItem.Header>
                 <Grid ShowGridLines="True">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="62*">
+                        <RowDefinition Height="50*">
 
                         </RowDefinition>
                         <RowDefinition Height="Auto">
 
                         </RowDefinition>
                         <RowDefinition Height="305*"/>
-                        <RowDefinition Height="42*">
 
-                        </RowDefinition>
                     </Grid.RowDefinitions>
                     <materialDesign:Card Grid.Row="0"
                         Background="{DynamicResource PrimaryHueDarkBrush}"
@@ -45,10 +43,10 @@
                         Padding="8">
                         <TextBlock Margin="7" HorizontalAlignment="Center" FontSize="20" FontWeight="ExtraBold">QwK</TextBlock>
                     </materialDesign:Card>
-                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,13,9,13">Здравствуйте, </TextBlock>
+                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,13,9,13" Text="{Binding Path=CurrentUser.FirName, StringFormat= Здравствуйте {0}}"></TextBlock>
 
                     <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,13,9,13"> Версия 0.7</TextBlock>
-                    <Button IsCancel="True" Grid.Row="3" MaxWidth="250" MinWidth="150"  Height="Auto" Margin="10, 10, 10, 10" HorizontalAlignment="Right" >Закрыть окно</Button>
+                    
                 </Grid>
             </TabItem>
             <TabItem x:Name="NotificationTab"
@@ -331,7 +329,46 @@
                     </Grid>
                 </Grid>
             </TabItem>
+            <TabItem
+    Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                    <materialDesign:PackIcon
+                     Kind="Settings"
+                     Width="24"
+                     Height="24" />
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*">
 
+                        </RowDefinition>
+                        <RowDefinition Height="9*">
+                            
+                        </RowDefinition>
+                        <RowDefinition Height="1.5*">
+                            
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+                    <materialDesign:Card Grid.Row="0"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="8">
+                        <TextBlock x:Name="SettingsLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Приложение</TextBlock>
+                    </materialDesign:Card>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition>
+                                
+                            </ColumnDefinition>
+                            <ColumnDefinition>
+                                
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" MaxWidth="250" MinWidth="150"  Height="Auto" MinHeight="40" Margin="10, 10, 10, 10" Command="{Binding ReturnToRegister}">Вернуться в окно входа</Button>
+                        <Button IsCancel="True" Grid.Column="1" MaxWidth="250" MinWidth="150"  Height="Auto" MinHeight="40" Margin="10, 10, 10, 10" Command="{Binding CloseApp}" >Закрыть приложение</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
