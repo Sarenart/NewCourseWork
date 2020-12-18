@@ -87,7 +87,12 @@
                     <ListBox Grid.Row="1" x:Name="NotificationBord" ItemsSource="{Binding Notifications}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Message}"/>
+                                <materialDesign:Card 
+                                 Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                                     Padding="8">
+                                    <TextBlock  FontSize="16" Text="{Binding Message}">
+                                    </TextBlock>
+                                </materialDesign:Card>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -130,7 +135,7 @@
                         Background="{DynamicResource PrimaryHueDarkBrush}"
                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                         Padding="8">
-                        <TextBlock x:Name="SupplyLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Ближайшие поставки:</TextBlock>
+                        <TextBlock x:Name="SupplyLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Неоформленные поставки:</TextBlock>
                     </materialDesign:Card>
                     <ComboBox  x:Name="SupplyWarehouseComboBox" SelectedItem="{Binding SelectedSupplyWarehouse}" IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад"></ComboBox>
 
@@ -218,7 +223,7 @@
                     </materialDesign:Card>
                     <ComboBox SelectedItem="{Binding SelectedCommodityWarehouse}" x:Name="CommodityWarehouseComboBox"  IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад" VerticalAlignment="Bottom"></ComboBox>
 
-                    <DataGrid x:Name="AllCommodities" IsReadOnly="True" SelectedItem="{Binding Check}" Visibility="Visible" Grid.Row="2" ItemsSource="{Binding AllCommodities}" AutoGenerateColumns="False">
+                    <DataGrid x:Name="AllCommodities" IsReadOnly="True" SelectedItem="{Binding Check}" Visibility="Collapsed" Grid.Row="2" ItemsSource="{Binding AllCommodities}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
                             </DataGridTextColumn>
@@ -232,7 +237,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <DataGrid x:Name="ScarceCommodities"  Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding ScarceCommodities}" AutoGenerateColumns="False">
+                    <DataGrid x:Name="ScarceCommodities" IsReadOnly="True" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding ScarceCommodities}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
                             </DataGridTextColumn>
@@ -289,19 +294,17 @@
                         Padding="8">
                         <TextBlock x:Name="ReportsLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Отчёты</TextBlock>
                     </materialDesign:Card>
-                    <DataGrid x:Name="Report1DataGrid"  Grid.Row="2" Visibility ="Visible" AutoGenerateColumns="False">
+                    <DataGrid x:Name="Report1DataGrid" IsReadOnly="True" Grid.Row="2" Visibility ="{Binding Report1Visibility}" AutoGenerateColumns="False" ItemsSource="{Binding Report1}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
+                            <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Provider}">
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Стоимость продажи,р" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Тип продукта" Binding="{Binding Path=TypeName}">
-                            </DataGridTextColumn>
-                            <DataGridTextColumn Header="Количество на складе" Binding="{Binding Path=Quantity}">
+                            <DataGridTextColumn Header="Дата" Binding="{Binding Path=Date}">
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="Report2DataGrid"  Grid.Row="2" Visibility ="Visible" AutoGenerateColumns="False">
+                    <DataGrid x:Name="Report2DataGrid" IsReadOnly="True"  Grid.Row="2" Visibility ="Collapsed" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
                             </DataGridTextColumn>
@@ -324,7 +327,7 @@
                             </ColumnDefinition>
 
                         </Grid.ColumnDefinitions>
-                        <Button x:Name ="Report1" Width="auto" MaxWidth="220" MinWidth="180" Grid.Column="0" >Включить отчёт 1</Button>
+                        <Button x:Name ="Report1" Width="auto" MaxWidth="220" MinWidth="180" Grid.Column="0" Command="{Binding MakeReport1}">Включить отчёт 1</Button>
                         <Button x:Name ="Report2" Width="auto" MaxWidth="220" MinWidth="180" Grid.Column="1">Включить отчёт 2</Button>
                     </Grid>
                 </Grid>

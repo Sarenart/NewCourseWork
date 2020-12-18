@@ -27,5 +27,16 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <xctk:IntegerUpDown/>
+        <DatePicker Grid.Row="1" IsTodayHighlighted="True">
+            
+        </DatePicker>
+        <materialDesign:Card Grid.Row="2"
+  Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+  Width="200"
+  Padding="8">
+            <TextBlock
+    FontSize="16" Text="{Binding Message}">
+            </TextBlock>
+        </materialDesign:Card>
     </Grid>
 </Window>

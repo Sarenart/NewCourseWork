@@ -11,13 +11,33 @@ using BLL.BusinessModels;
 using System.Windows;
 using System.Windows.Controls;
 using NewCourseWork.WindowManaging;
+using BLL.Services;
 
 namespace NewCourseWork.ViewModels
 {
     public class ApplicationViewModel: INotifyPropertyChanged,IRequireClose
     {
         DbDataOperations DataOpers;
+
         MainWindow win;
+
+        SupplyReportService ReportService;
+
+        private Visibility report1visibility;
+
+        public Visibility Report1Visibility
+        {
+            get
+            {
+                return report1visibility;
+            }
+            set
+            {
+                report1visibility = value;
+                OnPropertyChanged("Report1Visibility");
+            }
+        }
+
 
         private User currentuser { get; set; }
         public User CurrentUser { 
@@ -63,8 +83,6 @@ namespace NewCourseWork.ViewModels
         private Warehouse selectedcommoditywarehouse;
 
         private Commodity check;
-
-
         public Commodity Check
         {
             get
@@ -103,17 +121,17 @@ namespace NewCourseWork.ViewModels
 
         public List<NotificationModel> Notifications { get; set; }
 
-        //public Li
+        public List<SupplyReportModel> Report1 { get; set; }
 
         public ApplicationViewModel(MainWindow win, DbDataOperations db, User CurUser) {
             this.DataOpers = db; //new DbDataOperations();
             this.win = win;
             this.CurrentUser = CurUser;
             _viewId = Guid.NewGuid();
-            //RegWindow regwin = new RegWindow();
-            //regwin.ShowDialog();
             Warehouses = DataOpers.getWarehouses();
             Notifications = DataOpers.getNotifications();
+            ReportService = new SupplyReportService();
+            Report1Visibility = Visibility.Collapsed;
         }
 
 
@@ -164,9 +182,10 @@ namespace NewCourseWork.ViewModels
                 {
                     win.RecentSupplies.Visibility = Visibility.Visible;
                     win.AllSupplies.Visibility = Visibility.Collapsed;
-                    win.SupplyLabel.Text = "Ближайшие поставки на складе";
+                    win.SupplyLabel.Text = "Неоформленные поставки";
                     win.ShowAllSuppliesButton.Visibility = Visibility.Visible;
                     win.ShowRecentSuppliesButton.Visibility = Visibility.Collapsed;
+                    SelectedSupply = null;
                 },
                 (obj => true)));
             }
@@ -185,6 +204,7 @@ namespace NewCourseWork.ViewModels
                     win.SupplyLabel.Text = "Поставки";
                     win.ShowAllSuppliesButton.Visibility = Visibility.Collapsed;
                     win.ShowRecentSuppliesButton.Visibility = Visibility.Visible;
+                    SelectedSupply = null;
                 },
                 (obj => true)));
             }
@@ -201,7 +221,7 @@ namespace NewCourseWork.ViewModels
                     SupplyUpdateWindow wind = new SupplyUpdateWindow(this.DataOpers, SelectedSupply);
                     wind.ShowDialog();
                 },
-                (obj => true)));
+                (obj => (SelectedSupply !=null))));
             }
         }
 
@@ -295,9 +315,26 @@ namespace NewCourseWork.ViewModels
             }
         }
 
+        private BasicCommand makereport1;
+        public BasicCommand MakeReport1
+        {
+            get
+            {
+                return makereport1 ??
+                (makereport1 = new BasicCommand(obj =>
+                {
+                    Report1Visibility = Visibility.Visible;
+                    Report1 = ReportService.getReport1();
+                    OnPropertyChanged("Report1");
+                },
+                (obj => true)));
+            }
+        }
+
+
         public void SupplyWarehouseComboBoxChanged(Warehouse warehouse) {
             this.AllSupplies = DataOpers.getAllSupplies(warehouse.Id);
-            OnPropertyChanged("AllSupplies");
+            OnPropertyChanged("AllSupplies");//Поправить
             this.RecentSupplies = DataOpers.getRecentSupplies(warehouse.Id);
             OnPropertyChanged("RecentSupplies");
         }

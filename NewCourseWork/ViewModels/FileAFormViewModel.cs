@@ -18,6 +18,22 @@ namespace NewCourseWork.ViewModels
         FileAFormWindow win;
         DbDataOperations DataOpers;
 
+        private DateTime supplydate;
+
+        private decimal totalsum;
+        public decimal TotalSum
+        {
+            get
+            {
+                return totalsum;
+            }
+            set
+            {
+                totalsum = value;
+                OnPropertyChanged("TotalSum");
+            }
+        }
+
         private BLL.BusinessModels.User currentuser;
 
         private BLL.BusinessModels.Provider selectedprovider;
@@ -122,6 +138,7 @@ namespace NewCourseWork.ViewModels
             this.Providers = this.DataOpers.getProviders();
             this.ProviderRelatedCommodities = new List<SupplyLine>();
             this.CurrentUser = CurUser;
+            TotalSum = 0;
         }
 
 
@@ -167,7 +184,8 @@ namespace NewCourseWork.ViewModels
                         MessageBox.Show("Товар уже добавлен");
                     else
                     {
-                       this.ProviderRelatedCommodities = DataOpers.RecordSupplyLines(ProviderRelatedCommodities, line);
+                        TotalSum += line.Cost;
+                        this.ProviderRelatedCommodities = DataOpers.RecordSupplyLines(ProviderRelatedCommodities, line);
                         //this.ProviderRelatedCommodities.Add(line);
                         OnPropertyChanged("ProviderRelatedCommodities");
                     }
@@ -185,6 +203,7 @@ namespace NewCourseWork.ViewModels
                 return removefromsupplyform ??
                 (removefromsupplyform = new BasicCommand(obj =>
                 {
+                    TotalSum -= SelectedAddedCommodity.Cost;
                     this.ProviderRelatedCommodities = DataOpers.RemoveSupplyLines(ProviderRelatedCommodities, SelectedAddedCommodity);
                     OnPropertyChanged("ProviderRelatedCommodities");
                 },
@@ -218,8 +237,17 @@ namespace NewCourseWork.ViewModels
         private void RemoveOnProviderChange()
         {
             this.ProviderRelatedCommodities = new List<SupplyLine>();
+            TotalSum = 0;
             OnPropertyChanged("ProviderRelatedCommodities");
         }
+
+        public void AdjustExtraUnitCost()
+        {
+            TotalSum = 0;
+            foreach(SupplyLine item in ProviderRelatedCommodities)
+            TotalSum += item.Cost * item.Quantity;
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

@@ -15,6 +15,20 @@ namespace NewCourseWork.ViewModels
     {
         private Supply selectedsupply;
 
+        private string title;
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                title = value;
+                OnPropertyChanged("Title");
+            }
+        }
+
         public List<SupplyLine> Lines { get; set; }
         public Supply SelectedSupply 
         {
@@ -35,7 +49,8 @@ namespace NewCourseWork.ViewModels
             this.DataOpers = DbOps;
             SelectedSupply = sup;
             Lines = DataOpers.ReturnSupplyLines(sup.Id);
-                    }
+            Title = "Просмотр поставки";
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

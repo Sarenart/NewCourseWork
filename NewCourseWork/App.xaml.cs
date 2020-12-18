@@ -31,6 +31,7 @@ namespace NewCourseWork
             App app = new App();
             //MainWindow mainWindow = new MainWindow(Wm);
             app.Run(new RegWindow());
+            //app.Run(new TestGround());
            // app.Run(new RegWindow());
         }
     }
