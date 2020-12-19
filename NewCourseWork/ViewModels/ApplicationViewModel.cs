@@ -210,15 +210,15 @@ namespace NewCourseWork.ViewModels
             }
         }
 
-        private BasicCommand arrangesupply;
-        public BasicCommand ArrangeSupply
+        private BasicCommand showsupply;
+        public BasicCommand ShowSupply
         {
             get
             {
-                return arrangesupply ??
-                (arrangesupply = new BasicCommand(obj =>
+                return showsupply ??
+                (showsupply = new BasicCommand(obj =>
                 {
-                    SupplyUpdateWindow wind = new SupplyUpdateWindow(this.DataOpers, SelectedSupply);
+                    SupplyUpdateWindow wind = new SupplyUpdateWindow(this.DataOpers, SelectedSupply, CurrentUser);
                     wind.ShowDialog();
                 },
                 (obj => (SelectedSupply !=null))));

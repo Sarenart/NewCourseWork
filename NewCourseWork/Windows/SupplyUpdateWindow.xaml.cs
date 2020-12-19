@@ -23,10 +23,10 @@ namespace NewCourseWork
     public partial class SupplyUpdateWindow : Window
     {
         UpdateWindowViewModel VM;
-        public SupplyUpdateWindow(DbDataOperations db, Supply sup)
+        public SupplyUpdateWindow(DbDataOperations db, Supply sup, User CurUser)
         {
             InitializeComponent();
-            VM = new UpdateWindowViewModel(db, sup);
+            VM = new UpdateWindowViewModel(db, sup, CurUser);
             Loaded += new RoutedEventHandler(SupplyUpdateWindow_Loaded);
         }
 

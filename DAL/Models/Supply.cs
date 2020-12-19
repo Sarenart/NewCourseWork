@@ -17,7 +17,7 @@ namespace DAL
 
         public int Id { get; set; }
 
-        public int SupplierId { get; set; }
+        public int ProviderId { get; set; }
 
         public int WarehouseId { get; set; }
 
@@ -27,9 +27,13 @@ namespace DAL
 
         public decimal Cost { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime ApplicationDate { get; set; }
 
-        public int Status { get; set; }
+        public DateTime? ArrangementDate { get; set; }
+
+        public DateTime DeliveryDate { get; set; }
+
+        public int StatusId { get; set; }
 
         public virtual Provider Provider { get; set; }
 

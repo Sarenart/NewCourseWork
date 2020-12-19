@@ -57,7 +57,7 @@
                     Width="24"
                     Height="24" />
                 </TabItem.Header>
-                <Grid ShowGridLines="True">
+                <Grid ShowGridLines="False">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition>
 
@@ -82,7 +82,7 @@
                         Background="{DynamicResource PrimaryHueDarkBrush}"
                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                         Padding="8">
-                        <TextBlock x:Name="NotificationLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Уведомления:</TextBlock>
+                        <TextBlock x:Name="NotificationLabel" TextWrapping="Wrap"  Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Уведомления:</TextBlock>
                     </materialDesign:Card>
                     <ListBox Grid.Row="1" x:Name="NotificationBord" ItemsSource="{Binding Notifications}">
                         <ListBox.ItemTemplate>
@@ -141,11 +141,17 @@
 
                     <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="RecentSupplies" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding RecentSupplies}" SelectedItem="{Binding SelectedSupply}">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Cost}">
+                            </DataGridTextColumn>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Дата" Binding="{Binding Path=Date}">
+                            <DataGridTextColumn Header="Дата оформления" Binding="{Binding Path=ApplicationDate}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Статус" Binding="{Binding Path=StatusString}">
+                            <DataGridTextColumn Header="Дата прихода" Binding="{Binding Path=DeliveryDate}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Создал заявку" Binding="{Binding Path=DeliveryDate}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}">
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -174,9 +180,9 @@
                             </ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="ShowAllSuppliesButton" MaxWidth="500" MinWidth="180" Grid.Column="0" HorizontalAlignment="Center" Margin="10" Command="{Binding ShowAllSupplies}" Visibility="Visible">Все поставки</Button>
-                        <Button x:Name="ShowRecentSuppliesButton" MaxWidth="500" MinWidth="180" Grid.Column="0" HorizontalAlignment="Center" Margin="10" Command="{Binding ShowRecentSupplies}" Visibility="Collapsed">Ближайшие поставки</Button>
+                        <Button x:Name="ShowRecentSuppliesButton" MaxWidth="500" MinWidth="180" Grid.Column="0" HorizontalAlignment="Center" Margin="10" Command="{Binding ShowRecentSupplies}" Visibility="Collapsed">Неоформленные поставки</Button>
                         <Button x:Name="FileAFormButton" MaxWidth="500" MinWidth="180" Grid.Column="1" Margin="10" Command="{Binding FileAForm}" HorizontalAlignment="Center">Подать заявку на поставку</Button>
-                        <Button x:Name="ArrangeSupplyButton" MaxWidth="500" MinWidth="180" Grid.Column="2" HorizontalAlignment="Center" Margin="10" Command="{Binding ArrangeSupply}">Редактировать поставку</Button>
+                        <Button x:Name="ArrangeSupplyButton" MaxWidth="500" MinWidth="180" Grid.Column="2" HorizontalAlignment="Center" Margin="10" Command="{Binding ShowSupply}">Просмотреть поставку</Button>
                     </Grid>
 
                 </Grid>

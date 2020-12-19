@@ -64,7 +64,7 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}, Mode=FindAncestor}, Path=DataContext.AddToSupplyForm}" MaxHeight="30" MaxWidth="30">+</Button>
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}, Mode=FindAncestor}, Path=DataContext.AddToSupplyForm}"  FontSize="12">+</Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
 
@@ -85,7 +85,7 @@
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <ComboBox  MaxWidth="150" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Text="Выберите склад" Margin="20,20, 20, 20" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Height="28" Width="107" SelectedItem ="{Binding SelectedWarehouse}"/>
                     <TextBlock x:Name="TotalSumTextBox"  HorizontalAlignment="Right" MinWidth="160" MaxWidth="250" MaxHeight="20" Margin="20, 20, 20, 20" Text ="{Binding StringFormat=Итоговая сумма {0}, Path=TotalSum}"></TextBlock>
-                    <DatePicker></DatePicker>
+                    <DatePicker SelectedDate="{Binding SupplyDate}"></DatePicker>
                 </StackPanel>
                     <DataGrid IsReadOnly="True" SelectedItem="{Binding SelectedAddedCommodity}"  AutoGenerateColumns="False" Grid.Column="0" x:Name="FormCommodities" Grid.Row="1" Visibility ="Visible" ItemsSource="{Binding ProviderRelatedCommodities}">
                     <DataGrid.Columns>
@@ -98,7 +98,9 @@
                         <DataGridTemplateColumn Header="Количество">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <xctk:IntegerUpDown Value="{Binding Path=Quantity, UpdateSourceTrigger=PropertyChanged}" DefaultValue="1" Minimum="1"/>
+                                    <xctk:IntegerUpDown Value="{Binding Path=Quantity, UpdateSourceTrigger=PropertyChanged}" DefaultValue="1" Minimum="1">
+
+                                    </xctk:IntegerUpDown>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
 
@@ -125,8 +127,8 @@
 
                 </ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button MaxWidth="350"  Height="Auto" Margin="20, 20, 20, 20" Command="{Binding CreateSupply}">Создать заявку</Button>
-            <Button IsCancel="True" MaxWidth="350" Grid.Column="1" Height="Auto" Margin="20, 20, 20, 20">Выйти</Button>
+            <Button IsCancel= "True" MaxWidth="350"  Height="Auto" Margin="20, 20, 20, 20" Command="{Binding CreateSupply}">Создать заявку</Button>
+            <Button IsCancel= "True" MaxWidth="350" Grid.Column="1" Height="Auto" Margin="20, 20, 20, 20">Выйти</Button>
         </Grid>
     </Grid>
 </Window>

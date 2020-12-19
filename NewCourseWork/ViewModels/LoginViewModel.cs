@@ -8,6 +8,9 @@ using NewCourseWork.WindowManaging;
 using BLL.BusinessModels;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+
 
 namespace NewCourseWork.ViewModels
 {
@@ -15,6 +18,8 @@ namespace NewCourseWork.ViewModels
     {
         private string userlogin { get; set; }
         private string userpassword { get; set; }
+
+        private string status { get; set; }
 
         public string UserPassword { 
             get 
@@ -40,6 +45,18 @@ namespace NewCourseWork.ViewModels
             } 
         }
 
+        public string Status {
+            get 
+            {
+                return status;
+            } 
+            set 
+            {
+                status = value;
+                OnPropertyChanged("Status");
+            }
+        }
+
         DbDataOperations DataOpers;
         List<User> PosUsers;
         public LoginViewModel(DbDataOperations db)
@@ -47,12 +64,14 @@ namespace NewCourseWork.ViewModels
             _viewId = Guid.NewGuid();
             DataOpers = db;
             PosUsers = DataOpers.getUsers();
+            Status = "Введите свои данные";
         }
         public LoginViewModel()
         {
             _viewId = Guid.NewGuid();
             DataOpers = new DbDataOperations(); 
             PosUsers = DataOpers.getUsers();
+            Status = "Введите свои данные";
         }
 
         private BasicCommand enter;
@@ -61,18 +80,27 @@ namespace NewCourseWork.ViewModels
             get
             {
                 return enter ??
-                (enter = new BasicCommand(obj =>
-                {
-                    foreach (User item in PosUsers)
-                    {
-                        if (item.Password == UserPassword && item.Login == UserLogin )
+                (enter = new BasicCommand(obj => {
+                    try {
+                        PasswordBox temp = obj as PasswordBox;
+                        UserPassword = temp.Password;
+                        foreach (User item in PosUsers)
                         {
-                            MainWindow wm = new MainWindow(DataOpers, item);
-                            wm.Show();
-                            WindowManager.CloseWindow(ViewID);
+                            if (item.Password == UserPassword && item.Login == UserLogin)
+                            {
+                                MainWindow wm = new MainWindow(DataOpers, item);
+                                wm.Show();
+                                WindowManager.CloseWindow(ViewID);
+                            }
+
                         }
+                        throw new UnauthorizedAccessException();
                     }
-                },
+                    catch (UnauthorizedAccessException)
+                    {
+                        Status = "Login failed! Please provide some valid credentials.";
+                    }
+                    },
                 (obj => true)));
             }
         }
@@ -86,6 +114,11 @@ namespace NewCourseWork.ViewModels
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        private void Login(object parameter)
+        {
+
         }
     }
 }

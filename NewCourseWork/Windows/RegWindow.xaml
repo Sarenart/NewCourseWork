@@ -21,24 +21,32 @@
             <ColumnDefinition Width="0.9*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"></RowDefinition>
-            <RowDefinition Height="0.25*"></RowDefinition>
-            <RowDefinition Height="0.25*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition Height="0.08*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
             <RowDefinition Height="0.2*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="1" Width="auto" Height="auto" MaxHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24">Вход</TextBlock>
+        <materialDesign:Card Grid.Row="0"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="8">
+            <TextBlock Grid.Row="0" Grid.Column="1" Width="auto" Height="auto" MaxHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24">Вход</TextBlock>
+        </materialDesign:Card>
+        <TextBlock Grid.Row="1" Grid.Column="1" Width="auto" Height="auto" MaxHeight="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Margin="0,0,0,10" Text="{Binding Status}"></TextBlock>
 
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="2">
             <TextBlock Margin="30, 10, 30, 0">Логин</TextBlock>
             <TextBox Width = "auto" Height="auto" Grid.Row="1" MinHeight="25" MaxHeight="25" BorderThickness="1" Margin="30,0,30,0" Text="{Binding UserLogin}"></TextBox>
             </StackPanel>
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="3">
 
             <TextBlock Margin="30, 10, 30, 0">Пароль</TextBlock>
-            <TextBox BorderThickness="1" Margin="30,0,30,0" Width="auto" MinHeight="25" MaxHeight="25" Text="{Binding UserPassword}"></TextBox>
+            <PasswordBox x:Name="passwordBox" BorderThickness="1" Margin="30,0,30,0" Width="auto" MinHeight="25" MaxHeight="25"/>
+           
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="3">
-            <Button Width="auto" MinWidth="90" MaxWidth ="180"  Grid.Row="3" Margin="10" Command ="{Binding Enter}">Войти</Button>
+        <StackPanel Orientation="Vertical" Grid.Row="4">
+            <Button Width="auto" MinWidth="90" MaxWidth ="180"  Grid.Row="3" Margin="10" Command ="{Binding Enter}" CommandParameter="{Binding ElementName=passwordBox}">Войти</Button>
             <TextBlock HorizontalAlignment="Center" MinWidth="90" MaxWidth ="180" Width="auto">
                 Забыли пароль?
             </TextBlock>

@@ -81,7 +81,7 @@
                 </ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" MaxWidth="250" MinWidth="150" Height="Auto" Margin="10, 10, 10, 10" Command="{Binding CreateSupply}" HorizontalAlignment="Center" >Изменить поставку</Button>
-            <Button IsCancel="True" Grid.Column="1" MaxWidth="250" MinWidth="150"  Height="Auto" Margin="10, 10, 10, 10" HorizontalAlignment="Center" >Оформить поставку</Button>
+            <Button IsCancel="True" Grid.Column="1" MaxWidth="250" MinWidth="150"  Height="Auto" Margin="10, 10, 10, 10" HorizontalAlignment="Center" Command="{Binding ArrangeSupply}">Оформить поставку</Button>
             <Button IsCancel="True" Grid.Column="2" MaxWidth="250" MinWidth="150"  Height="Auto" Margin="10, 10, 10, 10" HorizontalAlignment="Center" >Закрыть окно</Button>
         </Grid>
     </Grid>

@@ -9,7 +9,6 @@ using System.ComponentModel;
 using BLL.DataOperations;
 using BLL.BusinessModels;
 using System.Windows;
-using BLL.BusinessModels;
 
 namespace NewCourseWork.ViewModels
 {
@@ -19,6 +18,18 @@ namespace NewCourseWork.ViewModels
         DbDataOperations DataOpers;
 
         private DateTime supplydate;
+        private DateTime SupplyDate
+        {
+            get
+            {
+                return supplydate;
+            }
+            set
+            {
+                supplydate = value;
+                OnPropertyChanged("SupplyDate");
+            }
+        }
 
         private decimal totalsum;
         public decimal TotalSum
@@ -41,7 +52,7 @@ namespace NewCourseWork.ViewModels
         private BLL.BusinessModels.ProviderSupplyStock selectedprovidercommodity;
         private BLL.BusinessModels.SupplyLine selectedaddedcommodity;
 
-        private BLL.BusinessModels.User CurrentUser
+        public BLL.BusinessModels.User CurrentUser
         {
             get
             {
@@ -147,6 +158,7 @@ namespace NewCourseWork.ViewModels
         {
             this.ProviderSupplies = DataOpers.getProviderSupplyStock(provider.Id);
             OnPropertyChanged("ProviderSupplies");
+            SupplyDate = provider.PossibleDeliveryDate;
         }
 
         public void SelectedWarehouseChanged(/*Warehouse warehouse*/)
@@ -221,14 +233,13 @@ namespace NewCourseWork.ViewModels
                 {
                     if (ProviderRelatedCommodities.Count > 0)
                     {
-                        Warehouse Check =  this.SelectedWarehouse;
-                        DataOpers.CreateSupply(ProviderRelatedCommodities, SelectedWarehouse.Id, SelectedProvider.Id ,CurrentUser.Id);
+                        DataOpers.CreateSupply(ProviderRelatedCommodities, SelectedWarehouse.Id, SelectedProvider.Id ,CurrentUser.Id, SupplyDate);
                         MessageBox.Show("Поставка успешно добавлена");
-                        this.win.Close();
+                        //this.win.Close();
                     }
                     else MessageBox.Show("Нет добавленных продуктов");
                 },
-                (obj => (SelectedProvider!=null && SelectedWarehouse!=null))));
+                (obj => (SelectedProvider!=null && SelectedWarehouse!=null && ProviderRelatedCommodities.Count>0))));
             }
         }
 

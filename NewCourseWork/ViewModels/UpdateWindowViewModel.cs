@@ -13,6 +13,20 @@ namespace NewCourseWork.ViewModels
 {
     public class UpdateWindowViewModel : INotifyPropertyChanged
     {
+        private BLL.BusinessModels.User currentuser;
+
+        public BLL.BusinessModels.User CurrentUser
+        {
+            get
+            {
+                return currentuser;
+            }
+            set
+            {
+                currentuser = value;
+                OnPropertyChanged("CurrentUser");
+            }
+        }
         private Supply selectedsupply;
 
         private string title;
@@ -44,14 +58,42 @@ namespace NewCourseWork.ViewModels
         }
 
         DbDataOperations DataOpers;
-        public UpdateWindowViewModel(DbDataOperations DbOps, Supply sup)
+        public UpdateWindowViewModel(DbDataOperations DbOps, Supply sup, User CurUser)
         {
             this.DataOpers = DbOps;
             SelectedSupply = sup;
             Lines = DataOpers.ReturnSupplyLines(sup.Id);
             Title = "Просмотр поставки";
+            CurrentUser = CurUser;
         }
 
+        private BasicCommand updatesupply;
+        public BasicCommand UpdateSupply
+        {
+            get
+            {
+                return updatesupply ??
+                (updatesupply = new BasicCommand(obj =>
+                {
+
+                },
+                (obj => (SelectedSupply.StatusId != 2))));
+            }
+        }
+
+        private BasicCommand arrangesupply;
+        public BasicCommand ArrangeSupply
+        {
+            get
+            {
+                return arrangesupply ??
+                (arrangesupply = new BasicCommand(obj =>
+                {
+                    DataOpers.ArrangeSupply(SelectedSupply, Lines, CurrentUser);
+                },
+                (obj => (SelectedSupply.StatusId != 2))));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

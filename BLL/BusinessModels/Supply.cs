@@ -11,13 +11,28 @@ namespace BLL.BusinessModels
     public class Supply: INotifyPropertyChanged
     {
         private int id;
-        private DateTime date;
+        private DateTime? arrangementdate;
+
+        private DateTime applicationdate;
+        private DateTime deliverydate;
+
+        private List<SupplyLine> lines;
+
+        public List<SupplyLine> Lines { get
+            {
+                return lines;
+            }
+            set
+            {
+                lines = value;
+            }
+        }
 
         private decimal cost;
 
-        private int status;
+        private int statusid;
 
-        private string statusstring;
+        private string status;
         private int warehouseid;
 
         public int Id
@@ -30,23 +45,42 @@ namespace BLL.BusinessModels
             }
         }
 
-        public DateTime Date
+        public DateTime? ArrangementDate
         {
-            get { return date; }
+            get { return arrangementdate; }
             set
             {
-                date = value;
-                OnPropertyChanged("Date");
+                arrangementdate = value;
+                OnPropertyChanged("ArrangementDate");
             }
         }
 
-        public int Status
+        public DateTime ApplicationDate
         {
-            get { return status; }
+            get { return applicationdate; }
             set
             {
-                status = value;
-                OnPropertyChanged("Status");
+                applicationdate = value;
+                OnPropertyChanged("ApplicationDate");
+            }
+        }
+
+        public DateTime DeliveryDate
+        {
+            get { return deliverydate; }
+            set
+            {
+                deliverydate = value;
+                OnPropertyChanged("DeliveryDate");
+            }
+        }
+        public int StatusId
+        {
+            get { return statusid; }
+            set
+            {
+                statusid = value;
+                OnPropertyChanged("StatusId");
             }
         }
 
@@ -61,13 +95,13 @@ namespace BLL.BusinessModels
         }
 
 
-        public string StatusString
+        public string Status
         {
-            get { return statusstring; }
+            get { return status; }
             set
             {
-                statusstring = value;
-                OnPropertyChanged("Cost");
+                status = value;
+                OnPropertyChanged("Status");
             }
         }
 

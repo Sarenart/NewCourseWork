@@ -22,7 +22,7 @@ namespace BLL.Services
             List<SupplyReportModel> Report1 = db.Supplies.GetList().Select(i => new SupplyReportModel()
             {
                 Provider = i.Provider.FamilyName + " "+ i.Provider.Initials,
-                Date = i.Date,
+                Date = i.ApplicationDate,
                 Cost = i.Cost
             }).ToList();
             return Report1;

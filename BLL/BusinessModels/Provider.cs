@@ -15,6 +15,8 @@ namespace BLL.BusinessModels
         private string fullname { get; set; }
         private string companyname { get; set; }
 
+        private DateTime possibledeliverydate { get; set; }
+
         public int Id 
         { 
             get
@@ -69,6 +71,18 @@ namespace BLL.BusinessModels
             set
             {
                 companyname = value;
+            }
+        }
+
+        public DateTime PossibleDeliveryDate
+        {
+            get
+            {
+                return possibledeliverydate;
+            }
+            set
+            {
+                possibledeliverydate = value;
             }
         }
     }

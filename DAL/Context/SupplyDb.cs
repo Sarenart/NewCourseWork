@@ -75,7 +75,6 @@ namespace DAL
             modelBuilder.Entity<Provider>()
                 .HasMany(e => e.Supply)
                 .WithRequired(e => e.Provider)
-                .HasForeignKey(e => e.SupplierId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ProviderSupplyStock>()
@@ -102,7 +101,7 @@ namespace DAL
             modelBuilder.Entity<SupplyStatusRef>()
                 .HasMany(e => e.Supply)
                 .WithRequired(e => e.SupplyStatusRef)
-                .HasForeignKey(e => e.Status)
+                .HasForeignKey(e => e.StatusId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
