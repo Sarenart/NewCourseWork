@@ -104,7 +104,7 @@ namespace BLL.DataOperations
                 Password = i.Password
             }).ToList();
         }
-        public List<BLL.BusinessModels.Supply> getRecentSupplies(int WHId)
+        public List<BLL.BusinessModels.Supply> getNonArrangedSupplies(int WHId)
         {
             return repos.Supplies.GetList()
             .Join(repos.SupplyStatusRefs.GetList(), i => i.StatusId, j => j.Id, (i, j) => new { WarehouseId = i.WarehouseId, Cost = i.Cost, ApplicationDate = i.ApplicationDate, ArrangementDate = i.ArrangementDate, DeliveryDate = i.DeliveryDate, Id = i.Id, StatusId = i.StatusId, Status = j.Status })

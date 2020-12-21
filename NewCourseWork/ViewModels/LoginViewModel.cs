@@ -68,10 +68,18 @@ namespace NewCourseWork.ViewModels
         }
         public LoginViewModel()
         {
+        
             _viewId = Guid.NewGuid();
-            DataOpers = new DbDataOperations(); 
-            PosUsers = DataOpers.getUsers();
-            Status = "Введите свои данные";
+            try
+            {
+                DataOpers = new DbDataOperations();
+                PosUsers = DataOpers.getUsers();
+                Status = "Введите свои данные";
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка! " + ex.Message);
+            }
         }
 
         private BasicCommand enter;

@@ -17,7 +17,7 @@ namespace BLL.Services
             db = new DbRepositorySQLServer(); 
         }
 
-        public List<SupplyReportModel> getReport1()
+        public List<SupplyReportModel> getReportByPeriod()
         {
             List<SupplyReportModel> Report1 = db.Supplies.GetList().Select(i => new SupplyReportModel()
             {
