@@ -9,6 +9,7 @@ using System.ComponentModel;
 using BLL.DataOperations;
 using BLL.BusinessModels;
 using System.Windows;
+using System.Collections.Specialized;
 
 namespace NewCourseWork.ViewModels
 {
@@ -17,8 +18,9 @@ namespace NewCourseWork.ViewModels
         FileAFormWindow win;
         DbDataOperations DataOpers;
 
-        private DateTime supplydate;
-        private DateTime SupplyDate
+        private DateTime supplydate { get; set; }
+
+        public DateTime SupplyDate
         {
             get
             {
@@ -46,12 +48,26 @@ namespace NewCourseWork.ViewModels
         }
 
         private BLL.BusinessModels.User currentuser;
+        #region SelectedVariables
 
         private BLL.BusinessModels.Provider selectedprovider;
         private BLL.BusinessModels.Warehouse selectedwarehouse;
         private BLL.BusinessModels.ProviderSupplyStock selectedprovidercommodity;
         private BLL.BusinessModels.SupplyLine selectedaddedcommodity;
 
+        private int selectedamount { get; set; }
+
+        public int SelectedAmount 
+        { 
+            get 
+            {
+                return selectedamount;
+            } 
+            set 
+            {
+                selectedamount = value;
+            } 
+        }
         public BLL.BusinessModels.User CurrentUser
         {
             get
@@ -65,6 +81,7 @@ namespace NewCourseWork.ViewModels
             }
         }
 
+        #region SelectedVariables
         public BLL.BusinessModels.Provider SelectedProvider
         {
             get
@@ -101,12 +118,11 @@ namespace NewCourseWork.ViewModels
             set
             {
                 selectedprovidercommodity = value;
-                //SelectedWarehouseChanged(/*Warehouse warehouse*/);
                 OnPropertyChanged("SelectedProviderCommodity");
             }
 
         }
-
+        #endregion
         public BLL.BusinessModels.SupplyLine SelectedAddedCommodity
         {
             get
@@ -120,34 +136,40 @@ namespace NewCourseWork.ViewModels
             }
 
         }
-
+        #endregion
         public List<Provider> Providers { get; set; }
 
         public List<Warehouse> Warehouses { get; set; }
 
         public List<ProviderSupplyStock> ProviderSupplies { get; set; }
 
-        private List<SupplyLine> providerrelatedcommodity { get; set; }
+        public ObservableCollection<SupplyLine> NewSupplyLines { get; set; }
 
-       public List<SupplyLine> ProviderRelatedCommodities { 
-            get 
+        private void NewSupplyLines_Changed(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
             {
-                return providerrelatedcommodity;
-            } 
-            set 
-            {
-                providerrelatedcommodity = value;
-                OnPropertyChanged("ProviderRelatedCommodity");
-            } 
+                case NotifyCollectionChangedAction.Add: {
+                        OnPropertyChanged("NewSupplyLines");
+                        break; 
+                    }
+                case NotifyCollectionChangedAction.Remove: {
+                        OnPropertyChanged("NewSupplyLines");
+                        break; 
+                    }
+                case NotifyCollectionChangedAction.Replace:{ 
+                        break; 
+                    }
+            }
         }
-
         public FileAFormViewModel(FileAFormWindow wind, DbDataOperations DataOpers, User CurUser)
         {
             this.win = wind;
             this.DataOpers = DataOpers;
             this.Warehouses = DataOpers.getWarehouses();
             this.Providers = this.DataOpers.getProviders();
-            this.ProviderRelatedCommodities = new List<SupplyLine>();
+            this.NewSupplyLines = new ObservableCollection<SupplyLine>();
+            NewSupplyLines.CollectionChanged += NewSupplyLines_Changed;
             this.CurrentUser = CurUser;
             TotalSum = 0;
         }
@@ -182,6 +204,7 @@ namespace NewCourseWork.ViewModels
                 return addtosupplyform ??
                 (addtosupplyform = new BasicCommand(obj =>
                 {
+                    SelectedAmount = 1;
                     SupplyLine line = new SupplyLine()
                     {
                         CommodityId = SelectedProviderCommodity.CommodityId,
@@ -189,18 +212,16 @@ namespace NewCourseWork.ViewModels
                         Quantity = 1,
                         Cost = SelectedProviderCommodity.Cost,
                         CommodityType = SelectedProviderCommodity.CommodityType,
-                        Id = 1,
                         SupplyId = 1
                     };
-                    if (this.ProviderRelatedCommodities.Find(i => i.CommodityId == line.CommodityId) != null)
+                    
+                    if (NewSupplyLines.Where(i=>i.CommodityName == line.CommodityName).Count() != 0)
                         MessageBox.Show("Товар уже добавлен");
                     else
                     {
-                        TotalSum += line.Cost;
-                        this.ProviderRelatedCommodities = DataOpers.RecordSupplyLines(ProviderRelatedCommodities, line);
-                        //this.ProviderRelatedCommodities.Add(line);
-                        OnPropertyChanged("ProviderRelatedCommodities");
-                    }
+                    TotalSum += line.Cost;
+                    NewSupplyLines.Add(line);
+                   }
                 },
                 (obj => true)));
             }
@@ -216,8 +237,8 @@ namespace NewCourseWork.ViewModels
                 (removefromsupplyform = new BasicCommand(obj =>
                 {
                     TotalSum -= SelectedAddedCommodity.Cost;
-                    this.ProviderRelatedCommodities = DataOpers.RemoveSupplyLines(ProviderRelatedCommodities, SelectedAddedCommodity);
-                    OnPropertyChanged("ProviderRelatedCommodities");
+                    NewSupplyLines.Remove(SelectedAddedCommodity);
+                   
                 },
                 (obj => true)));
             }
@@ -231,15 +252,18 @@ namespace NewCourseWork.ViewModels
                 return createsupply ??
                 (createsupply = new BasicCommand(obj =>
                 {
-                    if (ProviderRelatedCommodities.Count > 0)
+                    if (NewSupplyLines.Count > 0)
                     {
-                        DataOpers.CreateSupply(ProviderRelatedCommodities, SelectedWarehouse.Id, SelectedProvider.Id ,CurrentUser.Id, SupplyDate);
+                        BLL.BusinessModels.Supply newSupply = new Supply() { WarehouseId = SelectedWarehouse.Id, Lines = NewSupplyLines.ToList(), DeliveryDate = SupplyDate, ProviderId = SelectedProvider.Id,
+                        Cost = TotalSum, StatusId = 1, ApplicationDate=DateTime.Now, ApplicantId = CurrentUser.Id };
+                        DataOpers.CreateSupply(newSupply);
                         MessageBox.Show("Поставка успешно добавлена");
-                        //this.win.Close();
+                        this.NewSupplyLines.Clear();
+                        TotalSum = 0;
                     }
                     else MessageBox.Show("Нет добавленных продуктов");
                 },
-                (obj => (SelectedProvider!=null && SelectedWarehouse!=null && ProviderRelatedCommodities.Count>0))));
+                (obj => (SelectedProvider!=null && SelectedWarehouse!=null && NewSupplyLines.Count>0))));
             }
         }
 
@@ -247,16 +271,9 @@ namespace NewCourseWork.ViewModels
 
         private void RemoveOnProviderChange()
         {
-            this.ProviderRelatedCommodities = new List<SupplyLine>();
+            this.NewSupplyLines.Clear();
             TotalSum = 0;
-            OnPropertyChanged("ProviderRelatedCommodities");
-        }
-
-        public void AdjustExtraUnitCost()
-        {
-            TotalSum = 0;
-            foreach(SupplyLine item in ProviderRelatedCommodities)
-            TotalSum += item.Cost * item.Quantity;
+            OnPropertyChanged("NewSupplyLines");
         }
 
 

@@ -216,17 +216,31 @@ namespace NewCourseWork.ViewModels
 
         #region SelectedVariables
 
-        private Supply selectedsupply;
-        public Supply SelectedSupply
+        private Supply selectedallsupply;
+        public Supply SelectedAllSupply
         {
             get 
             {
-                return selectedsupply;
+                return selectedallsupply;
             }
             set 
             {
-                selectedsupply = value;
-                OnPropertyChanged("SelectedSupply");
+                selectedallsupply = value;
+                OnPropertyChanged("SelectedAllSupply");
+            }
+        }
+
+        private Supply selectednonarrangedsupply;
+        public Supply SelectedNonArrangedSupply
+        {
+            get
+            {
+                return selectednonarrangedsupply;
+            }
+            set
+            {
+                selectednonarrangedsupply = value;
+                OnPropertyChanged("SelectedNonArrangedSupply");
             }
         }
 
@@ -410,17 +424,13 @@ namespace NewCourseWork.ViewModels
                 return shownonarrangedsupplies ??
                 (shownonarrangedsupplies = new BasicCommand(obj =>
                 {
-                    //win.NonArrangedSupplies.Visibility = Visibility.Visible;
-                    //win.AllSupplies.Visibility = Visibility.Collapsed;
-                    //win.SupplyLabel.Text = "Неоформленные поставки";
-                    //win.ShowAllSuppliesButton.Visibility = Visibility.Visible;
-                    //win.ShowRecentSuppliesButton.Visibility = Visibility.Collapsed;
+
                     AllSuppliesVisibility = Visibility.Collapsed;
                     AllSuppliesButtonVisibility = Visibility.Visible;
                     NonArrangedSuppliesVisibility = Visibility.Visible;
                     NonArrangedSuppliesButtonVisibility = Visibility.Collapsed;
                     SupplyLabel = "Неоформленные поставки";
-                    SelectedSupply = null;
+                    SelectedAllSupply = null;
                 },
                 (obj => true)));
             }
@@ -434,17 +444,13 @@ namespace NewCourseWork.ViewModels
                 return showallsupplies ??
                 (showallsupplies = new BasicCommand(obj =>
                 {
-                    //win.NonArrangedSupplies.Visibility = Visibility.Collapsed;
-                    //win.AllSupplies.Visibility = Visibility.Visible;
-                    //win.SupplyLabel.Text = "Поставки";
-                    //win.ShowAllSuppliesButton.Visibility = Visibility.Collapsed;
-                    //win.ShowRecentSuppliesButton.Visibility = Visibility.Visible;
+
                     AllSuppliesVisibility = Visibility.Visible;
                     AllSuppliesButtonVisibility = Visibility.Collapsed;
                     NonArrangedSuppliesVisibility = Visibility.Collapsed;
                     NonArrangedSuppliesButtonVisibility = Visibility.Visible;
                     SupplyLabel = "Все поставки";
-                    SelectedSupply = null;
+                    SelectedNonArrangedSupply = null;
                 },
                 (obj => true)));
             }
@@ -507,10 +513,15 @@ namespace NewCourseWork.ViewModels
                 return showsupply ??
                 (showsupply = new BasicCommand(obj =>
                 {
+                    Supply SelectedSupply;
+                    if (SelectedAllSupply != null) 
+                        SelectedSupply = SelectedAllSupply;
+                    else
+                        SelectedSupply = SelectedNonArrangedSupply;
                     SupplyUpdateWindow wind = new SupplyUpdateWindow(this.DataOpers, SelectedSupply, CurrentUser);
                     wind.ShowDialog();
                 },
-                (obj => (SelectedSupply != null))));
+                (obj => (SelectedNonArrangedSupply != null || SelectedAllSupply != null))));
             }
         }
         #endregion
@@ -545,7 +556,7 @@ namespace NewCourseWork.ViewModels
         }
         #endregion
 
-        private BasicCommand warehousechanged;
+        private BasicCommand warehousechanged;//Артефакт
         public BasicCommand WarehouseChanged
         {
             get
@@ -578,6 +589,7 @@ namespace NewCourseWork.ViewModels
             }
         }
         #endregion
+
 
         public void SupplyWarehouseComboBoxChanged(Warehouse warehouse) {
             this.AllSupplies = DataOpers.getAllSupplies(warehouse.Id);

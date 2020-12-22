@@ -16,7 +16,20 @@ namespace BLL.BusinessModels
         private DateTime applicationdate;
         private DateTime deliverydate;
 
+        private int applicantid;
+
+        private int? arrangerid;
+
+
         private List<SupplyLine> lines;
+        private decimal cost;
+
+        private int statusid;
+
+        private string status;
+
+        private int warehouseid;
+        private int providerid;
 
         public List<SupplyLine> Lines { get
             {
@@ -28,12 +41,7 @@ namespace BLL.BusinessModels
             }
         }
 
-        private decimal cost;
 
-        private int statusid;
-
-        private string status;
-        private int warehouseid;
 
         public int Id
         {
@@ -114,6 +122,46 @@ namespace BLL.BusinessModels
                 OnPropertyChanged("WarehouseId");
             }
         }
+
+        public int ProviderId
+        {
+            get
+            {
+                return providerid;
+            }
+            set
+            {
+                providerid = value;
+                OnPropertyChanged("ProviderId");
+            }
+        }
+
+        public int ApplicantId
+        {
+            get 
+            { 
+                return applicantid; 
+            }
+            set 
+            { 
+                applicantid = value;
+                OnPropertyChanged("ApplicantId");
+            }
+        }
+
+        public int? ArrangerId   
+        {
+            get 
+            { 
+                return arrangerid; 
+            }
+            set
+            {
+                arrangerid = value;
+                OnPropertyChanged("ArrangerId");
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

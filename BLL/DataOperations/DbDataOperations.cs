@@ -7,6 +7,7 @@ using DAL;
 using DAL.Interfaces;
 using DAL.Repositories;
 using BLL.BusinessModels;
+using System.Collections.Specialized;
 
 namespace BLL.DataOperations
 {
@@ -77,19 +78,31 @@ namespace BLL.DataOperations
 
         public List<BLL.BusinessModels.Supply> getAllSupplies(int WHId)
         {
-            return repos.Supplies.GetList().Join(repos.SupplyStatusRefs.GetList(), i=>i.StatusId, j=>j.Id, (i, j) => new { WarehouseId = i.WarehouseId, Cost = i.Cost, ApplicationDate = i.ApplicationDate, ArrangementDate = i.ArrangementDate, DeliveryDate = i.DeliveryDate, Id = i.Id, StatusId = i.StatusId, Status = j.Status})
-            //.Join(repos.Warehouses.GetList(), i=>i.WarehouseId, j=>j.Id, (i, j)=> new { WarehouseId = i.WarehouseId, Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = i.StatusString })
-            .Where(i => i.WarehouseId == WHId)
-            .Select(i=>new BLL.BusinessModels.Supply 
-            { 
+            return repos.Supplies.GetList()
+             .Where(i => i.WarehouseId == WHId)
+            .Select(i => new BLL.BusinessModels.Supply
+            {
                 Cost = i.Cost,
-                ArrangementDate = i.ArrangementDate, 
+                ArrangementDate = i.ArrangementDate,
                 DeliveryDate = i.DeliveryDate,
                 ApplicationDate = i.ApplicationDate,
-                Id = i.Id, 
-                StatusId = i.StatusId, 
-                Status = i.Status,
-                WarehouseId = i.WarehouseId
+                Id = i.Id,
+                StatusId = i.StatusId,
+                Status = i.SupplyStatusRef.Status,
+                ProviderId = i.ProviderId,
+                WarehouseId = i.WarehouseId,
+                ApplicantId = i.ApplicantId,
+                ArrangerId = i.ArrangerId,
+                Lines = repos.SupplyLines.GetList().Where(j => j.SupplyId == i.Id).Select(j => new BLL.BusinessModels.SupplyLine
+                {
+                    CommodityId = j.CommodityId,
+                    SupplyId = i.Id,
+                    CommodityName = j.Commodity.Name,
+                    CommodityType = j.Commodity.CommodityTypeRef.Type,
+                    Cost = j.Cost,
+                    Id = j.Id,
+                    Quantity = j.Quantity
+                }).ToList()
             }).ToList();
         }
 
@@ -107,11 +120,9 @@ namespace BLL.DataOperations
         public List<BLL.BusinessModels.Supply> getNonArrangedSupplies(int WHId)
         {
             return repos.Supplies.GetList()
-            .Join(repos.SupplyStatusRefs.GetList(), i => i.StatusId, j => j.Id, (i, j) => new { WarehouseId = i.WarehouseId, Cost = i.Cost, ApplicationDate = i.ApplicationDate, ArrangementDate = i.ArrangementDate, DeliveryDate = i.DeliveryDate, Id = i.Id, StatusId = i.StatusId, Status = j.Status })
-            //.Join(repos.Warehouses.GetList(), i => i.WarehouseId, j => j.Id, (i, j) => new { WarehouseId = i.WarehouseId, Cost = i.Cost, Date = i.Date, Id = i.Id, Status = i.Status, StatusString = i.StatusString })
-            .Where(i=>i.StatusId!=2 && i.StatusId !=4 && i.StatusId != 5)
-            .Where(i=>i.WarehouseId == WHId)
-            .Select(i => new BLL.BusinessModels.Supply 
+            .Where(i => i.WarehouseId == WHId && i.StatusId != 2 && i.StatusId != 4 && i.StatusId != 5)
+            .Where(i => i.WarehouseId == WHId)
+            .Select(i => new BLL.BusinessModels.Supply
             {
                 Cost = i.Cost,
                 ArrangementDate = i.ArrangementDate,
@@ -119,8 +130,21 @@ namespace BLL.DataOperations
                 ApplicationDate = i.ApplicationDate,
                 Id = i.Id,
                 StatusId = i.StatusId,
-                Status = i.Status,
-                WarehouseId = i.WarehouseId
+                Status = i.SupplyStatusRef.Status,
+                ProviderId = i.ProviderId,
+                WarehouseId = i.WarehouseId,
+                ApplicantId = i.ApplicantId,
+                ArrangerId = i.ArrangerId,
+                Lines = repos.SupplyLines.GetList().Where(j => j.SupplyId == i.Id).Select(j => new BLL.BusinessModels.SupplyLine
+                {
+                    CommodityId = j.CommodityId,
+                    SupplyId = i.Id,
+                    CommodityName = j.Commodity.Name,
+                    CommodityType = j.Commodity.CommodityTypeRef.Type,
+                    Cost = j.Cost,
+                    Id = j.Id,
+                    Quantity = j.Quantity
+                }).ToList()
             }).ToList();
         }
 
@@ -133,6 +157,13 @@ namespace BLL.DataOperations
                     NotificationType = 1,
                     Message = i.Type + " Бренда " + i.Name + " заканчивается на складе по адресу "+ i.Warehouse + ": осталось "+ i.Quantity + " единиц продукции.",
                 }).ToList();
+            Notes.Union(repos.Supplies.GetList().Select(i => i).Where(i => i.DeliveryDate < DateTime.Now.AddDays(-3) && i.StatusId==3)
+                .Select(i => new NotificationModel
+                {
+                    NotificationType = 2,
+                    Message = "Поставка номер " + i.Id + " скоро прибудет на склад по адресу " + i.Warehouse.Address + "."
+                })
+                .ToList()) ; 
             return Notes;
         }
 
@@ -162,43 +193,68 @@ namespace BLL.DataOperations
             }).ToList();
         }
 
-        public void CreateSupply(List<BusinessModels.SupplyLine> Lines, int WarehouseId, int ProviderId, int UserId, DateTime DeliveryDate) {
+        public void CreateSupply(BLL.BusinessModels.Supply NewSupply) {
             decimal Cost = 0;
+            DAL.Supply sup = new DAL.Supply() { Cost = NewSupply.Cost, ApplicantId = NewSupply.ApplicantId, ApplicationDate = DateTime.Now, DeliveryDate = NewSupply.DeliveryDate, ProviderId = NewSupply.ProviderId, WarehouseId = NewSupply.WarehouseId, StatusId = 1 };
             List<DAL.SupplyLine> NewLines = new List<DAL.SupplyLine>();
-            foreach (BusinessModels.SupplyLine i in Lines)
+            foreach (BusinessModels.SupplyLine i in NewSupply.Lines)
             {
-                NewLines.Add(new DAL.SupplyLine() { CommodityId = i.CommodityId, Quantity = i.Quantity, Cost = i.Cost });
+                NewLines.Add(new DAL.SupplyLine() { CommodityId = i.CommodityId, Quantity = i.Quantity, Cost = i.Cost * i.Quantity});
                 Cost += i.Cost;
             }
-            DAL.Supply sup = new DAL.Supply() { Cost = Cost, ApplicantId = UserId,  ApplicationDate = DateTime.Now, DeliveryDate = DeliveryDate, ProviderId = ProviderId, WarehouseId = WarehouseId, StatusId = 1, SupplyLine = NewLines };
+            sup.SupplyLine = NewLines;
             repos.Supplies.Create(sup);
             repos.Save();
         }
 
-        public List<BusinessModels.SupplyLine> RecordSupplyLines(List<BusinessModels.SupplyLine> CurList, BusinessModels.SupplyLine line)
+        public void UpdateSupply(BusinessModels.Supply UpdSup)
         {
-            List<BusinessModels.SupplyLine> NewList = new List<BusinessModels.SupplyLine>();
-            foreach(BusinessModels.SupplyLine i in CurList)
-            {
-                NewList.Add(i);
+            DAL.Supply UpdatedSupply = repos.Supplies.GetItem(UpdSup.Id);
+            UpdatedSupply.StatusId = UpdSup.StatusId;
+            if (UpdSup.StatusId == 2) {
+                UpdatedSupply.ArrangerId = UpdSup.ArrangerId;
+                UpdatedSupply.ArrangementDate = UpdSup.ArrangementDate;
+                List<BusinessModels.WarehouseLine> warehouselines = repos.WarehouseLines.GetList().Where(i => i.WarehouseId == UpdSup.WarehouseId).Select(i => new BusinessModels.WarehouseLine { Id = i.Id, CommodityId = i.CommodityId }).ToList();
+                foreach (BusinessModels.SupplyLine item in UpdSup.Lines)
+                {
+                    bool check = false;
+                    foreach (BusinessModels.WarehouseLine wareline in warehouselines)
+                    {
+                        if (item.CommodityId == wareline.CommodityId)
+                        {
+                            DAL.WarehouseLine UpdatedLine = repos.WarehouseLines.GetItem(wareline.Id);
+                            UpdatedLine.Quantity += item.Quantity;
+                            repos.WarehouseLines.Update(UpdatedLine);
+                            check = true;
+                            break;
+                        }
+                    }
+                    if (!check)
+                    {
+                        DAL.WarehouseLine NewLine = new DAL.WarehouseLine();
+                        NewLine.Quantity = item.Quantity;
+                        NewLine.WarehouseId = UpdSup.WarehouseId;
+                        NewLine.CommodityId = item.CommodityId;
+                        NewLine.PerUnitCost = item.Cost / item.Quantity * 1.2m;
+                        repos.WarehouseLines.Create(NewLine);
+                    }
+
+
+                }
             }
-            NewList.Add(line);
-            return NewList;
-           // return repos.SupplyLines.GetList().Select(i => new BusinessModels.SupplyLine {Cost = i.Cost, CommodityName = i.Commodity.Name, CommodityId = i.CommodityId, CommodityType = i.Commodity.CommodityTypeRef.Type, Quantity = i.Quantity }).ToList();
+            repos.Supplies.Update(UpdatedSupply);
+            repos.Save();
         }
 
-        public List<BusinessModels.SupplyLine> RemoveSupplyLines(List<BusinessModels.SupplyLine> CurList, BusinessModels.SupplyLine line)
+        public List<BusinessModels.SupplyStatus> getSupplyStatuses()
         {
-            List<BusinessModels.SupplyLine> NewList = new List<BusinessModels.SupplyLine>();
-            foreach (BusinessModels.SupplyLine i in CurList)
+            return repos.SupplyStatusRefs.GetList().Select(i => new SupplyStatus
             {
-                NewList.Add(i);
-            }
-            NewList.Remove(line);
-            return NewList;
-            // return repos.SupplyLines.GetList().Select(i => new BusinessModels.SupplyLine {Cost = i.Cost, CommodityName = i.Commodity.Name, CommodityId = i.CommodityId, CommodityType = i.Commodity.CommodityTypeRef.Type, Quantity = i.Quantity }).ToList();
+                Id = i.Id,
+                Status = i.Status
+            }).ToList();
         }
-        public List<BusinessModels.SupplyLine> ReturnSupplyLines(int Id)
+        public List<BusinessModels.SupplyLine> getSupplyLines(int Id)
         {
             return repos.SupplyLines.GetList().Where(i => i.SupplyId == Id).Select(i => new BusinessModels.SupplyLine
             {

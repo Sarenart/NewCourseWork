@@ -26,7 +26,7 @@
                      Width="24"
                      Height="24" />
                 </TabItem.Header>
-                <Grid ShowGridLines="True">
+                <Grid ShowGridLines="False">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50*">
 
@@ -139,7 +139,7 @@
                     </materialDesign:Card>
                     <ComboBox  x:Name="SupplyWarehouseComboBox" SelectedItem="{Binding SelectedSupplyWarehouse}" IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад"></ComboBox>
 
-                    <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="NonArrangedSupplies" Grid.Row="2" Visibility ="{Binding NonArrangedSuppliesVisibility}" ItemsSource="{Binding NonArrangedSupplies}" SelectedItem="{Binding SelectedSupply}">
+                    <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="NonArrangedSupplies" Grid.Row="2" Visibility ="{Binding NonArrangedSuppliesVisibility}" ItemsSource="{Binding NonArrangedSupplies}" SelectedItem="{Binding SelectedNonArrangedSupply}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
@@ -157,7 +157,7 @@
                     </DataGrid>
 
 
-                    <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="AllSupplies"  Grid.Row="2" Visibility="{Binding AllSuppliesVisibility}" ItemsSource="{Binding  AllSupplies}">
+                    <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="AllSupplies"  Grid.Row="2" Visibility="{Binding AllSuppliesVisibility}" ItemsSource="{Binding  AllSupplies}" SelectedItem="{Binding SelectedAllSupply}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
@@ -276,7 +276,7 @@
                  Width="24"
                  Height="24" />
                 </TabItem.Header>
-                <Grid ShowGridLines="True">
+                <Grid ShowGridLines="False">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.2*">
                             

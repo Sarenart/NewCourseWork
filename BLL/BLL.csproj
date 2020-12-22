@@ -61,6 +61,7 @@
     <Compile Include="BusinessModels\Supply.cs" />
     <Compile Include="BusinessModels\SupplyLine.cs" />
     <Compile Include="BusinessModels\SupplyReportModel.cs" />
+    <Compile Include="BusinessModels\SupplyStatus.cs" />
     <Compile Include="BusinessModels\User.cs" />
     <Compile Include="BusinessModels\Warehouse.cs" />
     <Compile Include="BusinessModels\WarehouseLine.cs" />
