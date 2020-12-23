@@ -17,11 +17,23 @@ namespace BLL.Services
             db = new DbRepositorySQLServer(); 
         }
 
-        public List<SupplyReportModel> getReportByPeriod()
+        public List<SupplyReportByPeriodModel> getReportByPeriod(DateTime Start, DateTime Finish)
         {
-            List<SupplyReportModel> Report1 = db.Supplies.GetList().Select(i => new SupplyReportModel()
+            List<SupplyReportByPeriodModel> Report1 = db.Supplies.GetList().Where(i=>i.DeliveryDate > Start && i.DeliveryDate < Finish).Select(i => new SupplyReportByPeriodModel()
             {
-                Provider = i.Provider.FamilyName + " "+ i.Provider.Initials,
+                Provider = i.Provider.CompanyName,
+                Date = i.DeliveryDate,
+                Cost = i.Cost,
+                Warehouse = i.Warehouse.Address
+            }).ToList();
+            return Report1;
+        }
+
+        public List<SupplyReportByWarehouseModel> getReportByWarehouse(int warehouseid)
+        {
+            List<SupplyReportByWarehouseModel> Report1 = db.Supplies.GetList().Where(i=>i.DeliveryDate.Month == DateTime.Now.Month && i.WarehouseId == warehouseid).Select(i => new SupplyReportByWarehouseModel()
+            {
+                Provider = i.Provider.CompanyName,
                 Date = i.ApplicationDate,
                 Cost = i.Cost
             }).ToList();

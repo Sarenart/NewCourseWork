@@ -46,7 +46,7 @@
                     <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,13,9,13" Text="{Binding Path=CurrentUser.FirName, StringFormat= Здравствуйте {0}}"></TextBlock>
 
                     <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,13,9,13"> Версия 0.7</TextBlock>
-                    
+
                 </Grid>
             </TabItem>
             <TabItem x:Name="NotificationTab"
@@ -137,7 +137,7 @@
                         Padding="8">
                         <TextBlock x:Name="SupplyLabel" Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10" Text="{Binding SupplyLabel}"></TextBlock>
                     </materialDesign:Card>
-                    <ComboBox  x:Name="SupplyWarehouseComboBox" SelectedItem="{Binding SelectedSupplyWarehouse}" IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад"></ComboBox>
+                    <ComboBox  x:Name="SupplyWarehouseComboBox" SelectedItem="{Binding SelectedSupplyWarehouse}" IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="Auto" Text="Выберите склад"></ComboBox>
 
                     <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="NonArrangedSupplies" Grid.Row="2" Visibility ="{Binding NonArrangedSuppliesVisibility}" ItemsSource="{Binding NonArrangedSupplies}" SelectedItem="{Binding SelectedNonArrangedSupply}">
                         <DataGrid.Columns>
@@ -227,7 +227,7 @@
                         Padding="8">
                         <TextBlock x:Name="CommoditiesLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10" Text="{Binding CommoditiesLabel}"></TextBlock>
                     </materialDesign:Card>
-                    <ComboBox SelectedItem="{Binding SelectedCommodityWarehouse}" x:Name="CommodityWarehouseComboBox"  IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="148" Text="Выберите склад" VerticalAlignment="Bottom"></ComboBox>
+                    <ComboBox SelectedItem="{Binding SelectedCommodityWarehouse}" x:Name="CommodityWarehouseComboBox"  IsEditable="True" IsReadOnly="True" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Margin="10,0,10,10" Width="Auto" Text="Выберите склад" VerticalAlignment="Bottom"></ComboBox>
 
                     <DataGrid x:Name="AllCommodities"  Visibility="{Binding AllCommoditiesVisibility}" Grid.Row="2" ItemsSource="{Binding AllCommodities}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
@@ -258,7 +258,7 @@
                     <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition>
-                                
+
                             </ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
@@ -278,20 +278,20 @@
                 </TabItem.Header>
                 <Grid ShowGridLines="False">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.2*">
-                            
-                        </RowDefinition>
-                        <RowDefinition Height="0.15*">
+                        <RowDefinition Height="63*">
 
                         </RowDefinition>
-                        <RowDefinition>
-                            
-                        </RowDefinition>
-                        <RowDefinition Height="0.15*">
+                        <RowDefinition Height="47*">
 
                         </RowDefinition>
-                        <RowDefinition Height="0.15*">
-                            
+                        <RowDefinition Height="314">
+
+                        </RowDefinition>
+                        <RowDefinition Height="47*">
+
+                        </RowDefinition>
+                        <RowDefinition Height="47*">
+
                         </RowDefinition>
                     </Grid.RowDefinitions>
                     <materialDesign:Card Grid.Row="0"
@@ -300,25 +300,32 @@
                         Padding="8">
                         <TextBlock x:Name="ReportsLabel" Grid.Row="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Отчёты</TextBlock>
                     </materialDesign:Card>
-                    <DataGrid x:Name="Report1DataGrid" IsReadOnly="True" Grid.Row="2" Visibility ="{Binding Report1Visibility}" AutoGenerateColumns="False" ItemsSource="{Binding Report1}">
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <ComboBox Grid.Row="1" x:Name="ProviderBox" Visibility="{Binding WarehouseReportVisibility}"  Margin="10,0,10,0" ItemsSource="{Binding Warehouses}" SelectedItem="{Binding SelectedReportWarehouse}" DisplayMemberPath="Address" SelectedValuePath="Id" IsEditable="True" IsReadOnly="True" Text="Выберите склад"></ComboBox>
+                        <Label Width="Auto"  Margin="10,10,10,10" Visibility="{Binding StartVisibility}">Выберите начало периода</Label>
+                        <DatePicker Width="Auto" SelectedDate="{Binding Start}" Margin="10,0,10,0" MaxWidth="100" Visibility="{Binding StartVisibility}"></DatePicker>
+                        <Label Width="Auto" Margin="10,10,10,10" Visibility="{Binding FinishVisibility}">Выберите конец периода</Label>
+                        <DatePicker Width="Auto" SelectedDate="{Binding Finish}" Margin="10,0,10,0" MaxWidth="100" Visibility="{Binding FinishVisibility}"></DatePicker>
+                    </StackPanel>
+                    <DataGrid x:Name="ReportByPeriodDataGrid" IsReadOnly="True" Grid.Row="2" Visibility ="{Binding ReportByPeriodVisibility}" AutoGenerateColumns="False" ItemsSource="{Binding ReportByPeriod}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Provider}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Стоимость продажи,р" Binding="{Binding Path=Cost}">
+                            <DataGridTextColumn Header="Стоимость поставки, р." Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Дата" Binding="{Binding Path=Date}">
+                            <DataGridTextColumn Header="Дата прихода" Binding="{Binding Path=Date}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Склад" Binding="{Binding Path=Warehouse}">
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="Report2DataGrid" IsReadOnly="True"  Grid.Row="2" Visibility ="Collapsed" AutoGenerateColumns="False">
+                    <DataGrid x:Name="ReportByWarehouseDataGrid" IsReadOnly="True"  Grid.Row="2" Visibility ="{Binding ReportByProviderVisibility}" AutoGenerateColumns="False" ItemsSource="{Binding ReportByWarehouse}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Название товара" Binding="{Binding Path=Name}">
+                            <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Provider}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Стоимость продажи,р" Binding="{Binding Path=Cost}">
+                            <DataGridTextColumn Header="Стоимость поставки, р." Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Тип продукта" Binding="{Binding Path=TypeName}">
-                            </DataGridTextColumn>
-                            <DataGridTextColumn Header="Количество на складе" Binding="{Binding Path=Quantity}">
+                            <DataGridTextColumn Header="Дата прихода" Binding="{Binding Path=Date}">
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -326,15 +333,17 @@
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition>
-                                
+
                             </ColumnDefinition>
                             <ColumnDefinition>
 
                             </ColumnDefinition>
 
                         </Grid.ColumnDefinitions>
-                        <Button x:Name ="Report1" Width="auto" MaxWidth="220" MinWidth="180" Grid.Column="0" Command="{Binding MakeReport1}">Включить отчёт 1</Button>
-                        <Button x:Name ="Report2" Width="auto" MaxWidth="220" MinWidth="180" Grid.Column="1">Включить отчёт 2</Button>
+                        <Button x:Name ="Report1" Width="auto" MaxWidth="250" MinWidth="180" Grid.Column="0" Command="{Binding ShowReportByPeriod}" Visibility="{Binding ReportByPeriodButtonVisibility }">Отчёт за период</Button>
+                        <Button x:Name ="Report2" Width="auto" MaxWidth="250" MinWidth="180" Grid.Column="1" Command="{Binding ShowReportByWarehouse}" Visibility="{Binding ReportByProviderButtonVisibility }">Отчёт по складу</Button>
+                        <Button  Width="auto" MaxWidth="250" MinWidth="180" Grid.Column="0" Command="{Binding MakeReportByPeriod}" Visibility="{Binding MakeReportByPeriodButtonVisibility}">Создать отчёт за период</Button>
+                        <Button  Width="auto" MaxWidth="250" MinWidth="180" Grid.Column="1" Command="{Binding MakeReportByWarehouse}" Visibility="{Binding MakeReportByProviderButtonVisibility}">Создать отчёт по складу</Button>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -352,10 +361,10 @@
 
                         </RowDefinition>
                         <RowDefinition Height="9*">
-                            
+
                         </RowDefinition>
                         <RowDefinition Height="1.5*">
-                            
+
                         </RowDefinition>
                     </Grid.RowDefinitions>
                     <materialDesign:Card Grid.Row="0"
@@ -367,10 +376,10 @@
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition>
-                                
+
                             </ColumnDefinition>
                             <ColumnDefinition>
-                                
+
                             </ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button Grid.Column="0" MaxWidth="250" MinWidth="150"  Height="Auto" MinHeight="40" Margin="10, 10, 10, 10" Command="{Binding ReturnToRegister}">Вернуться в окно входа</Button>

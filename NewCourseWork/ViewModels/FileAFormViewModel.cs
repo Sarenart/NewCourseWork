@@ -255,7 +255,12 @@ namespace NewCourseWork.ViewModels
                     if (NewSupplyLines.Count > 0)
                     {
                         BLL.BusinessModels.Supply newSupply = new Supply() { WarehouseId = SelectedWarehouse.Id, Lines = NewSupplyLines.ToList(), DeliveryDate = SupplyDate, ProviderId = SelectedProvider.Id,
-                        Cost = TotalSum, StatusId = 1, ApplicationDate=DateTime.Now, ApplicantId = CurrentUser.Id };
+                        StatusId = 1, ApplicationDate=DateTime.Now, ApplicantId = CurrentUser.Id };
+                        newSupply.Cost = 0;
+                        foreach (SupplyLine item in NewSupplyLines)
+                        {
+                            newSupply.Cost += item.Cost * item.Quantity;
+                        }
                         DataOpers.CreateSupply(newSupply);
                         MessageBox.Show("Поставка успешно добавлена");
                         this.NewSupplyLines.Clear();

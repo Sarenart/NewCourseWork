@@ -52,7 +52,106 @@ namespace NewCourseWork.ViewModels
                 OnPropertyChanged("ReportByProviderVisibility");
             }
         }
-        #endregion 
+        private Visibility reportbyperiodbuttonvisibility;
+        private Visibility reportbyproviderbuttonvisibility;
+        public Visibility ReportByPeriodButtonVisibility
+        {
+            get
+            {
+                return reportbyperiodbuttonvisibility;
+            }
+            set
+            {
+                reportbyperiodbuttonvisibility = value;
+                OnPropertyChanged("ReportByPeriodButtonVisibility");
+            }
+        }
+        public Visibility ReportByProviderButtonVisibility
+        {
+            get
+            {
+                return reportbyproviderbuttonvisibility;
+            }
+            set
+            {
+                reportbyproviderbuttonvisibility = value;
+                OnPropertyChanged("ReportByProviderButtonVisibility");
+            }
+        }
+
+        private Visibility makereportbyperiodbuttonvisibility;
+
+        private Visibility makereportbyproviderbuttonvisibility;
+        public Visibility MakeReportByPeriodButtonVisibility
+        {
+            get
+            {
+                return makereportbyperiodbuttonvisibility;
+            }
+            set
+            {
+                makereportbyperiodbuttonvisibility = value;
+                OnPropertyChanged("MakeReportByPeriodButtonVisibility");
+            }
+        }
+        public Visibility MakeReportByProviderButtonVisibility
+        {
+            get
+            {
+                return makereportbyproviderbuttonvisibility;
+            }
+            set
+            {
+                makereportbyproviderbuttonvisibility = value;
+                OnPropertyChanged("MakeReportByProviderButtonVisibility");
+            }
+        }
+
+        private Visibility startvisibility;
+
+        private Visibility finishvisibility;
+
+        public Visibility StartVisibility
+        {
+            get
+            {
+                return startvisibility;
+            }
+            set
+            {
+                startvisibility = value;
+                OnPropertyChanged("StartVisibility");
+            }
+        }
+        public Visibility FinishVisibility
+        {
+            get
+            {
+                return finishvisibility;
+            }
+            set
+            {
+                finishvisibility = value;
+                OnPropertyChanged("FinishVisibility");
+            }
+        }
+
+        private Visibility warehousereportvisibility;
+
+        public Visibility WarehouseReportVisibility 
+        {
+            get
+            {
+                return warehousereportvisibility;
+            }
+            set
+            {
+                warehousereportvisibility = value;
+                OnPropertyChanged("WarehouseReportVisibility");
+            }
+        }
+
+        #endregion
 
         #region CommoditiesTablesAndButtonsVisibility
         private Visibility scarcecommoditiesbuttonvisibility { get; set; }
@@ -199,8 +298,6 @@ namespace NewCourseWork.ViewModels
         }
 
         #endregion
-
-
         private User currentuser { get; set; }
         public User CurrentUser { 
             get 
@@ -289,17 +386,17 @@ namespace NewCourseWork.ViewModels
             }
         }
 
-        private Provider selectedreportprovider { get; set; }
+        private Warehouse selectedreportwarehouse { get; set; }
 
-        public Provider SelectedReportProvider { 
+        public Warehouse SelectedReportWarehouse { 
             get 
             { 
-                return selectedreportprovider; 
+                return selectedreportwarehouse; 
             } 
             set 
             { 
-                selectedreportprovider = value; 
-                OnPropertyChanged("SelectedReportProvider"); 
+                selectedreportwarehouse = value; 
+                OnPropertyChanged("SelectedReportWarehouse"); 
             } 
         }
 
@@ -317,9 +414,9 @@ namespace NewCourseWork.ViewModels
                 OnPropertyChanged("Navigation");
             }
         }
-        #endregion
 
-        #region Lists
+
+   
         public Warehouse SelectedCommodityWarehouse
         {
             get
@@ -332,6 +429,25 @@ namespace NewCourseWork.ViewModels
                 CommodityWarehouseComboBoxChanged(selectedcommoditywarehouse);
             }
         }
+
+      /*  private Provider selectedprovider;
+
+        public Provider SelectedProvider
+        {
+            get
+            {
+                return selectedprovider;
+            }
+            set
+            {
+                selectedprovider = value;
+                OnPropertyChanged("SelectedProvider");
+            }
+        }*/
+
+        #endregion
+
+        #region Lists
 
         public List<BLL.BusinessModels.Supply> Supplies;
         public List<BLL.BusinessModels.Commodity> AllCommodities { get; set; }
@@ -347,7 +463,11 @@ namespace NewCourseWork.ViewModels
 
         public List<NotificationModel> Notifications { get; set; }
 
-        public List<SupplyReportModel> ReportByPeriod { get; set; }
+        public List<SupplyReportByPeriodModel> ReportByPeriod { get; set; }
+
+        public List<SupplyReportByWarehouseModel> ReportByWarehouse { get; set; }
+
+        public List<Provider> Providers { get; set; }
         #endregion
 
         #region StartOfViewModel
@@ -362,10 +482,12 @@ namespace NewCourseWork.ViewModels
             _viewId = Guid.NewGuid();
             Warehouses = DataOpers.getWarehouses();
             Notifications = DataOpers.getNotifications();
+            Providers = DataOpers.getProviders();
             ReportService = new SupplyReportService();
-            ReportByPeriodVisibility = Visibility.Collapsed;
             Navigation = 0;
             CommoditiesLabel = "Товары на исходе";
+
+            #region ComSupVisibility
             ScarceCommoditiesButtonVisibility = Visibility.Collapsed;
             ScarceCommoditiesVisibility = Visibility.Visible;
             AllCommoditiesButtonVisibility = Visibility.Visible;
@@ -374,7 +496,25 @@ namespace NewCourseWork.ViewModels
             AllSuppliesButtonVisibility = Visibility.Visible;
             NonArrangedSuppliesVisibility = Visibility.Visible;
             NonArrangedSuppliesButtonVisibility = Visibility.Collapsed;
+            #endregion
+
+            #region ReportVisibilitySet
+
+            ReportByProviderVisibility = Visibility.Collapsed;
+            ReportByPeriodVisibility = Visibility.Collapsed;
+            ReportByPeriodButtonVisibility = Visibility.Visible;
+            ReportByProviderButtonVisibility = Visibility.Visible;
+            MakeReportByPeriodButtonVisibility = Visibility.Collapsed;
+            MakeReportByProviderButtonVisibility = Visibility.Collapsed;
+            FinishVisibility = Visibility.Collapsed;
+            StartVisibility = Visibility.Collapsed;
+            WarehouseReportVisibility = Visibility.Collapsed;
+            #endregion
+
             SupplyLabel = "Неоформленные поставки";
+
+            Start = DateTime.Now.AddDays(-10);
+            Finish = DateTime.Now.AddDays(10);
         }
         #endregion
 
@@ -581,9 +721,67 @@ namespace NewCourseWork.ViewModels
                 return makereportbyperiod ??
                 (makereportbyperiod = new BasicCommand(obj =>
                 {
-                    ReportByPeriodVisibility = Visibility.Visible;
-                    ReportByPeriod = ReportService.getReportByPeriod();
+                    ReportByPeriod = this.ReportService.getReportByPeriod(Start, Finish);
                     OnPropertyChanged("ReportByPeriod");
+                },
+                (obj => (Start != null && Finish != null))));
+            }
+        }
+
+        private BasicCommand makereportbywarehouse;
+        public BasicCommand MakeReportByWarehouse
+        {
+            get
+            {
+                return makereportbywarehouse ??
+                (makereportbywarehouse = new BasicCommand(obj =>
+                {
+                    ReportByWarehouse= this.ReportService.getReportByWarehouse(SelectedReportWarehouse.Id);
+                    OnPropertyChanged("ReportByWarehouse");
+                },
+                (obj => (SelectedReportWarehouse!=null))));
+            }
+        }
+
+        private BasicCommand showreportbyperiod;
+        public BasicCommand ShowReportByPeriod
+        {
+            get
+            {
+                return showreportbyperiod ??
+                (showreportbyperiod = new BasicCommand(obj =>
+                {
+                    ReportByPeriodVisibility = Visibility.Visible;
+                    ReportByProviderVisibility = Visibility.Collapsed;
+                    ReportByPeriodButtonVisibility = Visibility.Collapsed;
+                    ReportByProviderButtonVisibility = Visibility.Visible;
+                    MakeReportByPeriodButtonVisibility = Visibility.Visible;
+                    MakeReportByProviderButtonVisibility = Visibility.Collapsed;
+                    FinishVisibility = Visibility.Visible;
+                    StartVisibility = Visibility.Visible;
+                    WarehouseReportVisibility = Visibility.Collapsed;
+                },
+                (obj => true)));
+            }
+        }
+
+        private BasicCommand showreportbywarehouse;
+        public BasicCommand ShowReportByWarehouse
+        {
+            get
+            {
+                return showreportbywarehouse ??
+                (showreportbywarehouse = new BasicCommand(obj =>
+                {
+                    ReportByPeriodVisibility = Visibility.Collapsed;
+                    ReportByProviderVisibility = Visibility.Visible;
+                    ReportByPeriodButtonVisibility = Visibility.Visible;
+                    ReportByProviderButtonVisibility = Visibility.Collapsed;
+                    MakeReportByPeriodButtonVisibility = Visibility.Collapsed;
+                    MakeReportByProviderButtonVisibility = Visibility.Visible;
+                    FinishVisibility = Visibility.Collapsed;
+                    StartVisibility = Visibility.Collapsed;
+                    WarehouseReportVisibility = Visibility.Visible;
                 },
                 (obj => true)));
             }
@@ -607,7 +805,7 @@ namespace NewCourseWork.ViewModels
             OnPropertyChanged("ScarceCommodities");
         }
 
-
+        #region Auxilary
         private Guid _viewId;
         public Guid ViewID
         {
@@ -620,5 +818,6 @@ namespace NewCourseWork.ViewModels
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+        #endregion
     }
 }

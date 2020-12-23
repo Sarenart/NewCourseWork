@@ -8,7 +8,37 @@ using System.Runtime.CompilerServices;
 
 namespace BLL.BusinessModels
 {
-    public class SupplyReportModel 
+    public class SupplyReportByPeriodModel 
+    {
+        private string provider;
+
+        private decimal cost;
+
+        private string warehouse;
+
+        private DateTime date;
+
+        public string Provider { get; set; }
+
+        public decimal Cost { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public string Warehouse
+        {
+            get
+            {
+                return warehouse;
+            }
+            set
+            {
+                warehouse = value;
+            }
+        }
+    }
+
+
+    public class SupplyReportByWarehouseModel
     {
         private string provider;
 
@@ -21,5 +51,6 @@ namespace BLL.BusinessModels
         public decimal Cost { get; set; }
 
         public DateTime Date { get; set; }
+
     }
 }

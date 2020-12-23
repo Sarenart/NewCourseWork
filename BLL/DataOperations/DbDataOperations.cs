@@ -194,13 +194,13 @@ namespace BLL.DataOperations
         }
 
         public void CreateSupply(BLL.BusinessModels.Supply NewSupply) {
-            decimal Cost = 0;
+            //decimal Cost = 0;
             DAL.Supply sup = new DAL.Supply() { Cost = NewSupply.Cost, ApplicantId = NewSupply.ApplicantId, ApplicationDate = DateTime.Now, DeliveryDate = NewSupply.DeliveryDate, ProviderId = NewSupply.ProviderId, WarehouseId = NewSupply.WarehouseId, StatusId = 1 };
             List<DAL.SupplyLine> NewLines = new List<DAL.SupplyLine>();
             foreach (BusinessModels.SupplyLine i in NewSupply.Lines)
             {
                 NewLines.Add(new DAL.SupplyLine() { CommodityId = i.CommodityId, Quantity = i.Quantity, Cost = i.Cost * i.Quantity});
-                Cost += i.Cost;
+                //Cost += i.Cost;
             }
             sup.SupplyLine = NewLines;
             repos.Supplies.Create(sup);
