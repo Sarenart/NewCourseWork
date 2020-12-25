@@ -23,6 +23,7 @@ namespace NewCourseWork.ViewModels
 
         SupplyReportService ReportService;
 
+        FileManager fileMan;
 
 
         #region ReportsVisibility
@@ -356,6 +357,18 @@ namespace NewCourseWork.ViewModels
         }
 
         private Warehouse selectedcommoditywarehouse;
+        public Warehouse SelectedCommodityWarehouse
+        {
+            get
+            {
+                return selectedcommoditywarehouse;
+            }
+            set
+            {
+                selectedcommoditywarehouse = value;
+                CommodityWarehouseComboBoxChanged(selectedcommoditywarehouse);
+            }
+        }
 
         private DateTime start { get; set; }
 
@@ -417,18 +430,7 @@ namespace NewCourseWork.ViewModels
 
 
    
-        public Warehouse SelectedCommodityWarehouse
-        {
-            get
-            {
-                return selectedcommoditywarehouse;
-            }
-            set
-            {
-                selectedcommoditywarehouse = value;
-                CommodityWarehouseComboBoxChanged(selectedcommoditywarehouse);
-            }
-        }
+
 
       /*  private Provider selectedprovider;
 
@@ -474,6 +476,7 @@ namespace NewCourseWork.ViewModels
         public ApplicationViewModel(MainWindow win, DbDataOperations db, User CurUser) {
             this.DataOpers = db; //new DbDataOperations();
             this.CurrentUser = CurUser;
+            fileMan = new FileManager();
             initialize();
         }
 
@@ -623,6 +626,8 @@ namespace NewCourseWork.ViewModels
                 return closeapp ??
                 (closeapp = new BasicCommand(obj =>
                 {
+                    //fileMan.CreateForm();
+                    fileMan.Arrange();
                     WindowManager.CloseWindow(ViewID);
                 },
                 (obj => true)));
@@ -696,7 +701,7 @@ namespace NewCourseWork.ViewModels
         }
         #endregion
 
-        private BasicCommand warehousechanged;//Артефакт
+        /*private BasicCommand warehousechanged;
         public BasicCommand WarehouseChanged
         {
             get
@@ -709,7 +714,7 @@ namespace NewCourseWork.ViewModels
                 },
                 (obj => true)));
             }
-        }
+        }*/
 
         #region Reports
 

@@ -17,7 +17,7 @@ namespace NewCourseWork.ViewModels
     {
         FileAFormWindow win;
         DbDataOperations DataOpers;
-
+        FileManager fileMan;
         private DateTime supplydate { get; set; }
 
         public DateTime SupplyDate
@@ -172,6 +172,7 @@ namespace NewCourseWork.ViewModels
             NewSupplyLines.CollectionChanged += NewSupplyLines_Changed;
             this.CurrentUser = CurUser;
             TotalSum = 0;
+            fileMan = new FileManager(DataOpers);
         }
 
 
@@ -262,6 +263,8 @@ namespace NewCourseWork.ViewModels
                             newSupply.Cost += item.Cost * item.Quantity;
                         }
                         DataOpers.CreateSupply(newSupply);
+                        newSupply = DataOpers.getLastSupply(newSupply);
+                        fileMan.CreateForm(newSupply);
                         MessageBox.Show("Поставка успешно добавлена");
                         this.NewSupplyLines.Clear();
                         TotalSum = 0;

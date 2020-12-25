@@ -138,6 +138,7 @@ namespace NewCourseWork.ViewModels
 
         DbDataOperations DataOpers;
 
+        FileManager fileMan;
         public List<SupplyStatus> Statuses { get; set; }
 
         private SupplyStatus selectedstatus;
@@ -171,6 +172,7 @@ namespace NewCourseWork.ViewModels
             StatusChanger = 0;
             SetStatus();
             Warehouse = DataOpers.getWarehouses().Where(i => i.Id == sup.WarehouseId).FirstOrDefault().Address;
+            fileMan = new FileManager(DataOpers);
         }
 
         #region Auxilary Funcs
@@ -224,6 +226,8 @@ namespace NewCourseWork.ViewModels
                             ArrangementDate = DateTime.Now.ToString();
                         }
                         DataOpers.UpdateSupply(SelectedSupply);
+                        if (SelectedStatus.Id == 2)
+                            fileMan.Arrange(SelectedSupply);
                         if(!(SelectedStatus.Id == 1 || SelectedStatus.Id == 3))
                         IsStatusEnabled = false;
                     }    

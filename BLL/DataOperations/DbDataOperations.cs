@@ -194,17 +194,17 @@ namespace BLL.DataOperations
         }
 
         public void CreateSupply(BLL.BusinessModels.Supply NewSupply) {
-            //decimal Cost = 0;
-            DAL.Supply sup = new DAL.Supply() { Cost = NewSupply.Cost, ApplicantId = NewSupply.ApplicantId, ApplicationDate = DateTime.Now, DeliveryDate = NewSupply.DeliveryDate, ProviderId = NewSupply.ProviderId, WarehouseId = NewSupply.WarehouseId, StatusId = 1 };
-            List<DAL.SupplyLine> NewLines = new List<DAL.SupplyLine>();
-            foreach (BusinessModels.SupplyLine i in NewSupply.Lines)
-            {
-                NewLines.Add(new DAL.SupplyLine() { CommodityId = i.CommodityId, Quantity = i.Quantity, Cost = i.Cost * i.Quantity});
-                //Cost += i.Cost;
-            }
-            sup.SupplyLine = NewLines;
-            repos.Supplies.Create(sup);
-            repos.Save();
+                DAL.Supply sup = new DAL.Supply() { Cost = NewSupply.Cost, ApplicantId = NewSupply.ApplicantId, ApplicationDate = DateTime.Now, DeliveryDate = NewSupply.DeliveryDate, ProviderId = NewSupply.ProviderId, WarehouseId = NewSupply.WarehouseId, StatusId = 1 };
+                List<DAL.SupplyLine> NewLines = new List<DAL.SupplyLine>();
+                foreach (BusinessModels.SupplyLine i in NewSupply.Lines)
+                {
+                    NewLines.Add(new DAL.SupplyLine() { CommodityId = i.CommodityId, Quantity = i.Quantity, Cost = i.Cost * i.Quantity });
+                    //Cost += i.Cost;
+                }
+                sup.SupplyLine = NewLines;
+                repos.Supplies.Create(sup);
+                repos.Save();
+                NewSupply.Id = repos.Supplies.GetList().Last().Id;
         }
 
         public void UpdateSupply(BusinessModels.Supply UpdSup)
@@ -268,38 +268,42 @@ namespace BLL.DataOperations
             }).ToList();
         }
 
-        public void ArrangeSupply(BusinessModels.Supply Sup, List<BusinessModels.SupplyLine> lines, BusinessModels.User CurUser) {
-            List<BusinessModels.WarehouseLine> warehouselines = repos.WarehouseLines.GetList().Where(i=>i.WarehouseId == Sup.WarehouseId).Select(i=> new BusinessModels.WarehouseLine { Id = i.Id, CommodityId = i.CommodityId}).ToList();
-            foreach (BusinessModels.SupplyLine item in lines) 
-            {
-                bool check = false;
-                foreach (BusinessModels.WarehouseLine wareline in warehouselines)
-                {
-                    if (item.CommodityId == wareline.CommodityId)
-                    {
-                        DAL.WarehouseLine UpdatedLine = repos.WarehouseLines.GetItem(wareline.Id);
-                        UpdatedLine.Quantity += item.Quantity;
-                        repos.WarehouseLines.Update(UpdatedLine);
-                        check = true;
-                    }
-                }
-                if (!check)
-                {
-                    DAL.WarehouseLine NewLine = new DAL.WarehouseLine();
-                    NewLine.Quantity = item.Quantity;
-                    NewLine.WarehouseId = Sup.WarehouseId;
-                    NewLine.CommodityId = item.CommodityId;
-                    NewLine.PerUnitCost = 0;
-                    repos.WarehouseLines.Create(NewLine);
-                }
-            }
-            DAL.Supply UpdatedSupply = repos.Supplies.GetItem(Sup.Id);
-            UpdatedSupply.ArrangerId = CurUser.Id;
-            UpdatedSupply.ArrangementDate = DateTime.Now;
-            UpdatedSupply.StatusId = 2;
-            repos.Supplies.Update(UpdatedSupply);
-            repos.Save();
+        //public void ArrangeSupply(BusinessModels.Supply Sup, List<BusinessModels.SupplyLine> lines, BusinessModels.User CurUser) {
+        //    List<BusinessModels.WarehouseLine> warehouselines = repos.WarehouseLines.GetList().Where(i=>i.WarehouseId == Sup.WarehouseId).Select(i=> new BusinessModels.WarehouseLine { Id = i.Id, CommodityId = i.CommodityId}).ToList();
+        //    foreach (BusinessModels.SupplyLine item in lines) 
+        //    {
+        //        bool check = false;
+        //        foreach (BusinessModels.WarehouseLine wareline in warehouselines)
+        //        {
+        //            if (item.CommodityId == wareline.CommodityId)
+        //            {
+        //                DAL.WarehouseLine UpdatedLine = repos.WarehouseLines.GetItem(wareline.Id);
+        //                UpdatedLine.Quantity += item.Quantity;
+        //                repos.WarehouseLines.Update(UpdatedLine);
+        //                check = true;
+        //            }
+        //        }
+        //        if (!check)
+        //        {
+        //            DAL.WarehouseLine NewLine = new DAL.WarehouseLine();
+        //            NewLine.Quantity = item.Quantity;
+        //            NewLine.WarehouseId = Sup.WarehouseId;
+        //            NewLine.CommodityId = item.CommodityId;
+        //            NewLine.PerUnitCost = 0;
+        //            repos.WarehouseLines.Create(NewLine);
+        //        }
+        //    }
+        //    DAL.Supply UpdatedSupply = repos.Supplies.GetItem(Sup.Id);
+        //    UpdatedSupply.ArrangerId = CurUser.Id;
+        //    UpdatedSupply.ArrangementDate = DateTime.Now;
+        //    UpdatedSupply.StatusId = 2;
+        //    repos.Supplies.Update(UpdatedSupply);
+        //    repos.Save();
+        //}
+        public BLL.BusinessModels.Supply getLastSupply(BLL.BusinessModels.Supply NewSupply)
+        {
+            NewSupply.Id = repos.Supplies.GetList().Last().Id;
+            return NewSupply;
         }
-
     }
 }

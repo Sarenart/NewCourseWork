@@ -45,7 +45,7 @@
                     </materialDesign:Card>
                     <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,13,9,13" Text="{Binding Path=CurrentUser.FirName, StringFormat= Здравствуйте {0}}"></TextBlock>
 
-                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,13,9,13"> Версия 0.7</TextBlock>
+                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,13,9,13"> Версия 0.9</TextBlock>
 
                 </Grid>
             </TabItem>
@@ -346,6 +346,16 @@
                         <Button  Width="auto" MaxWidth="250" MinWidth="180" Grid.Column="1" Command="{Binding MakeReportByWarehouse}" Visibility="{Binding MakeReportByProviderButtonVisibility}">Создать отчёт по складу</Button>
                     </Grid>
                 </Grid>
+            </TabItem>
+            <TabItem
+                 Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                    <materialDesign:PackIcon
+                 Kind="Person"
+                 Width="24"
+                 Height="24" />
+                </TabItem.Header>
+
             </TabItem>
             <TabItem
     Style="{StaticResource MaterialDesignNavigationRailTabItem}">

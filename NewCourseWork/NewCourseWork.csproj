@@ -98,6 +98,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="FileManager.cs" />
     <Compile Include="WindowManaging\IRequireClose.cs" />
     <Compile Include="WindowManaging\WindowManager.cs" />
     <Compile Include="Windows\SupplyUpdateWindow.xaml.cs">
