@@ -196,6 +196,11 @@ namespace NewCourseWork.ViewModels
                 IsStatusEnabled = true;
             else
                 IsStatusEnabled = false;
+            if(SelectedSupply.StatusId == 3)
+            {
+                Statuses.Remove(Statuses.Where(i=>i.Id == 1).FirstOrDefault());
+                OnPropertyChanged("Statuses");
+            }
         }
 
         private void ChangeStatusChanger()
@@ -230,6 +235,11 @@ namespace NewCourseWork.ViewModels
                             fileMan.Arrange(SelectedSupply);
                         if(!(SelectedStatus.Id == 1 || SelectedStatus.Id == 3))
                         IsStatusEnabled = false;
+                        if(SelectedStatus.Id == 1)
+                        {
+                            Statuses.Remove(Statuses.Where(i => i.Id == 1).FirstOrDefault());
+                            OnPropertyChanged("Statuses");
+                        }
                     }    
     
                 },

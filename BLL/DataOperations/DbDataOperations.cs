@@ -7,7 +7,9 @@ using DAL;
 using DAL.Interfaces;
 using DAL.Repositories;
 using BLL.BusinessModels;
+using System.Data.Entity.Infrastructure;
 using System.Collections.Specialized;
+using System.Windows;
 
 namespace BLL.DataOperations
 {
@@ -19,6 +21,24 @@ namespace BLL.DataOperations
             repos = new DbRepositorySQLServer();
         }
 
+        public void CheckProviders()
+        {
+            List<BLL.BusinessModels.Provider> UpdateList = getProviders();
+            int check = 0;
+            foreach(BusinessModels.Provider item in UpdateList)
+            {
+                if (item.PossibleDeliveryDate <= DateTime.Now)
+                {
+                    item.PossibleDeliveryDate = DateTime.Now.AddMonths(1);
+                    DAL.Provider UpdatedProvider = repos.Providers.GetItem(item.Id);
+                    UpdatedProvider.PossibleDeliveryDate = item.PossibleDeliveryDate;
+                    repos.Providers.Update(UpdatedProvider);
+                    check += 1;
+                }                    
+            }
+            if (check > 0)
+              if (repos.Save() < 1) throw new DbUpdateException();
+        }
         public List<BLL.BusinessModels.Commodity> getWarehouseCommodities(int WHId) {
             return repos.Commodities.GetList().
                 Join(repos.CommodityRefs.GetList(), i => i.CommodityType, j => j.Id, (i, j) => new { Id = i.Id, Name = i.Name, TypeId = j.Id, TypeName = j.Type }).

@@ -10,6 +10,7 @@ using BLL.DataOperations;
 using BLL.BusinessModels;
 using System.Windows;
 using System.Windows.Controls;
+using System.Data.Entity.Infrastructure;
 using NewCourseWork.WindowManaging;
 using BLL.Services;
 using iTextSharp.text.pdf;
@@ -312,6 +313,20 @@ namespace NewCourseWork.ViewModels
             } 
         }
 
+        private string currentuserstring { get; set; }
+
+        public string CurrentUserString {
+            get 
+            {
+                return currentuserstring;
+            }
+            set
+            {
+                currentuserstring = value;
+                OnPropertyChanged("CurrentUserString");
+            }
+        }
+
         #region SelectedVariables
 
         private Supply selectedallsupply;
@@ -478,6 +493,15 @@ namespace NewCourseWork.ViewModels
             this.CurrentUser = CurUser;
             fileMan = new FileManager();
             initialize();
+            CurrentUserString = "Здравствуйте, " + CurrentUser.FirName;
+            try
+            {
+                DataOpers.CheckProviders();
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Не удалось обновить возможные даты поставок. Рассмотрите возможность сделать это вручную");
+            }
         }
 
         public void initialize()

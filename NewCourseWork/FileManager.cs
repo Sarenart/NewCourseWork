@@ -135,7 +135,7 @@ namespace NewCourseWork
                 HeaderCell = new PdfPCell(new Phrase(TotalSum.ToString(), font));
                 HeaderCell.HorizontalAlignment = 1;
                 table.AddCell(HeaderCell);
-
+                table.WidthPercentage = 95;
                 doc.Add(table);
 
                 par = new Paragraph("Директор ООО \"Sirius Smoke\"", font);
@@ -240,6 +240,7 @@ namespace NewCourseWork
                 HeaderCell = new PdfPCell(new Phrase(TotalSum.ToString(), font));
                 HeaderCell.HorizontalAlignment = 1;
                 table.AddCell(HeaderCell);
+                table.WidthPercentage = 95;
 
                 doc.Add(table);
 
