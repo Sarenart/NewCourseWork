@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewCourseWork"
         mc:Ignorable="d"
-        Title="QwK" Height="548.824" Width="784.706" MinHeight="450" MinWidth="600"
+        Title="QwK" Height="548.824" Width="784.706" MinHeight="500" MinWidth="600"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -28,13 +28,13 @@
                 </TabItem.Header>
                 <Grid ShowGridLines="False">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50*">
+                        <RowDefinition Height="0.15*" MaxHeight="60">
 
                         </RowDefinition>
-                        <RowDefinition Height="Auto">
+                        <RowDefinition>
 
                         </RowDefinition>
-                        <RowDefinition Height="305*"/>
+                        <RowDefinition Height="0.10*"/>
 
                     </Grid.RowDefinitions>
                     <materialDesign:Card Grid.Row="0"
@@ -65,7 +65,7 @@
 
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.2*">
+                        <RowDefinition Height="0.18*" MaxHeight="60">
 
                         </RowDefinition>
 
@@ -84,7 +84,9 @@
                         Padding="8">
                         <TextBlock x:Name="NotificationLabel" TextWrapping="Wrap"  Grid.Row ="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10">Уведомления:</TextBlock>
                     </materialDesign:Card>
-                    <ListBox Grid.Row="1" x:Name="NotificationBord" ItemsSource="{Binding Notifications}">
+                    <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical">
+                    <ListBox x:Name="NotificationBord" ItemsSource="{Binding Notifications}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <materialDesign:Card 
@@ -96,8 +98,20 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <Button x:Name="ToCommodities" MaxWidth="500" MinWidth="180" Grid.Row="2" HorizontalAlignment="Left" Margin="100, 0, 0,0" Command="{Binding ToCommodities}" Visibility="Visible">Перейти к товарам</Button>
-                    <Button x:Name="ToSupplies" MaxWidth="500" MinWidth="180" Grid.Row="2" HorizontalAlignment="Right" Margin="0, 0, 100, 0" Command="{Binding ToSupplies}" Visibility="Visible">Перейти к поставкам</Button>
+                    </StackPanel>
+                    </ScrollViewer>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition>
+
+                            </ColumnDefinition>
+                            <ColumnDefinition>
+
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="ToCommodities" MaxWidth="500" MinWidth="180" Grid.Column="0" HorizontalAlignment="Center" Margin="10, 10, 10, 10" Command="{Binding ToCommodities}" Visibility="Visible">Перейти к товарам</Button>
+                        <Button x:Name="ToSupplies" MaxWidth="500" MinWidth="180" Grid.Column="1" HorizontalAlignment="Center" Margin="10, 10, 10, 10" Command="{Binding ToSupplies}" Visibility="Visible">Перейти к поставкам</Button>
+                    </Grid>
                 </Grid>
             </TabItem>
 
@@ -118,16 +132,16 @@
 
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto">
+                        <RowDefinition Height="0.2*" MaxHeight="60">
 
                         </RowDefinition>
-                        <RowDefinition  Height="52*">
+                        <RowDefinition Height="0.15*">
 
                         </RowDefinition>
-                        <RowDefinition Height="345*">
+                        <RowDefinition >
 
                         </RowDefinition>
-                        <RowDefinition Height="69*" MinHeight="60">
+                        <RowDefinition Height="0.15*" MinHeight="60">
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
@@ -149,8 +163,6 @@
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Дата прихода" Binding="{Binding Path=DeliveryDate}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Создал заявку" Binding="{Binding Path=DeliveryDate}">
-                            </DataGridTextColumn>
                             <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}">
                             </DataGridTextColumn>
                         </DataGrid.Columns>
@@ -159,11 +171,15 @@
 
                     <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="AllSupplies"  Grid.Row="2" Visibility="{Binding AllSuppliesVisibility}" ItemsSource="{Binding  AllSupplies}" SelectedItem="{Binding SelectedAllSupply}">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Cost}">
+                            </DataGridTextColumn>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Дата" Binding="{Binding Path=Date}">
+                            <DataGridTextColumn Header="Дата оформления" Binding="{Binding Path=ApplicationDate}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Статус" Binding="{Binding Path=StatusString}">
+                            <DataGridTextColumn Header="Дата прихода" Binding="{Binding Path=DeliveryDate}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}">
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -205,7 +221,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.2*">
+                        <RowDefinition Height="0.2*" MaxHeight="70">
 
                         </RowDefinition>
 
@@ -217,7 +233,7 @@
 
                         </RowDefinition>
 
-                        <RowDefinition Height="0.15*">
+                        <RowDefinition Height="0.15*" MinHeight="60">
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
@@ -262,8 +278,8 @@
                             </ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name ="ShowAllCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowAllCommodities}" Visibility="{Binding AllCommoditiesButtonVisibility}">Показать все товары</Button>
-                        <Button x:Name ="ShowScarceCommoditiesButton" Width="auto" MaxWidth="240" MinWidth="180" Grid.Row="3" Command="{Binding ShowScarceCommodities}" Visibility="{Binding ScarceCommoditiesButtonVisibility}">Показать товары на исходе</Button>
+                        <Button x:Name ="ShowAllCommoditiesButton" MaxWidth="240" MinWidth="180" Grid.Row="3" Margin="10" Command="{Binding ShowAllCommodities}" Visibility="{Binding AllCommoditiesButtonVisibility}">Показать все товары</Button>
+                        <Button x:Name ="ShowScarceCommoditiesButton"  MaxWidth="240" MinWidth="180" Grid.Row="3" Margin="10" Command="{Binding ShowScarceCommodities}" Visibility="{Binding ScarceCommoditiesButtonVisibility}">Показать товары на исходе</Button>
                         <Button x:Name="FileAFormButtonCom" MaxWidth="500" MinWidth="180" Grid.Column="1" Margin="10" Command="{Binding FileAForm}" HorizontalAlignment="Center">Подать заявку на поставку</Button>
                     </Grid>
                 </Grid>
@@ -278,19 +294,17 @@
                 </TabItem.Header>
                 <Grid ShowGridLines="False">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="63*">
+                        <RowDefinition Height="0.2*" MaxHeight="70">
 
                         </RowDefinition>
-                        <RowDefinition Height="47*">
+                        <RowDefinition Height="0.15*">
 
                         </RowDefinition>
-                        <RowDefinition Height="314">
+                        <RowDefinition>
 
                         </RowDefinition>
-                        <RowDefinition Height="47*">
 
-                        </RowDefinition>
-                        <RowDefinition Height="47*">
+                        <RowDefinition Height="0.15*" MinHeight="60">
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
@@ -342,8 +356,8 @@
                         </Grid.ColumnDefinitions>
                         <Button x:Name ="Report1" Width="auto" MaxWidth="250" MinWidth="180" Grid.Column="0" Command="{Binding ShowReportByPeriod}" Visibility="{Binding ReportByPeriodButtonVisibility }">Отчёт за период</Button>
                         <Button x:Name ="Report2" Width="auto" MaxWidth="250" MinWidth="180" Grid.Column="1" Command="{Binding ShowReportByWarehouse}" Visibility="{Binding ReportByProviderButtonVisibility }">Отчёт по складу</Button>
-                        <Button  Width="auto" MaxWidth="250" MinWidth="180" Grid.Column="0" Command="{Binding MakeReportByPeriod}" Visibility="{Binding MakeReportByPeriodButtonVisibility}">Создать отчёт за период</Button>
-                        <Button  Width="auto" MaxWidth="250" MinWidth="180" Grid.Column="1" Command="{Binding MakeReportByWarehouse}" Visibility="{Binding MakeReportByProviderButtonVisibility}">Создать отчёт по складу</Button>
+                        <Button   MaxWidth="250" MinWidth="180" Grid.Column="0" Margin="10" Command="{Binding MakeReportByPeriod}" Visibility="{Binding MakeReportByPeriodButtonVisibility}">Создать отчёт за период</Button>
+                        <Button   MaxWidth="250" MinWidth="180" Grid.Column="1" Margin="10" Command="{Binding MakeReportByWarehouse}" Visibility="{Binding MakeReportByProviderButtonVisibility}">Создать отчёт по складу</Button>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -367,13 +381,13 @@
                 </TabItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1.5*">
+                        <RowDefinition Height="1.5*" MaxHeight="60">
 
                         </RowDefinition>
                         <RowDefinition Height="9*">
 
                         </RowDefinition>
-                        <RowDefinition Height="1.5*">
+                        <RowDefinition Height="1.5*" MinHeight="60">
 
                         </RowDefinition>
                     </Grid.RowDefinitions>
@@ -392,8 +406,8 @@
 
                             </ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" MaxWidth="250" MinWidth="150"  Height="Auto" MinHeight="40" Margin="10, 10, 10, 10" Command="{Binding ReturnToRegister}">Вернуться в окно входа</Button>
-                        <Button IsCancel="True" Grid.Column="1" MaxWidth="250" MinWidth="150"  Height="Auto" MinHeight="40" Margin="10, 10, 10, 10" Command="{Binding CloseApp}" >Закрыть приложение</Button>
+                        <Button Grid.Column="0" MaxWidth="250" MinWidth="150"  MinHeight="40" Margin="10, 10, 10, 10" Command="{Binding ReturnToRegister}">Вернуться в окно входа</Button>
+                        <Button IsCancel="True" Grid.Column="1" MaxWidth="250" MinWidth="150"  MinHeight="40" Margin="10, 10, 10, 10" Command="{Binding CloseApp}" >Закрыть приложение</Button>
                     </Grid>
                 </Grid>
             </TabItem>

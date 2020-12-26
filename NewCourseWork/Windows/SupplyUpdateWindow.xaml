@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewCourseWork"
         mc:Ignorable="d"
-        Title="Просмотр поставки" Height="450" Width="700"
+        Title="Просмотр поставки" Height="450" Width="700" MinHeight="450" MinWidth="600"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -16,7 +16,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*">
+            <RowDefinition Height="0.2*" >
 
             </RowDefinition>
             <RowDefinition Height="1*">
@@ -48,16 +48,18 @@
                 </ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Border BorderBrush="Gray" BorderThickness="1">
-            <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="SupplyLines" Grid.Row="0" Grid.Column="0" Visibility ="Visible" ItemsSource="{Binding Path=SelectedSupply.Lines}" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Товар" Binding="{Binding Path=CommodityName}">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Тип" Binding="{Binding Path=CommodityType}">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Стоимость закупки" Binding="{Binding Path=Cost}">
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="SupplyLines" Grid.Row="0" Grid.Column="0" Visibility ="Visible" ItemsSource="{Binding Path=SelectedSupply.Lines}" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Товар" Binding="{Binding Path=CommodityName}">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Тип" Binding="{Binding Path=CommodityType}">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Количество" Binding="{Binding Path=Quantity}">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Полная стоимость" Binding="{Binding Path=Cost}">
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Border>
 
             <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1">

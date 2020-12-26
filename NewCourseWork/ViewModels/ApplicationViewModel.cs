@@ -626,8 +626,6 @@ namespace NewCourseWork.ViewModels
                 return closeapp ??
                 (closeapp = new BasicCommand(obj =>
                 {
-                    //fileMan.CreateForm();
-                    fileMan.Arrange();
                     WindowManager.CloseWindow(ViewID);
                 },
                 (obj => true)));

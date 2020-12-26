@@ -34,5 +34,6 @@ namespace NewCourseWork
         {
             DataContext = VM;
         }
+
     }
 }

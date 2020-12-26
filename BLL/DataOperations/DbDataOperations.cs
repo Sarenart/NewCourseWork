@@ -199,7 +199,6 @@ namespace BLL.DataOperations
                 foreach (BusinessModels.SupplyLine i in NewSupply.Lines)
                 {
                     NewLines.Add(new DAL.SupplyLine() { CommodityId = i.CommodityId, Quantity = i.Quantity, Cost = i.Cost * i.Quantity });
-                    //Cost += i.Cost;
                 }
                 sup.SupplyLine = NewLines;
                 repos.Supplies.Create(sup);

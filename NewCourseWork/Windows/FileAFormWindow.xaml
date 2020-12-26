@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NewCourseWork"
          xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Заявка на доставку" Height="800.0" Width="1200.448"
+        Title="Заявка на доставку" Height="600.0" Width="950" MinHeight="600" MinWidth="950"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -15,12 +15,12 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">    
-    <Grid ShowGridLines="true">
+    <Grid ShowGridLines="False">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.04*"></RowDefinition>
+            <RowDefinition Height="0.04*" MaxHeight="60"></RowDefinition>
             <RowDefinition Height="0.35*"></RowDefinition>
             <RowDefinition Height="0.05*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -28,53 +28,65 @@
                         Background="{DynamicResource PrimaryHueDarkBrush}"
                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                         Padding="8">
-            <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="134">Создание заявки</TextBlock>
+            <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">Создание заявки</TextBlock>
         </materialDesign:Card>
+       
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
 
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition>
-                    
+
                 </ColumnDefinition>
                 <ColumnDefinition>
-                    
+
                 </ColumnDefinition>
             </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+            <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="0.15*" MaxHeight="60">
+
+                    </RowDefinition>
                     <RowDefinition Height="0.2*">
-                        
+
                     </RowDefinition>
                     <RowDefinition>
-                        
+
                     </RowDefinition>
                 </Grid.RowDefinitions>
-                    <ComboBox Grid.Row="0" MaxWidth="150" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Margin="20,20,0,20" Text="Выберите провайдера" ItemsSource="{Binding Providers}" DisplayMemberPath="CompanyName" SelectedValuePath="Id" Height="28" Width="143" SelectedItem="{Binding SelectedProvider}">
+                <Border BorderBrush="Gray" BorderThickness="0.9">
+                <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">Товары поставщика</TextBlock>
+                </Border>
+                <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="0.9">
+                    <ComboBox Grid.Row="1" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Margin="20,20,0,20" Text="Выберите провайдера" ItemsSource="{Binding Providers}" DisplayMemberPath="CompanyName" SelectedValuePath="Id" MaxHeight="40" Width="Auto" SelectedItem="{Binding SelectedProvider}">
                     </ComboBox>
-                <DataGrid x:Name="ProviderCommodities" SelectedItem="{Binding SelectedProviderCommodity}" CanUserAddRows="False" AutoGenerateColumns="False" Grid.Row="1" Visibility ="Visible" ItemsSource="{Binding ProviderSupplies}" IsReadOnly="True">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Название продукта" Binding="{Binding Path=CommodityName}">
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Тип продукта" Binding="{Binding Path=CommodityType}">
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Стоимость закупки" Binding="{Binding Path=Cost}">
-                        </DataGridTextColumn>
-                        <DataGridTemplateColumn>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}, Mode=FindAncestor}, Path=DataContext.AddToSupplyForm}"  FontSize="12">+</Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
+                </Border>
+                <DataGrid BorderBrush="Gray" BorderThickness="1" x:Name="ProviderCommodities" SelectedItem="{Binding SelectedProviderCommodity}" CanUserAddRows="False" AutoGenerateColumns="False" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding ProviderSupplies}" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Название продукта" Binding="{Binding Path=CommodityName}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Тип продукта" Binding="{Binding Path=CommodityType}">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Стоимость закупки" Binding="{Binding Path=Cost}">
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}, Mode=FindAncestor}, Path=DataContext.AddToSupplyForm}"  FontSize="12">+</Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
 
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
-            </Grid>
+                </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="0.15*" MaxHeight="60">
+
+                    </RowDefinition>
                     <RowDefinition Height="0.2*">
 
                     </RowDefinition>
@@ -82,12 +94,17 @@
 
                     </RowDefinition>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <ComboBox  MaxWidth="150" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Text="Выберите склад" Margin="20,20, 20, 20" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" Height="28" Width="107" SelectedItem ="{Binding SelectedWarehouse}"/>
-                    <TextBlock x:Name="TotalSumTextBox"  HorizontalAlignment="Right" MinWidth="160" MaxWidth="250" MaxHeight="20" Margin="20, 20, 20, 20" Text ="{Binding StringFormat=Итоговая сумма {0}, Path=TotalSum}"></TextBlock>
-                    <DatePicker SelectedDate="{Binding SupplyDate}"></DatePicker>
-                </StackPanel>
-                <DataGrid IsReadOnly="True" SelectedItem="{Binding SelectedAddedCommodity}"  AutoGenerateColumns="False" Grid.Column="0" x:Name="FormCommodities" Grid.Row="1" Visibility ="Visible" ItemsSource="{Binding NewSupplyLines}">
+                <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="0.9">
+                    <TextBlock Width="Auto" Grid.Row="0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Поставка</TextBlock>
+                </Border>
+                <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="0.9">
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <ComboBox  Width="Auto" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Text="Выберите склад" Margin="20,20, 20, 20" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" MaxHeight="40" SelectedItem ="{Binding SelectedWarehouse}"/>
+                        <TextBlock x:Name="TotalSumTextBox"  HorizontalAlignment="Right" MinWidth="160" MaxWidth="250" MaxHeight="20" Margin="20, 20, 20, 20" Text ="{Binding StringFormat=Итоговая сумма {0}, Path=TotalSum}"></TextBlock>
+                        <DatePicker SelectedDate="{Binding SupplyDate}"></DatePicker>
+                    </StackPanel>
+                </Border>
+                <DataGrid BorderBrush="Gray" BorderThickness="1" IsReadOnly="True" SelectedItem="{Binding SelectedAddedCommodity}"  AutoGenerateColumns="False" Grid.Column="1" x:Name="FormCommodities" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding NewSupplyLines}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Название продукта" Binding="{Binding Path=CommodityName}">
                         </DataGridTextColumn>
@@ -127,8 +144,8 @@
 
                 </ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button IsCancel= "True" MaxWidth="350"  Height="Auto" Margin="20, 20, 20, 20" Command="{Binding CreateSupply}">Создать заявку</Button>
-            <Button IsCancel= "True" MaxWidth="350" Grid.Column="1" Height="Auto" Margin="20, 20, 20, 20">Выйти</Button>
+            <Button IsCancel= "True" MaxWidth="350"  Height="Auto" Margin="20, 10, 20, 10" Command="{Binding CreateSupply}">Создать заявку</Button>
+            <Button IsCancel= "True" MaxWidth="350" Grid.Column="1" Height="Auto" Margin="20, 10, 20, 10">Выйти</Button>
         </Grid>
     </Grid>
 </Window>
