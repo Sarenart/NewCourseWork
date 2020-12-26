@@ -443,12 +443,14 @@ namespace NewCourseWork.ViewModels
             }
         }
 
+        #region providers
+        public List<ProviderSupplyStock> SelectedProviderCommodity { get; set; }
 
-   
+        public List<Provider> Providers { get; set; }
 
+        private Provider selectedprovider;
 
-      /*  private Provider selectedprovider;
-
+        public int UpdatedDate { get; set; }
         public Provider SelectedProvider
         {
             get
@@ -459,8 +461,24 @@ namespace NewCourseWork.ViewModels
             {
                 selectedprovider = value;
                 OnPropertyChanged("SelectedProvider");
+                SelectedProviderChanged();
             }
-        }*/
+        }
+
+        private DateTime selecteddate { get; set; }
+        public DateTime SelectedDate {
+            get 
+            { 
+                return selecteddate; 
+            } 
+            set 
+            { 
+                selecteddate = value;
+                OnPropertyChanged("SelectedDate");
+                UpdatedDate++;
+            } 
+        }
+        #endregion
 
         #endregion
 
@@ -484,7 +502,7 @@ namespace NewCourseWork.ViewModels
 
         public List<SupplyReportByWarehouseModel> ReportByWarehouse { get; set; }
 
-        public List<Provider> Providers { get; set; }
+        public List<Provider> ProvidersData { get; set; }
         #endregion
 
         #region StartOfViewModel
@@ -506,6 +524,7 @@ namespace NewCourseWork.ViewModels
 
         public void initialize()
         {
+            UpdatedDate = 0;
             _viewId = Guid.NewGuid();
             Warehouses = DataOpers.getWarehouses();
             Notifications = DataOpers.getNotifications();
@@ -542,6 +561,8 @@ namespace NewCourseWork.ViewModels
 
             Start = DateTime.Now.AddDays(-10);
             Finish = DateTime.Now.AddDays(10);
+
+            ProvidersData = DataOpers.getProviders();
         }
         #endregion
 
@@ -831,6 +852,37 @@ namespace NewCourseWork.ViewModels
             this.ScarceCommodities = DataOpers.getScarceWarehouseCommodities(warehouse.Id);
             OnPropertyChanged("ScarceCommodities");
         }
+
+        public void SelectedProviderChanged()
+        {
+            UpdatedDate = 0;
+            SelectedProviderCommodity = DataOpers.getProviderSupplyStock(SelectedProvider.Id);
+            OnPropertyChanged("SelectedProviderCommodity");
+            SelectedDate = SelectedProvider.PossibleDeliveryDate;
+        }
+
+
+        private BasicCommand changedeliverydate;
+        public BasicCommand ChangeDeliveryDate
+        {
+            get
+            {
+                return changedeliverydate??
+                (changedeliverydate = new BasicCommand(obj =>
+                {
+                    if (SelectedDate <= DateTime.Now)
+                        MessageBox.Show("Нельзя сделать такую дату.");
+                    else
+                    {
+                        SelectedProvider.PossibleDeliveryDate = SelectedDate;
+                        DataOpers.UpdateDeliveryDate(SelectedProvider);
+                        UpdatedDate = 0;
+                    }
+                },
+                (obj => (UpdatedDate > 1))));
+            }
+        }
+
 
         #region Auxilary
         private Guid _viewId;

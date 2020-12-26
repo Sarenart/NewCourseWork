@@ -372,6 +372,69 @@
                  Width="24"
                  Height="24" />
                 </TabItem.Header>
+                <Grid ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*">
+
+                        </RowDefinition>
+                        <RowDefinition Height="0.15*">
+
+                        </RowDefinition>
+                        <RowDefinition Height="1*">
+
+                        </RowDefinition>
+                        <RowDefinition Height="0.2*">
+
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition>
+
+                        </ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:Card Grid.Row="0"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="8">
+                        <TextBlock  MaxHeight="30" FontSize="20" HorizontalAlignment="Center">Поставщики</TextBlock>
+                    </materialDesign:Card>
+                    <ComboBox Grid.Row="1" Width="Auto" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Text="Выберите склад" Margin="10,10, 10, 10" ItemsSource="{Binding ProvidersData}" DisplayMemberPath="CompanyName" SelectedValuePath="Id" MaxHeight="40" SelectedItem ="{Binding SelectedProvider}"/>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.65*">
+
+                            </ColumnDefinition>
+                            <ColumnDefinition Width="0.3*">
+
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Gray" BorderThickness="1">
+                            <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="ProviderSupplyStock" Grid.Row="0" Grid.Column="0" Visibility ="Visible" ItemsSource="{Binding Path=SelectedProviderCommodity}" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Товар" Binding="{Binding Path=CommodityName}">
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Тип" Binding="{Binding Path=CommodityType}">
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Стоимость закупки" Binding="{Binding Path=Cost}">
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+
+                        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                            <ScrollViewer>
+                                <StackPanel Grid.Column="1" Orientation="Vertical" >
+                                    <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,10"  MaxHeight="30" Text="{Binding Path = SelectedProvider.FullName, StringFormat= Директор - {0}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                    <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,0"  MaxHeight="30" Text="Возможная дата поставки"></TextBlock>
+                                    <DatePicker Width="Auto"  SelectedDate="{Binding SelectedDate}"></DatePicker>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Border>
+
+                    </Grid>
+                    <Button Grid.Row="3" MaxWidth="250" MinWidth="150" Height="Auto" Margin="10, 10, 10, 10" Command="{Binding ChangeDeliveryDate}" HorizontalAlignment="Center" >Изменить</Button>
+                </Grid>
 
             </TabItem>
             <TabItem

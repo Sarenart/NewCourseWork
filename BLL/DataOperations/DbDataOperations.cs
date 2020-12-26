@@ -21,6 +21,13 @@ namespace BLL.DataOperations
             repos = new DbRepositorySQLServer();
         }
 
+        public void UpdateDeliveryDate(BusinessModels.Provider prov){
+            DAL.Provider UpdatedProvider = repos.Providers.GetItem(prov.Id);
+            UpdatedProvider.PossibleDeliveryDate = prov.PossibleDeliveryDate;
+            repos.Providers.Update(UpdatedProvider);
+            repos.Save();
+        }
+
         public void CheckProviders()
         {
             List<BLL.BusinessModels.Provider> UpdateList = getProviders();

@@ -48,6 +48,10 @@ namespace NewCourseWork
 
                 string Initials = db.getProviders().Where(i => i.Id == sup.ProviderId).Select(i => i.Initials).FirstOrDefault().ToString();
                 string FamName = db.getProviders().Where(i => i.Id == sup.ProviderId).Select(i => i.FamilyName).FirstOrDefault().ToString();
+                if (FamName[FamName.Length - 1] == 'н' || FamName[FamName.Length - 1] == 'в')
+                {
+                    FamName = FamName + "у";
+                }
                 string FulName = FamName + " " + Initials;
 
                 par = new Paragraph("Директору " + FulName, font);
