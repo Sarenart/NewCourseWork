@@ -151,10 +151,17 @@ namespace NewCourseWork.ViewModels
             {
                 case NotifyCollectionChangedAction.Add: {
                         OnPropertyChanged("NewSupplyLines");
+                        foreach (SupplyLine item in e.NewItems) {
+                            item.PropertyChanged += ItemChanged;
+                        }
                         break; 
                     }
                 case NotifyCollectionChangedAction.Remove: {
                         OnPropertyChanged("NewSupplyLines");
+                        foreach (SupplyLine item in e.OldItems)
+                        {
+                            item.PropertyChanged -= ItemChanged;
+                        }
                         break; 
                     }
                 case NotifyCollectionChangedAction.Replace:{ 
@@ -176,6 +183,15 @@ namespace NewCourseWork.ViewModels
         }
 
 
+        public void ItemChanged(object sender, PropertyChangedEventArgs e)
+        {
+            TotalSum = 0;
+            foreach(SupplyLine item in NewSupplyLines)
+            {
+                TotalSum += item.Cost * item.Quantity;
+            }
+            OnPropertyChanged("TotalSum");
+        }
 
         public void SelectedProviderChanged(Provider provider)
         {

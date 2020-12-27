@@ -19,24 +19,34 @@ namespace BLL.Services
 
         public List<SupplyReportByPeriodModel> getReportByPeriod(DateTime Start, DateTime Finish)
         {
-            List<SupplyReportByPeriodModel> Report1 = db.Supplies.GetList().Where(i=>i.DeliveryDate > Start && i.DeliveryDate < Finish).Select(i => new SupplyReportByPeriodModel()
+            List<SupplyReportByPeriodModel> Report1 = db.Supplies.GetList().Where(i=>i.ApplicationDate >= Start && i.ApplicationDate <= Finish).Select(i => new SupplyReportByPeriodModel()
             {
                 Provider = i.Provider.CompanyName,
-                Date = i.DeliveryDate,
+                Date = i.ApplicationDate,
                 Cost = i.Cost,
-                Warehouse = i.Warehouse.Address
+                Warehouse = i.Warehouse.Address,
+                StatusId = i.StatusId
             }).ToList();
+            foreach (BusinessModels.SupplyReportByPeriodModel item in Report1)
+            {
+                item.Status = db.SupplyStatusRefs.GetItem(item.StatusId).Status;
+            }
             return Report1;
         }
 
         public List<SupplyReportByWarehouseModel> getReportByWarehouse(int warehouseid)
         {
-            List<SupplyReportByWarehouseModel> Report1 = db.Supplies.GetList().Where(i=>i.DeliveryDate.Month == DateTime.Now.Month && i.WarehouseId == warehouseid).Select(i => new SupplyReportByWarehouseModel()
+            List<SupplyReportByWarehouseModel> Report1 = db.Supplies.GetList().Where(i => i.ApplicationDate.Month == DateTime.Now.Month && i.WarehouseId == warehouseid).Select(i => new SupplyReportByWarehouseModel()
             {
                 Provider = i.Provider.CompanyName,
                 Date = i.ApplicationDate,
-                Cost = i.Cost
+                Cost = i.Cost,
+                StatusId = i.StatusId
             }).ToList();
+            foreach (BusinessModels.SupplyReportByWarehouseModel item in Report1)
+            {
+                item.Status = db.SupplyStatusRefs.GetItem(item.StatusId).Status;
+            }
             return Report1;
         }
     }

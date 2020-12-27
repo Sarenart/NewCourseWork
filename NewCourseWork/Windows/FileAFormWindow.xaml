@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NewCourseWork"
          xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Заявка на доставку" Height="600.0" Width="950" MinHeight="600" MinWidth="950"
+        Title="Заявка на доставку" Height="740.0" Width="1000" MinHeight="740" MinWidth="950"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -45,7 +45,7 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.15*" MaxHeight="60">
+                    <RowDefinition Height="0.18*" MaxHeight="60">
 
                     </RowDefinition>
                     <RowDefinition Height="0.2*">
@@ -84,7 +84,7 @@
                 </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.15*" MaxHeight="60">
+                    <RowDefinition Height="0.18*" MaxHeight="60">
 
                     </RowDefinition>
                     <RowDefinition Height="0.2*">
@@ -98,12 +98,13 @@
                     <TextBlock Width="Auto" Grid.Row="0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Поставка</TextBlock>
                 </Border>
                 <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="0.9">
-                    <StackPanel Grid.Row="1" Orientation="Horizontal">
-                        <ComboBox  Width="Auto" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Text="Выберите склад" Margin="20,20, 20, 20" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" MaxHeight="40" SelectedItem ="{Binding SelectedWarehouse}"/>
-                        <TextBlock Visibility="Collapsed" x:Name="TotalSumTextBox"  HorizontalAlignment="Right" MinWidth="160" MaxWidth="250" MaxHeight="20" Margin="20, 20, 20, 20" Text ="{Binding StringFormat=Итоговая сумма {0}, Path=TotalSum}"></TextBlock>
-                        <TextBlock Visibility="Collapsed" VerticalAlignment="Center" Margin="20,20,20,20">Дата прихода:</TextBlock>
-                        <TextBlock VerticalAlignment="Center" Margin="20,20,20,20" Text="{Binding SupplyDate, StringFormat= Дата прихода: {0:d}}"></TextBlock>
-                    </StackPanel>
+                    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                            <ComboBox  Width="Auto" HorizontalAlignment="Left" MinWidth="90" IsEditable="True" IsReadOnly="True" Text="Выберите склад" Margin="20,20, 10, 20" ItemsSource="{Binding Warehouses}" DisplayMemberPath="Address" SelectedValuePath="Id" MaxHeight="40" SelectedItem ="{Binding SelectedWarehouse}"/>
+                            <TextBlock Visibility="Visible" x:Name="TotalSumTextBox"  HorizontalAlignment="Right"  MaxWidth="250" MaxHeight="20" Margin="20, 25, 10, 20" Text ="{Binding StringFormat=Итоговая сумма: {0}, Path=TotalSum}"></TextBlock>
+                            <TextBlock VerticalAlignment="Center" Margin="5,20,20,20" Text="{Binding SupplyDate, StringFormat= Дата прихода: {0:d}}"></TextBlock>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Border>
                 <DataGrid BorderBrush="Gray" BorderThickness="1" IsReadOnly="True" SelectedItem="{Binding SelectedAddedCommodity}"  AutoGenerateColumns="False" Grid.Column="1" x:Name="FormCommodities" Grid.Row="2" Visibility ="Visible" ItemsSource="{Binding NewSupplyLines}">
                     <DataGrid.Columns>

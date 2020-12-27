@@ -198,7 +198,7 @@ namespace NewCourseWork.ViewModels
             if(SelectedSupply.StatusId == 3)
             {
                 Statuses.Remove(Statuses.Where(i=>i.Id == 1).FirstOrDefault());
-                Statuses.Remove(Statuses.Where(i => i.Id == 4).FirstOrDefault());
+                Statuses.Remove(Statuses.Where(i =>i.Id == 4).FirstOrDefault());
                 OnPropertyChanged("Statuses");
             }
             if (SelectedSupply.StatusId == 1)
@@ -243,7 +243,7 @@ namespace NewCourseWork.ViewModels
                         IsStatusEnabled = false;
                         if(SelectedSupply.StatusId == 3)
                         {
-                            Statuses = DataOpers.getSupplyStatuses().Where(i=> i.Id != 1).ToList() ;
+                            Statuses = DataOpers.getSupplyStatuses().Where(i=> i.Id != 1 && i.Id !=4 ).ToList() ;
                             SelectedStatus = Statuses.Where(i => i.Id == SelectedSupply.StatusId).FirstOrDefault();
                             OnPropertyChanged("Statuses");
                         }

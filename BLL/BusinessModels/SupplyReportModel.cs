@@ -10,13 +10,13 @@ namespace BLL.BusinessModels
 {
     public class SupplyReportByPeriodModel 
     {
-        private string provider;
+        /*private string provider;
 
         private decimal cost;
 
         private string warehouse;
 
-        private DateTime date;
+        private DateTime date;*/
 
         public string Provider { get; set; }
 
@@ -24,33 +24,29 @@ namespace BLL.BusinessModels
 
         public DateTime Date { get; set; }
 
-        public string Warehouse
-        {
-            get
-            {
-                return warehouse;
-            }
-            set
-            {
-                warehouse = value;
-            }
-        }
+        public string Warehouse { get; set; }
+        public int StatusId { get; set; }
+
+        public string Status { get; set; }
     }
 
 
     public class SupplyReportByWarehouseModel
     {
-        private string provider;
+        //private string provider;
 
-        private decimal cost;
+        //private decimal cost;
 
-        private DateTime date;
+        //private DateTime date;
 
         public string Provider { get; set; }
 
         public decimal Cost { get; set; }
 
         public DateTime Date { get; set; }
+        public int StatusId { get; set; }
+        public string Status { get; set; }
+
 
     }
 }

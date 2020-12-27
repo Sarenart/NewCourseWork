@@ -329,6 +329,21 @@ namespace NewCourseWork.ViewModels
 
         #region SelectedVariables
 
+        private decimal reportsum { get; set; }
+
+        public decimal ReportSum { 
+            get
+            {
+                return reportsum;
+            }
+            set
+            {
+                reportsum = value;
+                OnPropertyChanged("ReportSum");
+            }
+        }
+
+
         private Supply selectedallsupply;
         public Supply SelectedAllSupply
         {
@@ -781,6 +796,12 @@ namespace NewCourseWork.ViewModels
                 {
                     ReportByPeriod = this.ReportService.getReportByPeriod(Start, Finish);
                     OnPropertyChanged("ReportByPeriod");
+                    ReportSum = 0;
+                    foreach (SupplyReportByPeriodModel item in ReportByPeriod)
+                    {
+                        if(item.StatusId ==2)
+                        ReportSum += item.Cost;
+                    }
                 },
                 (obj => (Start != null && Finish != null))));
             }
@@ -796,6 +817,12 @@ namespace NewCourseWork.ViewModels
                 {
                     ReportByWarehouse= this.ReportService.getReportByWarehouse(SelectedReportWarehouse.Id);
                     OnPropertyChanged("ReportByWarehouse");
+                    ReportSum = 0;
+                    foreach(SupplyReportByWarehouseModel item in ReportByWarehouse)
+                    {
+                        if (item.StatusId == 2)
+                            ReportSum += item.Cost;
+                    }
                 },
                 (obj => (SelectedReportWarehouse!=null))));
             }
@@ -818,6 +845,7 @@ namespace NewCourseWork.ViewModels
                     FinishVisibility = Visibility.Visible;
                     StartVisibility = Visibility.Visible;
                     WarehouseReportVisibility = Visibility.Collapsed;
+                    ReportSum = 0;
                 },
                 (obj => true)));
             }
@@ -840,6 +868,7 @@ namespace NewCourseWork.ViewModels
                     FinishVisibility = Visibility.Collapsed;
                     StartVisibility = Visibility.Collapsed;
                     WarehouseReportVisibility = Visibility.Visible;
+                    ReportSum = 0;
                 },
                 (obj => true)));
             }

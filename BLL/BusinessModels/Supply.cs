@@ -30,7 +30,19 @@ namespace BLL.BusinessModels
 
         private int warehouseid;
         private int providerid;
-
+        private string provider;
+        public string Provider
+        {
+            get
+            {
+                return provider;
+            }
+            set
+            {
+                provider = value;
+                OnPropertyChanged("Provider");
+            }
+        }
         public List<SupplyLine> Lines { get
             {
                 return lines;
