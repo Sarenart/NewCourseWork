@@ -427,7 +427,7 @@
                                 <StackPanel Grid.Column="1" Orientation="Vertical" >
                                     <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,10"  MaxHeight="30" Text="{Binding Path = SelectedProvider.FullName, StringFormat= Директор - {0}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                     <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,0"  MaxHeight="30" Text="Возможная дата поставки"></TextBlock>
-                                    <DatePicker Width="Auto"  SelectedDate="{Binding SelectedDate}"></DatePicker>
+                                    <DatePicker Width="Auto" Margin="10,10,10,10"  SelectedDate="{Binding SelectedDate}"></DatePicker>
                                 </StackPanel>
                             </ScrollViewer>
                         </Border>

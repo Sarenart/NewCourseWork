@@ -185,13 +185,12 @@ namespace NewCourseWork.ViewModels
         }
         public void SelectArrangementDate()
         {
-            if (SelectedSupply.ArrangementDate != null)
-                ArrangementDate = SelectedSupply.ArrangementDate.ToString();
-            else ArrangementDate = "Не оформлено";
+             ArrangementDate = SelectedSupply.ArrangementDate.HasValue ? SelectedSupply.ArrangementDate.Value.ToShortDateString() : "Не оформлено";
         }
 
         public void SetStatus()
         {
+          
             if (SelectedSupply.StatusId == 1 || SelectedSupply.StatusId == 3)
                 IsStatusEnabled = true;
             else
@@ -199,6 +198,13 @@ namespace NewCourseWork.ViewModels
             if(SelectedSupply.StatusId == 3)
             {
                 Statuses.Remove(Statuses.Where(i=>i.Id == 1).FirstOrDefault());
+                Statuses.Remove(Statuses.Where(i => i.Id == 4).FirstOrDefault());
+                OnPropertyChanged("Statuses");
+            }
+            if (SelectedSupply.StatusId == 1)
+            {
+                Statuses.Remove(Statuses.Where(i => i.Id == 2).FirstOrDefault());
+                Statuses.Remove(Statuses.Where(i => i.Id == 5).FirstOrDefault());
                 OnPropertyChanged("Statuses");
             }
         }
@@ -223,7 +229,7 @@ namespace NewCourseWork.ViewModels
                     if (MessageBox.Show("Хотите обновить поставку?", "Изменение поставки?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         SelectedSupply.StatusId = SelectedStatus.Id;
-                        if (SelectedStatus.Id == 2 || SelectedStatus.Id == 4 || SelectedStatus.Id == 5)
+                        if (SelectedSupply.StatusId == 2 || SelectedSupply.StatusId == 4 || SelectedSupply.StatusId == 5)
                         {
                             SelectedSupply.ArrangementDate = DateTime.Now;
                             SelectedSupply.ArrangerId = CurrentUser.Id;
@@ -231,13 +237,14 @@ namespace NewCourseWork.ViewModels
                             ArrangementDate = DateTime.Now.ToString();
                         }
                         DataOpers.UpdateSupply(SelectedSupply);
-                        if (SelectedStatus.Id == 2)
+                        if (SelectedSupply.StatusId == 2)
                             fileMan.Arrange(SelectedSupply);
-                        if(!(SelectedStatus.Id == 1 || SelectedStatus.Id == 3))
+                        if(!(SelectedSupply.StatusId == 1 || SelectedSupply.StatusId == 3))
                         IsStatusEnabled = false;
-                        if(SelectedStatus.Id == 1)
+                        if(SelectedSupply.StatusId == 3)
                         {
-                            Statuses.Remove(Statuses.Where(i => i.Id == 1).FirstOrDefault());
+                            Statuses = DataOpers.getSupplyStatuses().Where(i=> i.Id != 1).ToList() ;
+                            SelectedStatus = Statuses.Where(i => i.Id == SelectedSupply.StatusId).FirstOrDefault();
                             OnPropertyChanged("Statuses");
                         }
                     }    

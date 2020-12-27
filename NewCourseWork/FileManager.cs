@@ -230,7 +230,7 @@ namespace NewCourseWork
                     BasicCell.HorizontalAlignment = 1;
                     table.AddCell(BasicCell);
                     TotalQuantity += item.Quantity;
-                    TotalSum += item.Cost * item.Quantity;
+                    TotalSum += item.Cost;
                 }
                 HeaderCell = new PdfPCell(new Phrase("Итого", font));
                 HeaderCell.HorizontalAlignment = 1;

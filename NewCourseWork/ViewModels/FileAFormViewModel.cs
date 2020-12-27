@@ -20,7 +20,7 @@ namespace NewCourseWork.ViewModels
         FileManager fileMan;
         private DateTime supplydate { get; set; }
 
-        public DateTime SupplyDate
+        public DateTime SupplyDate // Suda
         {
             get
             {

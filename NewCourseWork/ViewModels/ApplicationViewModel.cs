@@ -659,6 +659,10 @@ namespace NewCourseWork.ViewModels
                 {
                     FileAFormWindow wind = new FileAFormWindow(this.DataOpers, CurrentUser);
                     wind.ShowDialog();
+                    if (SelectedCommodityWarehouse != null)
+                        CommodityWarehouseComboBoxChanged(SelectedCommodityWarehouse);
+                    if (SelectedSupplyWarehouse != null)
+                        SupplyWarehouseComboBoxChanged(SelectedSupplyWarehouse);
                 },
                 (obj => true)));
             }
@@ -708,6 +712,12 @@ namespace NewCourseWork.ViewModels
                         SelectedSupply = SelectedNonArrangedSupply;
                     SupplyUpdateWindow wind = new SupplyUpdateWindow(this.DataOpers, SelectedSupply, CurrentUser);
                     wind.ShowDialog();
+                    if (SelectedCommodityWarehouse != null)
+                        CommodityWarehouseComboBoxChanged(SelectedCommodityWarehouse);
+                    if (SelectedSupplyWarehouse != null)
+                        SupplyWarehouseComboBoxChanged(SelectedSupplyWarehouse);
+                    Notifications = DataOpers.getNotifications();
+                    OnPropertyChanged("Notifications");
                 },
                 (obj => (SelectedNonArrangedSupply != null || SelectedAllSupply != null))));
             }

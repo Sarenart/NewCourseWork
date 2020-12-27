@@ -106,7 +106,7 @@ namespace BLL.DataOperations
         public List<BLL.BusinessModels.Supply> getAllSupplies(int WHId)
         {
             return repos.Supplies.GetList()
-             .Where(i => i.WarehouseId == WHId)
+            .Where(i => i.WarehouseId == WHId)
             .Select(i => new BLL.BusinessModels.Supply
             {
                 Cost = i.Cost,
@@ -195,6 +195,7 @@ namespace BLL.DataOperations
         }
 
         public List<BusinessModels.Provider> getProviders() {
+
             return repos.Providers.GetList().Select(i => new BusinessModels.Provider()
             {
                 CompanyName = i.CompanyName,
