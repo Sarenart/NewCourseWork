@@ -10,10 +10,17 @@ namespace BLL.BusinessModels
 {
     public class Warehouse:INotifyPropertyChanged
     {
-
         private int id { get; set; }
 
         private string address { get; set; }
+
+        public Warehouse() { }
+        public Warehouse(DAL.Warehouse warehouse)
+        {
+            Address = warehouse.Address;
+            Id = warehouse.Id;
+        }
+
         public string Address
         {
             get { return address; }

@@ -41,6 +41,9 @@
     <ApplicationIcon>-1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutomatedQA.TestComplete.UnitTesting">
+      <HintPath>C:\Program Files (x86)\SmartBear\TestComplete 15\Bin\Extensions\AutomatedQA.TestComplete.UnitTesting.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>

@@ -530,6 +530,8 @@ namespace NewCourseWork.ViewModels
             try
             {
                 DataOpers.CheckProviders();
+                DataOpers.CheckProviders();
+                DataOpers.CheckProviders();
             }
             catch (DbUpdateException)
             {
@@ -909,8 +911,11 @@ namespace NewCourseWork.ViewModels
                 return changedeliverydate??
                 (changedeliverydate = new BasicCommand(obj =>
                 {
-                    if (SelectedDate <= DateTime.Now)
+                    if (SelectedDate <= DateTime.Now.AddDays(3))
+                    {
                         MessageBox.Show("Нельзя сделать такую дату.");
+                        SelectedDate = SelectedProvider.PossibleDeliveryDate;
+                    }
                     else
                     {
                         SelectedProvider.PossibleDeliveryDate = SelectedDate;

@@ -106,7 +106,7 @@ namespace NewCourseWork.ViewModels
                     }
                     catch (UnauthorizedAccessException)
                     {
-                        Status = "Login failed! Please provide some valid credentials.";
+                        Status = "Сбой авторизации! Введите правильные данные.";
                     }
                     },
                 (obj => true)));

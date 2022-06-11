@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{90D101C8-80C7-48D4-9055-2E451B9BCD75}" version="1400" key="{B07F20F0-4241-4379-A7AB-F1E99C9CFEE4}" typeId="{90D101C8-80C7-48D4-9055-2E451B9BCD75}">
+	<config nodeName="TestedApps" />
+	<testData />
+	<data />
+	<children>
+		<child key="{49041CC1-2E3E-4667-9299-7307216551DC}">
+			<config nodeName="NewCourseWork" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="False">
+				<runModeParams activeRunMode="Simple">
+					<param name="RunAs" parameters="" workFolder="D:\Универ\Конструирование\NewCourseWork\RegressionTestsTestComplete" userName="" password="" domain="" />
+					<param name="Profile" parameters="" workFolder="D:\Универ\Конструирование\NewCourseWork\RegressionTestsTestComplete" useProject="False" projectFileName="" overrideProfiler="False" profilerName="" profileRunMode="Silent" AQtimeVersion="0" forceRunMode="False" />
+					<param name="Debug" parameters="" workFolder="D:\Универ\Конструирование\NewCourseWork\RegressionTestsTestComplete" />
+					<param name="Simple" fileName="NewCourseWork.exe" filePath="D:\Универ\Конструирование\NewCourseWork\NewCourseWork\bin\Debug\" parameters="" workFolder="D:\Универ\Конструирование\NewCourseWork\RegressionTestsTestComplete" />
+				</runModeParams>
+			</config>
+			<testData />
+			<data />
+		</child>
+	</children>
+</Root>

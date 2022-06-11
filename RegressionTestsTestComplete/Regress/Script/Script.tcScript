@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children>
+		<child name="Unit1" key="{2062231E-1C22-44B8-95DC-1ED9E360F0A9}" path="Unit1.js" />
+		<child name="ConfirmSupplyUnit" key="{AA6B4A5C-F183-4B8F-BBF4-ABE0669E0720}" path="ConfirmSupplyUnit.js" />
+		<child name="DeclineSupplyUnit" key="{E2A7D29E-F378-49FC-95B0-64A0485F6D3A}" path="DeclineSupplyUnit.js" />
+	</children>
+</Root>

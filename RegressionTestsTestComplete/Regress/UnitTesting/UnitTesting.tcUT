@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{CCBF15D3-5453-4E8D-891C-1C74B57C6979}" version="15.0">
+	<children>
+		<child name="RegressTests" key="{8B083E44-7A05-47BB-8C00-DA05CCAEC6FD}" type="NUnit" typeId="{8EF2AC02-5C6C-450B-A99E-A3087761D9D6}" pluginName="NUnit Runner" path="NUnit1\RegressTests.tcNUnit" />
+	</children>
+</Root>

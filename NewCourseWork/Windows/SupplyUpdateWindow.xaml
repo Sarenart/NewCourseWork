@@ -69,11 +69,11 @@
                     <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,20"  MaxHeight="30" Text="{Binding Path = Provider, StringFormat= Поставщик - {0}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,20"  MaxHeight="30" Text="{Binding Path = SelectedSupply.Status, StringFormat= Статус - {0}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,20"  MaxHeight="30" Text="{Binding Path = SelectedSupply.Cost, StringFormat= Стоимость - {0}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                    <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,20"  MaxHeight="30" Text="{Binding Path = SelectedSupply.DeliveryDate, StringFormat= Дата прихода - {0:d}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,20"  MaxHeight="30" Text="{Binding Path = SelectedSupply.DeliveryDate, StringFormat= Дата прихода - {0:dd.MM.yyyy}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,20"  MaxHeight="30" Text="{Binding Path = Applicant, StringFormat= Создал заявку - {0}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,20"  MaxHeight="30" Text="{Binding Path = Arranger, StringFormat= Оформил - {0}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                    <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,10"  MaxHeight="30" Text="{Binding Path = SelectedSupply.ApplicationDate, StringFormat= Дата создания заявки - {0:d}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                    <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,20"  MaxHeight="30" Text="{Binding Path = ArrangementDate, StringFormat= Дата оформления - {0:d}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,10"  MaxHeight="30" Text="{Binding Path = SelectedSupply.ApplicationDate, StringFormat= Дата создания заявки - {0:dd.MM.yyyy}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        <TextBlock TextWrapping="Wrap"  Width="Auto" Margin="10,10,10,20"  MaxHeight="30" Text="{Binding Path = ArrangementDate, StringFormat= Дата оформления - {0:dd.MM.yyyy}, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                         <ComboBox ItemsSource="{Binding Statuses}" Margin="10,10,10,20" IsEditable="True" IsReadOnly="True" IsEnabled="{Binding IsStatusEnabled}" SelectedItem="{Binding SelectedStatus}" DisplayMemberPath="Status" SelectedValuePath="Id"></ComboBox>
                 </StackPanel>
                 </ScrollViewer>

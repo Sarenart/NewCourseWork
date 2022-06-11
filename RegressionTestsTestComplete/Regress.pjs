@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{24B6FA0B-0143-461A-9758-AEB9E9A9428B}" version="15.0" key="{A8FF8FA5-EE89-4D58-98E3-FEDDF9DF2E7D}">
+	<children>
+		<child name="Regress" key="{0959191A-652D-4AD5-AE80-D7422C2B7AB0}" path="Regress\Regress.mds" />
+	</children>
+	<testItems key="{0B839B4B-9511-4D9D-BD6E-1737C89DF903}">
+		<children>
+			<testItem key="{0959191A-652D-4AD5-AE80-D7422C2B7AB0}" enabled="True" timeout="0" stopOnError="True" description="" />
+		</children>
+	</testItems>
+	<variables key="{1E87A92E-79C6-4EC4-99F1-30AC5FB648E1}" />
+	<analysis key="{EF0BFE5D-5D9A-4A38-83EF-F3F4AE40D695}" />
+	<scc key="{00000000-0000-0000-0000-000000000000}" name="">
+		<data />
+	</scc>
+</Root>

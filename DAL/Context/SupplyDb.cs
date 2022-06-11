@@ -12,6 +12,10 @@ namespace DAL
         {
         }
 
+        public SupplyDb(string entityConnectionString)
+            : base("data source =.\\sqlexpress; initial catalog = SupplyDb; integrated security = True; MultipleActiveResultSets=True;App=EntityFramework")
+        {
+        }
         public virtual DbSet<Commodity> Commodity { get; set; }
         public virtual DbSet<CommodityTypeRef> CommodityTypeRef { get; set; }
         public virtual DbSet<Provider> Provider { get; set; }

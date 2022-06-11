@@ -26,6 +26,11 @@ namespace DAL.Repositories
         {
             this.db = new SupplyDb();
         }
+
+        public DbRepositorySQLServer(string entityConnectionString)
+        {
+            this.db = new SupplyDb(entityConnectionString);
+        }
         public IRepository<Commodity> Commodities {
             get {
                 if (commodityRepos == null)

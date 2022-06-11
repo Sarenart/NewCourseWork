@@ -48,6 +48,7 @@ namespace NewCourseWork.ViewModels
         }
 
         private BLL.BusinessModels.User currentuser;
+
         #region SelectedVariables
 
         private BLL.BusinessModels.Provider selectedprovider;
@@ -137,6 +138,7 @@ namespace NewCourseWork.ViewModels
 
         }
         #endregion
+
         public List<Provider> Providers { get; set; }
 
         public List<Warehouse> Warehouses { get; set; }
@@ -154,6 +156,7 @@ namespace NewCourseWork.ViewModels
                         foreach (SupplyLine item in e.NewItems) {
                             item.PropertyChanged += ItemChanged;
                         }
+                        ItemChanged(null, null);
                         break; 
                     }
                 case NotifyCollectionChangedAction.Remove: {
@@ -162,6 +165,7 @@ namespace NewCourseWork.ViewModels
                         {
                             item.PropertyChanged -= ItemChanged;
                         }
+                        ItemChanged(null, null);
                         break; 
                     }
                 case NotifyCollectionChangedAction.Replace:{ 

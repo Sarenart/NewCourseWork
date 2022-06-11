@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{F1D3EE30-C2A8-4AFF-801C-1D39E2C902F0}" version="15.0">
+	<Table Name="SupplyLines">
+		<Source Object="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.SupplyLines" />
+		<Columns>
+			<Column>Товар</Column>
+			<Column>Тип</Column>
+			<Column>Количество</Column>
+			<Column>Полная стоимость</Column>
+		</Columns>
+		<Rows>
+			<Row>
+				<Cell Type="String">Chabacco</Cell>
+				<Cell Type="String">Табак</Cell>
+				<Cell Type="Integer">5</Cell>
+				<Cell Type="String">1600</Cell>
+			</Row>
+			<Row>
+				<Cell Type="String">BlackBurn</Cell>
+				<Cell Type="String">Табак</Cell>
+				<Cell Type="Integer">4</Cell>
+				<Cell Type="String">1080</Cell>
+			</Row>
+			<Row>
+				<Cell Type="String">Duft</Cell>
+				<Cell Type="String">Табак</Cell>
+				<Cell Type="Integer">1</Cell>
+				<Cell Type="String">380</Cell>
+			</Row>
+		</Rows>
+	</Table>
+</Root>

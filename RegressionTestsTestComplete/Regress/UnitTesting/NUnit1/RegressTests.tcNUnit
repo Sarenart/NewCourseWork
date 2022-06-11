@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{8EF2AC02-5C6C-450B-A99E-A3087761D9D6}" version="15.0">
+	<data assemblyFileName="..\..\..\..\..\NewCourseWork\RegressionTesting\bin\Debug\netcoreapp3.1\RegressionTesting.dll" testFixtures="Tests.TestMethod3" includeCategories="" excludeCategories="" saveTopXML="False" xmlFileName="" advancedParameters="" />
+</Root>

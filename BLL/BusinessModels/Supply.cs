@@ -31,6 +31,34 @@ namespace BLL.BusinessModels
         private int warehouseid;
         private int providerid;
         private string provider;
+
+        public Supply() { }
+        public Supply(DAL.Supply supply)
+        {
+            id = supply.Id;
+            arrangementdate = supply.ArrangementDate;
+            deliverydate = supply.DeliveryDate;
+            applicantid = supply.ApplicantId;
+            arrangerid = supply.ArrangerId;
+            cost = supply.Cost;
+            statusid = supply.StatusId;
+            warehouseid = supply.WarehouseId;
+            providerid = supply.ProviderId;
+            foreach(DAL.SupplyLine line in supply.SupplyLine)
+            {
+                lines.Add(new BLL.BusinessModels.SupplyLine
+                {
+                    CommodityId = line.CommodityId,
+                    SupplyId = line.Id,
+                    //CommodityName = j.Commodity.Name,
+                    //CommodityType = j.Commodity.CommodityTypeRef.Type,
+                    Cost = line.Cost,
+                    Id = line.Id,
+                    Quantity = line.Quantity
+                });
+            }
+
+        }
         public string Provider
         {
             get

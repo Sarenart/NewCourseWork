@@ -48,7 +48,7 @@
                     </materialDesign:Card>
                     <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,10,10,10" Text="{Binding Path=CurrentUserString}"></TextBlock>
 
-                    <TextBlock Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,13,9,13"> Версия 0.9</TextBlock>
+                    <TextBlock Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,13,9,13"> Версия 1.0</TextBlock>
 
                 </Grid>
             </TabItem>
@@ -158,13 +158,15 @@
 
                     <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="NonArrangedSupplies" Grid.Row="2" Visibility ="{Binding NonArrangedSuppliesVisibility}" ItemsSource="{Binding NonArrangedSupplies}" SelectedItem="{Binding SelectedNonArrangedSupply}">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Path=Id}">
+                            </DataGridTextColumn>
                             <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Provider}">
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Дата заявки" Binding="{Binding Path=ApplicationDate}">
+                            <DataGridTextColumn Header="Дата заявки" Binding="{Binding Path=ApplicationDate, StringFormat= dd.MM.yyyy}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Дата прихода" Binding="{Binding Path=DeliveryDate}">
+                            <DataGridTextColumn Header="Дата прихода" Binding="{Binding Path=DeliveryDate, StringFormat= dd.MM.yyyy}">
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}">
                             </DataGridTextColumn>
@@ -174,13 +176,15 @@
 
                     <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Name="AllSupplies"  Grid.Row="2" Visibility="{Binding AllSuppliesVisibility}" ItemsSource="{Binding  AllSupplies}" SelectedItem="{Binding SelectedAllSupply}">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Path=Id}">
+                            </DataGridTextColumn>
                             <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Provider}">
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Cost}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Дата заявки" Binding="{Binding Path=ApplicationDate}">
+                            <DataGridTextColumn Header="Дата заявки" Binding="{Binding Path=ApplicationDate, StringFormat= dd.MM.yyyy}">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Дата прихода" Binding="{Binding Path=DeliveryDate}">
+                            <DataGridTextColumn Header="Дата прихода" Binding="{Binding Path=DeliveryDate, StringFormat= dd.MM.yyyy}">
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}">
                             </DataGridTextColumn>
@@ -426,7 +430,7 @@
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <TextBlock Grid.Row="3" HorizontalAlignment="Left" Width="Auto" MinWidth="60" Margin="5,5,5,5" Text="{Binding ReportSum, StringFormat= На оформленные поставки пострачено {0} рублей}"></TextBlock>
+                    <TextBlock Grid.Row="3" HorizontalAlignment="Left" Width="Auto" MinWidth="60" Margin="5,5,5,5" Text="{Binding ReportSum, StringFormat= На оформленные поставки было потрачено {0} рублей}"></TextBlock>
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition>

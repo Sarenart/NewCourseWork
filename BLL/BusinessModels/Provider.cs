@@ -17,6 +17,16 @@ namespace BLL.BusinessModels
 
         private DateTime possibledeliverydate { get; set; }
 
+        public Provider(){ }
+        public Provider(DAL.Provider provider)
+        {
+            CompanyName = provider.CompanyName;
+            FamilyName = provider.FamilyName;
+            Id = provider.Id;
+            Initials = provider.Initials;
+            FullName = provider.FamilyName + " " + provider.Initials;
+            PossibleDeliveryDate = provider.PossibleDeliveryDate;
+        }
         public int Id 
         { 
             get

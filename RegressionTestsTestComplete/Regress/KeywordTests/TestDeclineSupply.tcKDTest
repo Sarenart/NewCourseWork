@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{B9D9273E-7266-43E0-BF02-97F168593604}" version="15.0">
+	<TestData Description="" Key="{E954F9D2-44D7-4A35-BCD5-12C4354546D2}" Type="{79147B28-EE20-4294-B773-1D3787FBF37B}">
+		<Data>
+			<Extenders>
+				<NodeBitmaps>
+					<Bitmap Name="Aliases.NewCourseWork" Data="61717A69700000000100000036040000780173F235636100033320A901C40250CCC8A000640101541EC2A11EB9DD2AFD3F3918E60262F5363636FE0701987A5CFAC18A08102033D0F50B080810D00591C6653FBAE6D6D6D6FF53A74E4517C6EAFE13274EA0A803D9E12BA18D2206E3A8A8A880CD40763F4C0E46C3DC08E2CF9E3D1B260CA7D1FD0F97803260FA6134367962EC2756BF8484048A15307D207AAB651A8A9CBABA3A86FF41EA880530B391DD0F132364064C1D88C6A61F248E1E9720332F5EBC088F779819B8F4C3E409D130FD94D000EEB95C69" />
+					<Bitmap Name="Aliases.NewCourseWork.dlg" Data="61717A697000000001000000360400007801C591CD4B024118C69FA03FA03FA163C7E8E0A14BD42528A2637436BC4404753028A420F42044501991111925E42582923A4474F250418720A8285A5357F37B77DD8F59B7D955635D45EAE40CCF30C3F0FCE699F71D1AB375C21836BAF6507555D5816EBAA3A37A5F3954560DED9FE1C006A6466CFF9239B5EE57B81C94620672210D39978294652165E290D2319412EF109867706F8FE05E1E8C77AC7E22145A32C4148352EC15FCC753737F89430323FF4DB324698E8491A3C6D0FF6A7D5F1579902A83F0799A250B45FF4B1386D57F75E4832A8B50250144E70845B46258FD37213FCA44FE1B83D6D5EA8F9C1DA2AC92168CFADE58FD771741689AD6C030D7C4DC5FAB3F79E2852E36E801BBBF88F8F62C626B767CB927C0B846C13807F139DFFFAB88BDB7AEFEBA57BB0D40BDF6835CFAA09CAF433EF5420AAD420CBA200416C0EFCD81DF994671CB817B475F83BF962179EC067BB08CC4AE13F1CD994A0ECF24A22BE3882E0DD32C03460E73FFDBB9FF01EBA33263" />
+					<Bitmap Name="Aliases.NewCourseWork.HwndSource_FileAFormWindow" Data="61717A697000000001000000360400007801A5534B4EC330107D483D004760C909B245628960C319D87006EEC19E151207E000EC90104242424815E5534129A54DF38FED7C98B16393A812156DA2F12463BF9737CFCEEE81D783BE3C1AB729369BD8C0163DD1D5CC9B1733D658EF3EDAF3B04A1C1FEE68DCCDE539541298886690E1376430819C7F41F89F10B311C4F403F9F805D97B1FE9EB03E2A73BC4FD5B872FD208A7FB3DBC5D5DE8CC1CFCDEAEF1B3980C717D76A2EBC9F3FD2F3E8BC11CAC83D729D2C159068647F863D2415A4807D7F3D100E9F0D1E1CB3C45D170687C3C373CE15467AE713087CEA48339D837EEBF14192C07CF174E87AFD7B775683CE9E05E1C5EE68E83E739D80B453AAC27B66E33FB6AF1552151B6386C2FAC43EF4DEC6B4FACAF766F1CBE2CD0E11029F593902711F91A2E70D8FDB5F8BA2A51351C95128D96E51C0E5FD319FE1707F5437BD3C12FE53067447B42BEAAC85FC47738142AF587AFC461BFCF67609560FC7A7F6F8D1F5B1D3A8B" />
+					<Bitmap Name="Aliases.NewCourseWork.HwndSource_FileAFormWindow.FileAFormWindow" Data="61717A697000000001000000360400007801A5534B4EC330107D483D004760C909B245628960C319D87006EEC19E151207E000EC90104242424815E5534129A54DF38FED7C98B16393A812156DA2F12463BF9737CFCEEE81D783BE3C1AB729369BD8C0163DD1D5CC9B1733D658EF3EDAF3B04A1C1FEE68DCCDE539541298886690E1376430819C7F41F89F10B311C4F403F9F805D97B1FE9EB03E2A73BC4FD5B872FD208A7FB3DBC5D5DE8CC1CFCDEAEF1B3980C717D76A2EBC9F3FD2F3E8BC11CAC83D729D2C159068647F863D2415A4807D7F3D100E9F0D1E1CB3C45D170687C3C373CE15467AE713087CEA48339D837EEBF14192C07CF174E87AFD7B775683CE9E05E1C5EE68E83E739D80B453AAC27B66E33FB6AF1552151B6386C2FAC43EF4DEC6B4FACAF766F1CBE2CD0E11029F593902711F91A2E70D8FDB5F8BA2A51351C95128D96E51C0E5FD319FE1707F5437BD3C12FE53067447B42BEAAC85FC47738142AF587AFC461BFCF67609560FC7A7F6F8D1F5B1D3A8B" />
+					<Bitmap Name="Aliases.NewCourseWork.HwndSource_MainWindow" Data="61717A697000000001000000360400007801A5534B4EC330107D483D004760C909B245628960C319D87006EEC19E151207E000EC90104242424815E5534129A54DF38FED7C98B16393A812156DA2F12463BF9737CFCEEE81D783BE3C1AB729369BD8C0163DD1D5CC9B1733D658EF3EDAF3B04A1C1FEE68DCCDE539541298886690E1376430819C7F41F89F10B311C4F403F9F805D97B1FE9EB03E2A73BC4FD5B872FD208A7FB3DBC5D5DE8CC1CFCDEAEF1B3980C717D76A2EBC9F3FD2F3E8BC11CAC83D729D2C159068647F863D2415A4807D7F3D100E9F0D1E1CB3C45D170687C3C373CE15467AE713087CEA48339D837EEBF14192C07CF174E87AFD7B775683CE9E05E1C5EE68E83E739D80B453AAC27B66E33FB6AF1552151B6386C2FAC43EF4DEC6B4FACAF766F1CBE2CD0E11029F593902711F91A2E70D8FDB5F8BA2A51351C95128D96E51C0E5FD319FE1707F5437BD3C12FE53067447B42BEAAC85FC47738142AF587AFC461BFCF67609560FC7A7F6F8D1F5B1D3A8B" />
+					<Bitmap Name="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow" Data="61717A697000000001000000360400007801A5534B4EC330107D483D004760C909B245628960C319D87006EEC19E151207E000EC90104242424815E5534129A54DF38FED7C98B16393A812156DA2F12463BF9737CFCEEE81D783BE3C1AB729369BD8C0163DD1D5CC9B1733D658EF3EDAF3B04A1C1FEE68DCCDE539541298886690E1376430819C7F41F89F10B311C4F403F9F805D97B1FE9EB03E2A73BC4FD5B872FD208A7FB3DBC5D5DE8CC1CFCDEAEF1B3980C717D76A2EBC9F3FD2F3E8BC11CAC83D729D2C159068647F863D2415A4807D7F3D100E9F0D1E1CB3C45D170687C3C373CE15467AE713087CEA48339D837EEBF14192C07CF174E87AFD7B775683CE9E05E1C5EE68E83E739D80B453AAC27B66E33FB6AF1552151B6386C2FAC43EF4DEC6B4FACAF766F1CBE2CD0E11029F593902711F91A2E70D8FDB5F8BA2A51351C95128D96E51C0E5FD319FE1707F5437BD3C12FE53067447B42BEAAC85FC47738142AF587AFC461BFCF67609560FC7A7F6F8D1F5B1D3A8B" />
+					<Bitmap Name="Aliases.NewCourseWork.HwndSource_RegWindow" Data="61717A697000000001000000360400007801A5534B4EC330107D483D004760C909B245628960C319D87006EEC19E151207E000EC90104242424815E5534129A54DF38FED7C98B16393A812156DA2F12463BF9737CFCEEE81D783BE3C1AB729369BD8C0163DD1D5CC9B1733D658EF3EDAF3B04A1C1FEE68DCCDE539541298886690E1376430819C7F41F89F10B311C4F403F9F805D97B1FE9EB03E2A73BC4FD5B872FD208A7FB3DBC5D5DE8CC1CFCDEAEF1B3980C717D76A2EBC9F3FD2F3E8BC11CAC83D729D2C159068647F863D2415A4807D7F3D100E9F0D1E1CB3C45D170687C3C373CE15467AE713087CEA48339D837EEBF14192C07CF174E87AFD7B775683CE9E05E1C5EE68E83E739D80B453AAC27B66E33FB6AF1552151B6386C2FAC43EF4DEC6B4FACAF766F1CBE2CD0E11029F593902711F91A2E70D8FDB5F8BA2A51351C95128D96E51C0E5FD319FE1707F5437BD3C12FE53067447B42BEAAC85FC47738142AF587AFC461BFCF67609560FC7A7F6F8D1F5B1D3A8B" />
+					<Bitmap Name="Aliases.NewCourseWork.HwndSource_RegWindow.RegWindow" Data="61717A697000000001000000360400007801A5534B4EC330107D483D004760C909B245628960C319D87006EEC19E151207E000EC90104242424815E5534129A54DF38FED7C98B16393A812156DA2F12463BF9737CFCEEE81D783BE3C1AB729369BD8C0163DD1D5CC9B1733D658EF3EDAF3B04A1C1FEE68DCCDE539541298886690E1376430819C7F41F89F10B311C4F403F9F805D97B1FE9EB03E2A73BC4FD5B872FD208A7FB3DBC5D5DE8CC1CFCDEAEF1B3980C717D76A2EBC9F3FD2F3E8BC11CAC83D729D2C159068647F863D2415A4807D7F3D100E9F0D1E1CB3C45D170687C3C373CE15467AE713087CEA48339D837EEBF14192C07CF174E87AFD7B775683CE9E05E1C5EE68E83E739D80B453AAC27B66E33FB6AF1552151B6386C2FAC43EF4DEC6B4FACAF766F1CBE2CD0E11029F593902711F91A2E70D8FDB5F8BA2A51351C95128D96E51C0E5FD319FE1707F5437BD3C12FE53067447B42BEAAC85FC47738142AF587AFC461BFCF67609560FC7A7F6F8D1F5B1D3A8B" />
+					<Bitmap Name="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow" Data="61717A697000000001000000360400007801A5534B4EC330107D483D004760C909B245628960C319D87006EEC19E151207E000EC90104242424815E5534129A54DF38FED7C98B16393A812156DA2F12463BF9737CFCEEE81D783BE3C1AB729369BD8C0163DD1D5CC9B1733D658EF3EDAF3B04A1C1FEE68DCCDE539541298886690E1376430819C7F41F89F10B311C4F403F9F805D97B1FE9EB03E2A73BC4FD5B872FD208A7FB3DBC5D5DE8CC1CFCDEAEF1B3980C717D76A2EBC9F3FD2F3E8BC11CAC83D729D2C159068647F863D2415A4807D7F3D100E9F0D1E1CB3C45D170687C3C373CE15467AE713087CEA48339D837EEBF14192C07CF174E87AFD7B775683CE9E05E1C5EE68E83E739D80B453AAC27B66E33FB6AF1552151B6386C2FAC43EF4DEC6B4FACAF766F1CBE2CD0E11029F593902711F91A2E70D8FDB5F8BA2A51351C95128D96E51C0E5FD319FE1707F5437BD3C12FE53067447B42BEAAC85FC47738142AF587AFC461BFCF67609560FC7A7F6F8D1F5B1D3A8B" />
+					<Bitmap Name="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow" Data="61717A697000000001000000360400007801A5534B4EC330107D483D004760C909B245628960C319D87006EEC19E151207E000EC90104242424815E5534129A54DF38FED7C98B16393A812156DA2F12463BF9737CFCEEE81D783BE3C1AB729369BD8C0163DD1D5CC9B1733D658EF3EDAF3B04A1C1FEE68DCCDE539541298886690E1376430819C7F41F89F10B311C4F403F9F805D97B1FE9EB03E2A73BC4FD5B872FD208A7FB3DBC5D5DE8CC1CFCDEAEF1B3980C717D76A2EBC9F3FD2F3E8BC11CAC83D729D2C159068647F863D2415A4807D7F3D100E9F0D1E1CB3C45D170687C3C373CE15467AE713087CEA48339D837EEBF14192C07CF174E87AFD7B775683CE9E05E1C5EE68E83E739D80B453AAC27B66E33FB6AF1552151B6386C2FAC43EF4DEC6B4FACAF766F1CBE2CD0E11029F593902711F91A2E70D8FDB5F8BA2A51351C95128D96E51C0E5FD319FE1707F5437BD3C12FE53067447B42BEAAC85FC47738142AF587AFC461BFCF67609560FC7A7F6F8D1F5B1D3A8B" />
+				</NodeBitmaps>
+			</Extenders>
+		</Data>
+		<Children>
+			<Operation Type="{66F32D5F-A5DB-420E-9CB4-3DB7CADE2692}">
+				<Data Description="Runs the &quot;NewCourseWork&quot; tested application." TestedApp="NewCourseWork">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Count" DefVarType="3" DefValueType="1" DefValueValue="-1" VarType="3" ValueType="1" ValueValue="-1" />
+						<Parameter Name="IgnoreRunning" DefVarType="11" DefValueType="7" DefValueValue="False" VarType="11" ValueType="7" ValueValue="False" />
+						<Parameter Name="Timeout" DefVarType="3" DefValueType="1" DefValueValue="-1" VarType="3" ValueType="1" ValueValue="-1" />
+					</Parameters>
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; object." Action="Click">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="ClientX" DefVarType="3" DefValueType="1" DefValueValue="-1" VarType="3" ValueType="1" ValueValue="178" />
+						<Parameter Name="ClientY" DefVarType="3" DefValueType="1" DefValueValue="-1" VarType="3" ValueType="1" ValueValue="16" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_RegWindow.RegWindow.Textbox;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Enters the text %p1 in the &apos;%n&apos; text editor." Action="SetText">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Text" DefVarType="8" VarType="8" ValueType="6" ValueValue="Tatiyana" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_RegWindow.RegWindow.Textbox;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; object." Action="Click">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="ClientX" DefVarType="3" DefValueType="1" DefValueValue="-1" VarType="3" ValueType="1" ValueValue="125" />
+						<Parameter Name="ClientY" DefVarType="3" DefValueType="1" DefValueValue="-1" VarType="3" ValueType="1" ValueValue="12" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_RegWindow.RegWindow.passwordBox;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Enters text in the &apos;%n&apos; text editor." Action="SetText">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Text" DefVarType="8" ParamType="{83D6F80C-4323-4034-92E3-FD2A65D2E6FC}" VariableType="2" VariableName="Password1" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_RegWindow.RegWindow.passwordBox;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_RegWindow.RegWindow.Button;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Selects the %p1 tab of the &apos;%n&apos; tab control." Action="ClickTab">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Item" DefVarType="12" VarType="3" ValueType="1" ValueValue="2" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Selects the %p1 tab of the &apos;%n&apos; tab control." Action="ClickTab">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Item" DefVarType="12" VarType="3" ValueType="1" ValueValue="3" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Selects the %p1 item of the &apos;%n&apos; combo box." Action="ClickItem">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Item" DefVarType="12" VarType="3" ValueType="1" ValueValue="1" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.CommodityWarehouseComboBox;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.FileAFormButtonCom;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Selects the %p1 item of the &apos;%n&apos; combo box." Action="ClickItem">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Item" DefVarType="12" VarType="3" ValueType="1" ValueValue="1" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_FileAFormWindow.FileAFormWindow.ComboBox;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Rotates the mouse wheel to %p1 over the &apos;%n&apos; object." Action="MouseWheel">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Delta" DefVarType="3" VarType="3" ValueType="1" ValueValue="-1" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_FileAFormWindow.FileAFormWindow.ProviderCommodities.Datagridcell320;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Rotates the mouse wheel to %p1 over the &apos;%n&apos; object." Action="MouseWheel">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Delta" DefVarType="3" VarType="3" ValueType="1" ValueValue="-2" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_FileAFormWindow.FileAFormWindow.ProviderCommodities.Datagridcell5500;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Rotates the mouse wheel to %p1 over the &apos;%n&apos; object." Action="MouseWheel">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Delta" DefVarType="3" VarType="3" ValueType="1" ValueValue="-1" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_FileAFormWindow.FileAFormWindow.ProviderCommodities.Datagridcell2300;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_FileAFormWindow.FileAFormWindow.ProviderCommodities.Button;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; object." Action="Click">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="ClientX" DefVarType="3" DefValueType="1" DefValueValue="-1" VarType="3" ValueType="1" ValueValue="58" />
+						<Parameter Name="ClientY" DefVarType="3" DefValueType="1" DefValueValue="-1" VarType="3" ValueType="1" ValueValue="9" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_FileAFormWindow.FileAFormWindow.FormCommodities.IntegerUpDown;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Selects the %p1 item of the &apos;%n&apos; combo box." Action="ClickItem">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Item" DefVarType="12" VarType="3" ValueType="1" ValueValue="1" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_FileAFormWindow.FileAFormWindow.ComboBox2;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_FileAFormWindow.FileAFormWindow.Button;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.dlg.btn_;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.dlg.btn_;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_FileAFormWindow.FileAFormWindow.Button2;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Selects the %p1 tab of the &apos;%n&apos; tab control." Action="ClickTab">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Item" DefVarType="12" VarType="3" ValueType="1" ValueValue="2" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Selects the %p1 item of the &apos;%n&apos; combo box." Action="ClickItem">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Item" DefVarType="12" VarType="3" ValueType="1" ValueValue="1" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.SupplyWarehouseComboBox;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; grid cell at row %p1, column %p2." Action="ClickCell">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Row" DefVarType="3" VarType="3" ValueType="1" ValueValue="4" />
+						<Parameter Name="Column" DefVarType="12" VarType="8" ValueType="6" ValueValue="Поставщик" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.NonArrangedSupplies;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.ArrangeSupplyButton;" />
+				</Data>
+			</Operation>
+			<Operation Type="{2F0A05A2-4ECD-47CE-A12B-9843A308F2DC}">
+				<Data Description="Checks whether the %p2 property of the %p1 object %p3 %p4.">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Object" DefVarType="12" ParamType="{FC0DF733-E97F-46DD-8307-EA4DFF891298}" Expression="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.ScrollViewer.Textblock" />
+						<Parameter Name="Property" DefVarType="8" VarType="8" ValueType="6" ValueValue="Text" />
+						<Parameter Name="Condition" DefVarType="3" VarType="3" ValueType="1" ValueValue="0" />
+						<Parameter Name="Value" DefVarType="12" VarType="8" ValueType="6" ValueValue="Статус - Заявка создана" />
+						<Parameter Name="CaseSensitive" DefVarType="11" DefValueType="7" DefValueValue="True" VarType="11" ValueType="7" ValueValue="True" />
+					</Parameters>
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.Button;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; grid cell at row %p1, column %p2." Action="ClickCell">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Row" DefVarType="3" VarType="3" ValueType="1" ValueValue="4" />
+						<Parameter Name="Column" DefVarType="12" VarType="8" ValueType="6" ValueValue="Дата заявки" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.NonArrangedSupplies;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.ArrangeSupplyButton;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Rotates the mouse wheel to %p1 over the &apos;%n&apos; object." Action="MouseWheel">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Delta" DefVarType="3" VarType="3" ValueType="1" ValueValue="-10" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.ScrollViewer;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Sets the &apos;%n&apos; scroll bar thumb to position %v." Action="Pos" InvokeKind="2">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Pos" DefVarType="5" VarType="5" ValueType="3" ValueValue="210.048571428571" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.ScrollViewer.VScroll;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Selects the %p1 item of the &apos;%n&apos; combo box." Action="ClickItem">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Item" DefVarType="12" VarType="3" ValueType="1" ValueValue="1" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.ScrollViewer.Combobox;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.Button2;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.dlg.btn_2;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.Button;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; grid cell at row %p1, column %p2." Action="ClickCell">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Row" DefVarType="3" VarType="3" ValueType="1" ValueValue="4" />
+						<Parameter Name="Column" DefVarType="12" VarType="8" ValueType="6" ValueValue="Статус" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.NonArrangedSupplies;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.ArrangeSupplyButton;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Rotates the mouse wheel to %p1 over the &apos;%n&apos; object." Action="MouseWheel">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Delta" DefVarType="3" VarType="3" ValueType="1" ValueValue="-9" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.ScrollViewer;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Sets the &apos;%n&apos; scroll bar thumb to position %v." Action="Pos" InvokeKind="2">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Pos" DefVarType="5" VarType="5" ValueType="3" ValueValue="210.048571428571" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.ScrollViewer.VScroll;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Selects the %p1 item of the &apos;%n&apos; combo box." Action="ClickItem">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Item" DefVarType="12" VarType="3" ValueType="1" ValueValue="2" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.ScrollViewer.Combobox;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.Button2;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.dlg.btn_2;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.Button;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.ShowAllSuppliesButton;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Rotates the mouse wheel to %p1 over the &apos;%n&apos; object." Action="MouseWheel">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Delta" DefVarType="3" VarType="3" ValueType="1" ValueValue="-1" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.AllSupplies.Datagridcell3;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Rotates the mouse wheel to %p1 over the &apos;%n&apos; object." Action="MouseWheel">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Delta" DefVarType="3" VarType="3" ValueType="1" ValueValue="-1" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.AllSupplies.DatagridcellCalyanLogistics;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Rotates the mouse wheel to %p1 over the &apos;%n&apos; object." Action="MouseWheel">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Delta" DefVarType="3" VarType="3" ValueType="1" ValueValue="-1" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.AllSupplies.DatagridcellCalyanLogistics2;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; grid cell at row %p1, column %p2." Action="ClickCell">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Row" DefVarType="3" VarType="3" ValueType="1" ValueValue="12" />
+						<Parameter Name="Column" DefVarType="12" VarType="8" ValueType="6" ValueValue="Поставщик" />
+						<Parameter Name="Shift" DefVarType="12" DefValueType="1" DefValueValue="0" VarType="3" ValueType="1" ValueValue="0">
+							<Values IsEnum="True">
+								<Value Type="1" Value="0" Text="skNoShift" />
+								<Value Type="1" Value="8192" Text="skShift" />
+								<Value Type="1" Value="32768" Text="skAlt" />
+								<Value Type="1" Value="16384" Text="skCtrl" />
+							</Values>
+						</Parameter>
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.AllSupplies;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.ArrangeSupplyButton;" />
+				</Data>
+			</Operation>
+			<Operation Type="{2F0A05A2-4ECD-47CE-A12B-9843A308F2DC}">
+				<Data Description="Checks whether the %p2 property of the %p1 object %p3 %p4.">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Object" DefVarType="12" ParamType="{FC0DF733-E97F-46DD-8307-EA4DFF891298}" Expression="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.ScrollViewer.Textblock4" />
+						<Parameter Name="Property" DefVarType="8" VarType="8" ValueType="6" ValueValue="Text" />
+						<Parameter Name="Condition" DefVarType="3" VarType="3" ValueType="1" ValueValue="0" />
+						<Parameter Name="Value" DefVarType="12" VarType="8" ValueType="6" ValueValue="Статус - Поставка отменена" />
+						<Parameter Name="CaseSensitive" DefVarType="11" DefValueType="7" DefValueValue="True" VarType="11" ValueType="7" ValueValue="True" />
+					</Parameters>
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Sets the &apos;%n&apos; scroll bar thumb to position %v." Action="Pos" InvokeKind="2">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Pos" DefVarType="5" VarType="5" ValueType="3" ValueValue="210.048571428571" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.ScrollViewer.VScroll;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_SupplyUpdateWindow.SupplyUpdateWindow.Button;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Selects the %p1 tab of the &apos;%n&apos; tab control." Action="ClickTab">
+					<Parameters LangId="{90F89436-9452-4F95-9882-6B5210079F13}">
+						<Parameter Name="Item" DefVarType="12" VarType="3" ValueType="1" ValueValue="6" />
+					</Parameters>
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation;" />
+				</Data>
+			</Operation>
+			<Operation Type="{575D0372-CCEB-4D0F-AFE8-D2004F108913}">
+				<Data Description="Clicks the &apos;%n&apos; button." Action="ClickButton">
+					<ObjectSyntax LangId="{90F89436-9452-4F95-9882-6B5210079F13}" Code="Aliases.NewCourseWork.HwndSource_MainWindow.MainWindow.Navigation.Button2;" />
+				</Data>
+			</Operation>
+		</Children>
+	</TestData>
+	<Parameters Key="{670B603B-E002-43E0-B2AC-3EE9DF6DA70C}" />
+</Root>

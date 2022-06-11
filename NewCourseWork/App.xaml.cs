@@ -8,6 +8,8 @@ using System.Management.Instrumentation;
 using System.Threading.Tasks;
 using System.Windows;
 using NewCourseWork.ViewModels;
+
+
 namespace NewCourseWork
 {
     /// <summary>
@@ -29,10 +31,10 @@ namespace NewCourseWork
             
             //Объявить интерфейсы
             App app = new App();
-            //MainWindow mainWindow = new MainWindow(Wm);
+
+
             app.Run(new RegWindow());
-            //app.Run(new TestGround());
-           // app.Run(new RegWindow());
+
         }
     }
 }
